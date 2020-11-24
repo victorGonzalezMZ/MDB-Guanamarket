@@ -1,0 +1,19 @@
+.img-avatar,
+.avatar>img,
+.img-circle {
+    max-width: 60%;
+    height: auto;
+    border-radius: 50em;
+}
+
+#sidebarCollapse {
+    margin-left: -65px;
+    margin-right: 65px;
+}
+
+@media (max-width: 740px) {
+    #sidebarCollapse {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}

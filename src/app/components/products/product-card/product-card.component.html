@@ -1,0 +1,14 @@
+<div class="card-columns">
+
+    <div class="card z-depth-3" *ngFor="let item of products">
+        <img src="assets/img/products/{{item.imagen}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <h4 class="card-title font-weight-bold blue-text">${{item.seelingPrice}} MXP</h4>
+            <p class="card-text"><small class="text-muted">{{item.category}}</small></p>
+            <button type="button " class="btn btn-black btn-rounded btn-sm px-3 white-text"><i class="fas fa-cart-plus"></i>&nbsp;Add Cart</button>
+            <button type="button " class="btn btn-deep-purple btn-rounded btn-sm px-3 waves-effect white-text" (click)="viewProduct( item )"><i class="fas fa-info"></i>&nbsp;Details</button>
+        </div>
+    </div>
+
+</div>

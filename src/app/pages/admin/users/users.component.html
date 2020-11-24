@@ -1,0 +1,215 @@
+<div class="py-5">
+
+    <div class="container my-5 py-5 purple-gradient z-depth-5">
+        <h1 class="d-flex justify-content-center py-3">Administración de Usuarios</h1>
+        <!-- Section: Block Content -->
+        <section>
+            <div class="row">
+                <div class="col-lg-12 pb-1">
+                    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+                        <div class="container">
+
+                            <!-- Collapse button -->
+                            <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+
+                            <!-- Collapsible content -->
+                            <div class="collapse navbar-collapse justify-content-center" id="navbarButtons">
+
+                                <!-- Links -->
+                                <ul class="navbar-nav">
+
+                                    <li class="nav-item">
+                                        <button class="btn btn-outline-white btn-sm" type="button"><i class="fas fa-user-plus"></i>New User</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="btn btn-outline-white btn-sm" type="button">Button 2</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="btn btn-outline-white btn-sm" type="button">Button 3</button>
+                                    </li>
+
+                                </ul>
+                                <!-- Links -->
+
+                            </div>
+                            <!-- CTA -->
+
+                        </div>
+
+                    </nav>
+                    <!--/.Navbar-->
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-9 col-md-4">
+                    <div class="card card-list">
+                        <div class="card-header white d-flex justify-content-between align-items-center py-3">
+                            <p class="h5-responsive font-weight-bold mb-0">Administración de Usuarios: </p>
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li><i class="far fa-window-minimize fa-sm pl-3"></i></li>
+                                <li><i class="fas fa-times fa-sm pl-3"></i></li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID User</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">City</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of listUsers; let i=index ">
+                                        <th scope="row"><a class="text-primary">{{user.id}}</a></th>
+                                        <td>{{user.firstName}}</td>
+                                        <td>{{user.lastname}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.city}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <!-- Section: Block Content -->
+                    <section>
+
+                        <div class="list-group list-group-flush z-depth-1 rounded">
+                            <div class="list-group-item active d-flex justify-content-start align-items-center py-3">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" class="rounded-circle z-depth-0" width="50" alt="avatar image">
+                                <div class="d-flex flex-column pl-3">
+                                    <p class="font-weight-normal mb-0">Elisa McRayan</p>
+                                    <p class="small mb-0">Web Designer</p>
+                                </div>
+                            </div>
+                            <a href="#!" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Projects
+                <span class="badge badge-info badge-pill">26</span>
+            </a>
+                            <a href="#!" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Tasks
+                <span class="badge badge-warning badge-pill">5</span>
+            </a>
+                            <a href="#!" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Completed projects
+                <span class="badge badge-success badge-pill">10</span>
+            </a>
+                            <a href="#!" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Followers
+                <span class="badge badge-danger badge-pill">728</span>
+            </a>
+                        </div>
+
+                    </section>
+                    <!-- Section: Block Content -->
+
+                </div>
+            </div>
+
+        </section>
+        <!-- Section: Block Content -->
+
+        <!-- Section: Block Content -->
+        <section class="team-section py-5">
+
+            <div class="card">
+                <div class="card-header white d-flex justify-content-between">
+                    <p class="h5-responsive font-weight-bold mb-0">Latest Members</p>
+                    <ul class="list-unstyled d-flex align-items-center mb-0">
+                        <li><span class="badge badge-danger">8 New Members</span></li>
+                        <li><i class="far fa-window-minimize fa-sm pl-3"></i></li>
+                        <li><i class="fas fa-times fa-sm pl-3"></i></li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="row pt-4">
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Alan Turing</h6>
+                                <p class="text-muted mb-0"><small>Today</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Tom Johnson</h6>
+                                <p class="text-muted mb-0"><small>Yesterday</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Alex Laurie</h6>
+                                <p class="text-muted mb-0"><small>29 Nov</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(2).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Nathalie Fry</h6>
+                                <p class="text-muted mb-0"><small>29 Nov</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Emma Lovelace</h6>
+                                <p class="text-muted mb-0"><small>28 Nov</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(5).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Joanna Thompson</h6>
+                                <p class="text-muted mb-0"><small>27 Nov</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(8).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Billy Turner</h6>
+                                <p class="text-muted mb-0"><small>26 Nov</small></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                            <div class="avatar white text-center">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(4).jpg" class="img-fluid rounded-circle z-depth-1" />
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0">Veronica Smith</h6>
+                                <p class="text-muted mb-0"><small>26 Nov</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer white text-center py-3">
+                    <a href="#!">View All Users</a>
+                </div>
+            </div>
+
+        </section>
+        <!-- Section: Block Content -->
+
+    </div>
+</div>

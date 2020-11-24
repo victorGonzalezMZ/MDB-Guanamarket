@@ -1,0 +1,31 @@
+<!-- Page Wrapper -->
+<div class="wrapper">
+
+    <navigation-sidebar></navigation-sidebar>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Navbar -->
+            <navigation-topbar [menuProfileItems]="menuItems">
+            </navigation-topbar>
+            <!-- Navbar -->
+
+            <!--Begin Page Content -->
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+            <!--/begin Page Content -->
+
+        </div>
+        <!-- /main Content -->
+
+        <!-- Footer -->
+        <navigation-footer></navigation-footer>
+        <!-- /footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- /page Wrapper -->

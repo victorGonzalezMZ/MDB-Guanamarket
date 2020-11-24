@@ -1,0 +1,62 @@
+<!--Main layout-->
+<main>
+    <!--Carousel Wrapper-->
+    <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+        <navigation-carousel [carouselItems]="carouselItems"></navigation-carousel>
+    </div>
+    <!--/.Carousel Wrapper-->
+
+    <div class="container">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark purple darken-2  mt-3 mb-5">
+
+            <!-- Navbar brand -->
+            <span class="navbar-brand">Categories:</span>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto nav-pills">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" [ngClass]="{'active': category == 'All'}" (click)="filtrarByCategory('All')">All</a>
+                    </li>
+
+                    <li class="nav-item" *ngFor="let item of menuCategories; let i=index ">
+                        <a class="nav-link " [ngClass]="{'active': category == item.name}" (click)="filtrarByCategory(item.name)">{{item.name}}</a>
+
+                    </li>
+                </ul>
+                <!-- Links -->
+
+                <div class="form-inline white-text">
+                    <div class="md-form my-0 white-text">
+                        <input class="form-control mr-sm-2 white-text" type="text" placeholder="Search" aria-label="Search" (keyup.enter)="filtrarBySearch(searchCriterio.value)" #searchCriterio>
+                    </div>
+                </div>
+            </div>
+            <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+
+        <!--Section: Products v.3-->
+        <section class="text-center mb-4 pb-5">
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+                <app-product-card [products]="listProducts"></app-product-card>
+            </div>
+            <!--Grid row-->
+
+        </section>
+        <!--Section: Products v.3-->
+
+    </div>
+</main>
+<!--Main layout-->
