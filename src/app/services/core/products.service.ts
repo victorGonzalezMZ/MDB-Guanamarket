@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import settings from '../../settings';
 
 @Injectable({
@@ -22,5 +22,23 @@ export class ProductsService {
 
 	getAllProductsBySearch(search:string){
 		return this.http.get(`${settings.apinetcore.urlServer}product/GetProductBySearch/${search}`);	
+	}
+
+	/**
+	 * ELIMINAR PRODUCTO {Id}
+	 */
+	deleteProduct(id:number){
+		return this.http.delete(`${settings.apinetcore.urlServer}product/${id}`);
+	}
+
+	/**
+	 * INSERTAR PRODUCTO --> ENVIAR JSON
+	 */
+	insertProduct(obj:any){
+		return this.http.post(`${settings.apinetcore.urlServer}product`,obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
 	}
 }

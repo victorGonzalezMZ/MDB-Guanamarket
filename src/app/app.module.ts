@@ -23,6 +23,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { SidebarComponent } from './components/navigation/sidebar/sidebar.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
+
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
 }

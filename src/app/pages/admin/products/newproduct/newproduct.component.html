@@ -1,0 +1,95 @@
+<div class="py-5 product-main">
+    <div class="my-5 py-5 purple-gradient z-depth-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center py-3 white-text">Administración de Productos</h1>
+        </div>
+        <!-- Default form contact -->
+        <div class="container">
+            <form class="text-center border border-light p-5 white" #newProductForm="ngForm" (ngSubmit)="registerNewProduct(newProductForm)">
+
+                <p class="h4 mb-4">Nuevo Producto</p>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="sku" name="sku" ngModel class="form-control">
+                            <label for="inputIconEx2">SKU</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="title" name="title" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Nombre</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="md-form mt-0">
+                            <textarea id="description" name="description" ngModel class="md-textarea form-control" rows="3"></textarea>
+                            <label for="form10">Descripción</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="brand" name="brand" ngModel class="form-control">
+                            <label for="inputIconEx2">Marca</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="status" name="status" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Status</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ng-select class="custom" bindLabel="name" bindValue='id' [items]="defaultBindingsList" (change)="onChangeCategory()" [clearable]=false [(ngModel)]="selectedCategory">
+                        </ng-select>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- PRICE -->
+                        <div class="md-form mt-0">
+                            <input type="number" id="price" name="price" ngModel class="form-control">
+                            <label for="inputIconEx2">Precio</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- SEELING PRICE -->
+                        <div class="md-form mt-0">
+                            <input type="number" id="seelingPrice" name="seelingPrice" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Precio de Venta</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject -->
+                <label for="customRange2">Ranking Inicial:</label>
+                <input type="range" class="custom-range" min="0" max="5" id="ranking" name="ranking" ngModel>
+
+                <div class="file-upload-wrapper">
+                    <input type="file" (change)="handleImage($event)" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" />
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Send button -->
+                        <button class="btn btn-info btn-block" type="submit"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- Default form contact -->
+    </div>
+</div>

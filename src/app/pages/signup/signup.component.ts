@@ -35,7 +35,6 @@ export class SignupComponent {
 				"imagen": ""
 			};
 
-			console.log(obj);
 			this.userSvc.registerNewUser(obj).subscribe(response => {
 				if (response > 0) {
 					const obj_login = {
