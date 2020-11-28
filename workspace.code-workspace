@@ -1,0 +1,11 @@
+{
+    "folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../GuanaMarket-Ecommerce/ecommerce-guanamarket-api"
+		}
+	],
+    "settings": {}
+}

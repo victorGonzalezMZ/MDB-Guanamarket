@@ -14,7 +14,8 @@ export class AuthGuardGuard implements CanActivate {
 	async canActivate() {
 
 		const token = localStorage.getItem("jwt");
-
+		const token_decode = this.jwtHelper.decodeToken(token);
+		console.log(token_decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
 		if (token && !this.jwtHelper.isTokenExpired(token)) {
 			return true;
 		}

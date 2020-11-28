@@ -21,7 +21,12 @@ export class TopbarComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
-		
+	
+	}
+
+	public logOut = () => {
+		localStorage.removeItem("jwt");
+		localStorage.removeItem("refreshToken");
 	}
 
 	isUserAuthenticated() {
@@ -34,9 +39,8 @@ export class TopbarComponent implements OnInit {
 		}
 	}
 
-	public logOut = () => {
-		localStorage.removeItem("jwt");
-		localStorage.removeItem("refreshToken");
+	isRevise(){
+		console.log("Hola mundo");
 	}
 
 }

@@ -10,6 +10,7 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Hola mensaje desde sidebar");
   }
 
 }

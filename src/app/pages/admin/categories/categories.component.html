@@ -1,6 +1,6 @@
 <div class="py-5 product-main">
     <div class="my-5 py-5 purple-gradient z-depth-5">
-        <h1 class="text-center d-flex justify-content-center py-3 white-text">Administración de Productos</h1>
+        <h1 class="text-center d-flex justify-content-center py-3 white-text">Administración de Categorias</h1>
 
         <div class="container z-depth-3 p-5 my-5 white">
             <!-- Section: Block Content -->
@@ -10,17 +10,13 @@
                     <div class="col-md-4">
                         <div class="md-form">
                             <input type="text" #searchCriterio (keyup.enter)="filtrarBySearch(searchCriterio.value)" class="form-control" id="search" mdbInput />
-                            <label for="search">Buscar por Título</label>
+                            <label for="search">Buscar por Nombre</label>
                         </div>
-                    </div>
-                    <div class="col-8 col-md-8 text-right">
-                        <ng-select class="custom" [items]="defaultBindingsList" (change)="onChangeBrand()" [clearable]=false [(ngModel)]="selectedBrand">
-                        </ng-select>
                     </div>
                 </div>
                 <!-- Filter Area -->
                 <div class="col-lg-12 d-flex flex-row-reverse">
-                    <button type="button" class="btn purple lighten-5" (click)="click_addProduct()"><i class="fas fa-plus pr-2" aria-hidden="true"></i>Agregar Producto</button>
+                    <button type="button" class="btn purple lighten-5" (click)="click_addCategory()"><i class="fas fa-plus pr-2" aria-hidden="true"></i>Agregar Categoria</button>
                 </div>
             </section>
             <!-- Section: Block Content -->
@@ -42,19 +38,12 @@
                                 <tr *ngFor="let el of elements; let i = index">
                                     <th>
                                         <button type="button" class="btn btn-sm btn-warning btn-rounded"><i class="fas fa-edit"></i></button>
-                                        <button type="button" (click)="click_deleteProduct(el.id)" class="btn btn-sm btn-danger btn-rounded"><i class="fas fa-trash"></i></button>
+                                        <button type="button" (click)="click_deleteCategory(el.id)" class="btn btn-sm btn-danger btn-rounded"><i class="fas fa-trash"></i></button>
                                     </th>
                                     <th scope="row">{{el.id}}</th>
-
-                                    <td class="text-right badge badge-pill badge-default mt-3">{{el.sku}} </td>
-                                    <td>{{el.title}}</td>
-                                    <td>{{el.brand}}</td>
-                                    <td>{{el.category}}</td>
-                                    <td>{{el.price | currency }} MXP</td>
-                                    <td>{{el.seelingPrice | currency}} MXP</td>
-                                    <td>
-                                        <img src="assets/img/products/{{el.imagen}}" width="100px" height="100px" class="img-fluid hover-shadow rounded-lg" alt="" />
-                                    </td>
+                                    <td class="text-right badge badge-pill badge-default mt-3">{{el.name}} </td>
+                                    <td>{{el.createDate | date}}</td>
+                                    <td>{{el.updateDate | date}}</td>
                                 </tr>
                             </tbody>
                         </table>

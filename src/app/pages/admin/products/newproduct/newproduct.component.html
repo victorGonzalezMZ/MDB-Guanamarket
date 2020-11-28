@@ -77,14 +77,21 @@
                 <label for="customRange2">Ranking Inicial:</label>
                 <input type="range" class="custom-range" min="0" max="5" id="ranking" name="ranking" ngModel>
 
-                <div class="file-upload-wrapper">
-                    <input type="file" (change)="handleImage($event)" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" />
+                <div class="input-group pt-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Subir Foto</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" (change)="handleImage($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Elegir archivo</label>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-3">
-                        <!-- Send button -->
-                        <button class="btn btn-info btn-block" type="submit"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                <div class="row pt-5">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-info btn-block" type="submit"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                        </div>
                     </div>
                 </div>
 

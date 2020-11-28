@@ -22,7 +22,9 @@ import { AppRouterModule } from './app.routes';
 import { JwtModule } from "@auth0/angular-jwt";
 import { SidebarComponent } from './components/navigation/sidebar/sidebar.component';
 import { SignupComponent } from './pages/signup/signup.component';
-
+import { ProductFiltersComponent } from './components/products/product-filters/product-filters.component';
+import { ShopComponent } from './pages/shop/shop.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
@@ -41,7 +43,9 @@ export function tokenGetter() {
 		NotfoundComponent,
 		ProductdetailComponent,
 		SidebarComponent,
-		SignupComponent
+		SignupComponent,
+		ProductFiltersComponent,
+		ShopComponent
 	],
 	imports: [
 		BrowserModule,
@@ -52,6 +56,7 @@ export function tokenGetter() {
 		StarRatingModule,
 		AppRouterModule,
 		HttpClientModule,
+		NgxSliderModule,
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: tokenGetter,
@@ -59,6 +64,7 @@ export function tokenGetter() {
 				disallowedRoutes: [],
 			},
 		}),
+		
 	],
 	providers: [],
 	bootstrap: [AppComponent]

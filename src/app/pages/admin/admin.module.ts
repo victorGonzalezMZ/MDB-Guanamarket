@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { NgFloatingActionMenuModule } from 'ng-floating-action-menu';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NewproductComponent } from './products/newproduct/newproduct.component';
- 
+import { CategoriesComponent } from './categories/categories.component';
+import { NewcategoryComponent } from './categories/newcategory/newcategory.component';
 
 @NgModule({
 	declarations: [
@@ -18,13 +19,15 @@ import { NewproductComponent } from './products/newproduct/newproduct.component'
 		UsersComponent,
 		ProductsComponent,
 		NewproductComponent,
+		CategoriesComponent,
+		NewcategoryComponent,
 	],
 	imports: [
 		CommonModule,
 		NgSelectModule,
 		AdminRoutesModule,
 		FormsModule,
-		NgFloatingActionMenuModule
+		NgFloatingActionMenuModule,
 	]
 })
 export class AdminModule { }

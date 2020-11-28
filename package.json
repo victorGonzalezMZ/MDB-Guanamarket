@@ -11,6 +11,7 @@
     },
     "private": true,
     "dependencies": {
+        "@angular-slider/ngx-slider": "^2.0.3",
         "@angular/animations": "^10.2.3",
         "@angular/cdk": "^10.2.7",
         "@angular/common": "~10.1.2",
@@ -24,9 +25,12 @@
         "@auth0/angular-jwt": "^5.0.2",
         "@fortawesome/fontawesome-free": "^5.6.3",
         "@ng-select/ng-select": "^5.0.9",
+        "@types/angular": "^1.8.0",
         "angular-bootstrap-md": "10.0.0",
         "angular-datatables": "^10.0.0",
         "angular-rating-star": "^1.0.4",
+        "angular2-toaster": "^10.0.0",
+        "angularjs-slider": "^7.0.0",
         "chart.js": "^2.5.0",
         "datatables.net": "^1.10.22",
         "datatables.net-dt": "^1.10.22",
@@ -40,6 +44,7 @@
         "ngx-lightbox": "^2.2.2",
         "ngx-toastr": "^13.1.0",
         "rxjs": "~6.5.4",
+        "sweetalert2": "^10.10.3",
         "tslib": "^2.0.0",
         "zone.js": "~0.10.2"
     },

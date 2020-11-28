@@ -9,23 +9,22 @@ import { Router } from '@angular/router';
 export class ProductCardComponent implements OnInit {
 
 	@Input() products: any[] = [];
-	public dataSet: any = {};
+	public dataSet;
 
-	constructor(private router: Router) {
+	constructor(
+		private router: Router) {}
+
+	ngOnInit(): void {
 		this.dataSet = {
-			starSize: 5,
 			labelsStyle: {
 				background: '#3F51B5',
 				color: '#f8f8f8',
 			},
 			showNumber: false,
 			labels: ["Bad", "Not Bad", "Average", "Good", "Best",],
-			colors: ["#ff4081", "#ff4081", "#ff4081", "#ff4081 ", "#ff4081"]
+			colors: ["#ff4081", "#ff4081", "#ff4081", "#ff4081 ", "#ff4081"],
+			starSize: "10" // Set the default Size of component
 		}
-	}
-
-	ngOnInit(): void {
-
 	}
 
 	viewProduct(item: any) {

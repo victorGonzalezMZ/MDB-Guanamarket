@@ -4,6 +4,7 @@ import { CategoriesService } from 'src/app/services/core/categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { UploadService } from 'src/app/services/core/upload.service';
 
+
 @Component({
   selector: 'app-newproduct',
   templateUrl: './newproduct.component.html',
@@ -15,7 +16,10 @@ export class NewproductComponent implements OnInit {
   defaultBindingsList = [];
   selectedCategory = null;
 
-  constructor(private categoriesSvc: CategoriesService, private uploadSvc: UploadService, private productsSvc: ProductsService) { 
+  constructor(
+	  private categoriesSvc: CategoriesService, 
+	  private uploadSvc: UploadService, 
+	  private productsSvc: ProductsService) { 
 	
   }
 
