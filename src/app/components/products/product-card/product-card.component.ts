@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
+import settings from '../../../settings';
 @Component({
 	selector: 'app-product-card',
 	templateUrl: './product-card.component.html',
@@ -10,9 +10,10 @@ export class ProductCardComponent implements OnInit {
 
 	@Input() products: any[] = [];
 	public dataSet;
+	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
 
-	constructor(
-		private router: Router) {}
+	
+	constructor(private router: Router) {}
 
 	ngOnInit(): void {
 		this.dataSet = {

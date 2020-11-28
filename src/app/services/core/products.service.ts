@@ -42,4 +42,12 @@ export class ProductsService {
 			})
 		});
 	}
+
+	getAllProductsByParams(obj:any){
+		return this.http.post(`${settings.apinetcore.urlServer}product/GetAllProductsByParamsPost`,obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
 }

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 	listProducts: any[] = [];
 	category: string;
 	carouselItems: any[] = [];
+	
 
 	constructor(private navCategorySvc: MenuNavbarCategoriesService, private produtsSvc: ProductsService, private carouselSvc: CarouselService) { }
 

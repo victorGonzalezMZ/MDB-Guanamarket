@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { CategoriesService } from 'src/app/services/core/categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { UploadService } from 'src/app/services/core/upload.service';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -13,25 +14,17 @@ import { UploadService } from 'src/app/services/core/upload.service';
 export class NewproductComponent implements OnInit {
 
   private image: any;
-  defaultBindingsList = [];
-  selectedCategory = null;
+  listCategories:any;
 
   constructor(
 	  private categoriesSvc: CategoriesService, 
 	  private uploadSvc: UploadService, 
-	  private productsSvc: ProductsService) { 
-	
-  }
+	  private productsSvc: ProductsService,) { }
 
   ngOnInit(): void {
     this.categoriesSvc.getCategories().subscribe((data: any) => {
-	  this.defaultBindingsList = data.listCategories;
-	  this.selectedCategory = this.defaultBindingsList[0];
+	  	this.listCategories= data.listCategories; 
     });
-  }
-
-  onChangeCategory() {
-	 console.log(this.selectedCategory.id);
   }
 
   registerNewProduct(form: NgForm) {
@@ -45,7 +38,7 @@ export class NewproductComponent implements OnInit {
 			"sku": form.value.sku,
 			"description": form.value.description,
 			"brand": form.value.brand,
-			"idCategory": this.selectedCategory.id,
+			"idCategory": parseInt(form.value.idCategory),
 			"ranking": form.value.ranking,
 			"price":form.value.price,
 			"seelingPrice": form.value.seelingPrice,
@@ -53,10 +46,24 @@ export class NewproductComponent implements OnInit {
 			"imagen": res.imagen,
 			"updateDate": "2020-11-16T00:00:00"
 		};
+
+		console.log(obj);
+
 		this.productsSvc.insertProduct(obj).subscribe(response => {
-			console.log(response);
+			if(response>0){
+				Swal.fire(
+					'Bien hecho!',
+					`Tu producto con ID ${response} fue registrado correctamente!`,
+					'success'
+				)
+			}
 		}, err => {
-			console.log("Error al registrar producto");
+			console.log(err);
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: `${err}`,
+			});
 		});
 		
 	});

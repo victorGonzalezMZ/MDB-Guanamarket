@@ -4,6 +4,7 @@ import { MenuNavbarCategoriesService } from 'src/app/services/core/menu-navbar-c
 import { ProductsService } from 'src/app/services/core/products.service';
 import settings from '../../settings';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-shop',
@@ -15,9 +16,10 @@ export class ShopComponent implements OnInit {
 	menuCategories: any[] = [];
 	menuBrands: any[] = [];
 
-	category: string;
+	Category: string;
 	shortBy: string;
-	brand: string;
+	Brand: string;
+	ShortByDirection: string;
 
 	listProducts: any[] = [];
 	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
@@ -42,12 +44,12 @@ export class ShopComponent implements OnInit {
 	constructor(
 		private navCategorySvc: MenuNavbarCategoriesService,
 		private produtsSvc: ProductsService,
-		private brandSvc: BrandsService) {
-		this.shortBy = "title";
-		this.category = "";
-		this.brand = "Todos";
-
-
+		private brandSvc: BrandsService,
+		private router: Router) {
+			this.shortBy = "title";
+			this.ShortByDirection="ASC";
+			this.Category = null;
+			this.Brand = null;
 	}
 
 	ngOnInit(): void {
@@ -58,6 +60,10 @@ export class ShopComponent implements OnInit {
 			this.menuBrands = data.list;
 		});
 		this.getAllProducts();
+	}
+
+	click_viewProduct(item: any) {
+		this.router.navigate(['/product-detail', item.id]);
 	}
 
 	/**
@@ -73,23 +79,54 @@ export class ShopComponent implements OnInit {
 	 * SECCION DE FILTRO
 	 */
 	filtrarByCategory(category: string) {
-		this.category = category;
+		if(category=='')
+			this.Category = null;
+		else
+			this.Category = category;
+		this.allFilters();
 	}
 
 	filtrarByOrderBy(columna: string) {
 		this.shortBy = columna;
+		this.allFilters();
+	}
+
+	filtrarByShortByDirection(columna: string){
+		this.ShortByDirection = columna;
+		this.allFilters();
 	}
 
 	filtrarByBrand(brand: string) {
-		this.brand = brand;
+		this.Brand = brand;
+		this.allFilters();
 	}
 
 	filtrarRango(){
-		console.log(`El valor minimo es: ${this.minValue}`);
-		console.log(`El valor máximo es: ${this.maxValue}`);
-		
+		this.allFilters();
 	}
 
+	allFilters(){
 
+		var _Brand = null
+		if(this.Brand != "Todos")
+			_Brand = this.Brand;
+
+		const obj = {
+			"Category":this.Category,
+			"Brand": _Brand,
+			"ShortBy": this.shortBy,
+			"ShortByDirection": this.ShortByDirection,
+			"MinValor": this.minValue,
+			"MaxValor": this.maxValue,
+		};
+
+		console.log(obj);
+		this.produtsSvc.getAllProductsByParams(obj).subscribe((data: any) => {
+			console.log( data.listProducts);
+			this.listProducts = data.listProducts;
+		});
+	}
+
+	
 
 }

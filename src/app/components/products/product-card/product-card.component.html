@@ -1,7 +1,7 @@
 <div class="card-columns">
 
     <div class="card z-depth-3" *ngFor="let item of products">
-        <img src="assets/img/products/{{item.imagen}}" class="card-img-top" (click)="viewProduct( item )" alt="...">
+        <img [src]='imagesUrl+item.imagen' class="card-img-top" (click)="viewProduct( item )" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{item.title}}</h5>
             <h4 class="card-title font-weight-bold blue-text">${{item.seelingPrice}} MXP</h4>

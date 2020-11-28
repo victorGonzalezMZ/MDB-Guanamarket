@@ -7,10 +7,10 @@
                     <div class="single-widget category purple lighten-5">
                         <h3 class="title">Categorías</h3>
                         <ul class="categor-list list-group">
-                            <li class="list-group-item active" [ngClass]="{'active': category == ''}" (click)="filtrarByCategory('')">
+                            <li class="list-group-item active" [ngClass]="{'active': Category == null}" (click)="filtrarByCategory('')">
                                 Todas
                             </li>
-                            <li class="list-group-item" *ngFor="let item of menuCategories; let i=index " [ngClass]="{'active': category == item.name}" (click)="filtrarByCategory(item.name)">
+                            <li class="list-group-item" *ngFor="let item of menuCategories; let i=index " [ngClass]="{'active': Category == item.name}" (click)="filtrarByCategory(item.name)">
                                 {{item.name}}
                             </li>
                         </ul>
@@ -36,7 +36,7 @@
                         <h3 class="title">Marcas</h3>
 
                         <ul class="categor-list list-group">
-                            <li class="list-group-item" *ngFor="let item of menuBrands; let i=index" [ngClass]="{'active': brand == item.label}" (click)="filtrarByBrand(item.label)">
+                            <li class="list-group-item" *ngFor="let item of menuBrands; let i=index" [ngClass]="{'active': Brand == item.label}" (click)="filtrarByBrand(item.label)">
                                 {{item.label}}
                             </li>
                         </ul>
@@ -56,11 +56,14 @@
                                         <option value="title" selected="selected">Nombre</option>
                                         <option value="seeling_price">Precio</option>
                                     </select>
+                                    <select class="ml-3" (change)="filtrarByShortByDirection($event.target.value)">
+                                        <option value="ASC" selected="selected">ASC</option>
+                                        <option value="DESC">DESC</option>
+                                    </select>
                                 </div>
                             </div>
                             <ul class="view-mode">
-                                <li class="active"><a href="shop-grid.html"><i class="fa fa-th-large"></i></a></li>
-                                <li><a href="shop-list.html"><i class="fa fa-th-list"></i></a></li>
+                                <li class="active"><a (click)="allFilters()"><i class="fas fa-search"></i></a></li>
                             </ul>
                         </div>
                         <!--/ End Shop Top -->
