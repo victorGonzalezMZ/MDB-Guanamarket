@@ -47,7 +47,7 @@ export class NewproductComponent implements OnInit {
 			"updateDate": "2020-11-16T00:00:00"
 		};
 
-		console.log(obj);
+		
 
 		this.productsSvc.insertProduct(obj).subscribe(response => {
 			if(response>0){

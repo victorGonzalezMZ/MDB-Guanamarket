@@ -40,11 +40,10 @@
                 <li class="dropdown" (click)="isRevise()">
                     <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
                         <img src="http://placehold.it/50x50" class="img-circle special-img"><b class="caret"></b></a>
-                    <ul class="dropdown-menu" *ngIf="!isUserAuthenticated()">
+                    <ul class="dropdown-menu" *ngIf="!userAuthenticaded">
                         <li><a href="#" routerLink="/login" routerLinkActive="active"><i class="far fa-user"></i>&nbsp;Iniciar Sesión</a></li>
                     </ul>
-                    <ul class="dropdown-menu" *ngIf="isUserAuthenticated()">
-
+                    <ul class="dropdown-menu" *ngIf="userAuthenticaded">
                         <li><a href="#"><i class="fa fa-cog"></i>&nbsp;Mi Cuenta</a></li>
                         <li class="divider"></li>
                         <li><a (click)="logOut()"><i class="fas fa-sign-in-alt"></i>&nbsp;Cerrar Sesión</a></li>

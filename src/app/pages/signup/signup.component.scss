@@ -6,4 +6,20 @@ header {
 
 .spacing-navbar {
     margin-top: 30px;
+    max-width: calc(100% - 2em);
+    margin: 3em auto;
+    overflow: hidden;
+    width: 60%;
+}
+
+@media (max-width: 500px) {
+    .spacing-navbar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .spacing-navbar {
+        width: 90%;
+    }
 }

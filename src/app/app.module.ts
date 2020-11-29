@@ -25,6 +25,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ProductFiltersComponent } from './components/products/product-filters/product-filters.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
@@ -57,6 +58,7 @@ export function tokenGetter() {
 		AppRouterModule,
 		HttpClientModule,
 		NgxSliderModule,
+		ReactiveFormsModule,
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: tokenGetter,

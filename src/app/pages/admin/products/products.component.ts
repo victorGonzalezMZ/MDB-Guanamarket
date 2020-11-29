@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FloatingActionButton } from 'ng-floating-action-menu';
 import { CategoriesService } from 'src/app/services/core/categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
-
+import settings from '../../../settings';
 @Component({
 	selector: 'app-products',
 	templateUrl: './products.component.html',
@@ -14,10 +13,12 @@ export class ProductsComponent implements OnInit {
 
 
 	elements: any = [];
-	headElements = ['', 'ID', 'SKU', 'TITULO', 'MARCA', 'CATEGORIA', 'PRECIO', 'PRECIO VENTA', 'IMAGEN'];
+	headElements = ['IMAGEN', 'ID', 'SKU', 'TITULO', 'MARCA', 'CATEGORIA', 'PRECIO', 'PRECIO VENTA', 'ACCIONES'];
 	defaultBindingsList = [];
 	selectedBrand = null;
+	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
 
+	
 	constructor(private productsSvc: ProductsService, 
 				private categoriesSvc: CategoriesService,
 				private router: Router) {

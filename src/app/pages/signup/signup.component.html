@@ -1,10 +1,8 @@
 <!-- Main navigation -->
 <div class="py-5 spacing-navbar">
-
-
-    <div class="container-fluid mt-3 mb-5">
+    <div class="container-fluid mt-3 mb-5 purple-gradient">
         <!-- Full Page Intro -->
-        <section class="purple-gradient">
+        <section class="">
             <!-- Mask & flexbox options-->
             <div class="mask d-flex justify-content-center align-items-center">
                 <!-- Content -->
@@ -19,23 +17,39 @@
                         <div class="col-md-6 col-xl-5">
 
                             <!--Form-->
-                            <form class="text-center" #registerForm="ngForm" (ngSubmit)="registerNewClient(registerForm)">
+                            <form class="text-center white" #registerForm="ngForm" (ngSubmit)="registerNewClient(registerForm)">
                                 <div class="card-body z-depth-2 px-4 ">
                                     <div *ngIf="invalidRegister" class="alert alert-danger">No fue posible registrar al usuario, por favor revisa los datos sean correctos</div>
 
+                                    <div class="md-form mt-0">
+                                        <input type="text" id="nick" name="nick" ngModel class="form-control" required autofocus>
+                                        <label for="inputIconEx2">Nick</label>
+                                    </div>
 
-                                    <input type="text" id="nick" name="nick" ngModel class="form-control mb-4" placeholder="Tu Nick" required autofocus>
+                                    <div class="md-form mt-0">
+                                        <input type="text" id="firstName" name="firstName" ngModel class="form-control" required>
+                                        <label for="inputIconEx2">Nombre/s</label>
+                                    </div>
 
-                                    <input type="text " name="firstName" ngModel id="firstName mb-4" class="form-control mb-4" placeholder="Tu Nombre" required>
+                                    <div class="md-form mt-0">
+                                        <input type="text" id="lastname" name="lastname" ngModel class="form-control" required>
+                                        <label for="inputIconEx2">Apellido/s</label>
+                                    </div>
 
-                                    <input type="text " name="lastname" ngModel id="lastname mb-4" class="form-control mb-4" placeholder="Tu Apellido/s" required>
+                                    <div class="md-form mt-0">
+                                        <input type="email" id="email" name="email" ngModel class="form-control" required>
+                                        <label for="inputIconEx2">Correo Eletronico</label>
+                                    </div>
 
-                                    <input type="text " name="email" ngModel id="email" class="form-control mb-4" placeholder="Tu Email" required>
+                                    <div class="md-form mt-0">
+                                        <input type="password" id="password" name="password" ngModel class="form-control" required>
+                                        <label for="inputIconEx2">Contraseña</label>
+                                    </div>
 
-                                    <input type="password" name="password" ngModel id="password" class="form-control mb-4" placeholder="Tu Contraseña" required>
-
-                                    <input type="password" name="password_repeat" ngModel id="password_repeat" class="form-control mb-4" placeholder="Confirmemos tu contraseña" required>
-
+                                    <div class="md-form mt-0">
+                                        <input type="password" id="password_repeat" name="password_repeat" ngModel class="form-control" required>
+                                        <label for="inputIconEx2">Contraseña</label>
+                                    </div>
 
                                     <div class="text-center my-3 ">
                                         <button class="btn aqua-gradient btn-block ">Registrate!!!</button>
