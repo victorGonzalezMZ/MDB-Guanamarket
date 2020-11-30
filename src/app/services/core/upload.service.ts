@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class UploadService {
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
-  uploadImageProduct(formData){
-      return this.http.post('api/update-image-product',formData);
-  }
+	uploadImageProduct(formData) {
+		return this.http.post('api/update-image-product', formData);
+	}
+	deleteImageProduct(imageName: string) {
+		return this.http.delete(`api/delete-image-product/${imageName}`,{
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
 }

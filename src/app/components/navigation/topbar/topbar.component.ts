@@ -18,6 +18,7 @@ export class TopbarComponent implements OnInit {
 
 
 	userAuthenticaded:boolean=false;
+	cartNoItems:number=0;
 
 	@Input() menuProfileItems: any[] = [];
 	
@@ -25,7 +26,8 @@ export class TopbarComponent implements OnInit {
 	
 
 	constructor(private router: Router,
-				private svcLogin: LoginmessengerService) { 
+				private svcLogin: LoginmessengerService,
+				private jwtHelper: JwtHelperService) { 
 		this.subscription$ = this.svcLogin.onListenCriterio().subscribe( (criterio:boolean)=>{
 			this.userAuthenticaded =criterio;
 			
@@ -51,6 +53,9 @@ export class TopbarComponent implements OnInit {
 
 	isUserAuthenticated() {
 		const token: string = localStorage.getItem("jwt");
+		const token_decode = this.jwtHelper.decodeToken(token);
+		console.log(token_decode);
+		
 		if (token && !jwtHelper.isTokenExpired(token))
 			return true;
 		else 

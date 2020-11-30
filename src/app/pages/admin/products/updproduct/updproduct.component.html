@@ -5,30 +5,30 @@
         </div>
         <!-- Default form contact -->
         <div class="container">
-            <form class="text-center border border-light p-5 white" #newProductForm="ngForm" (ngSubmit)="registerNewProduct(newProductForm)">
+            <form class="text-center border border-light p-5 white" [formGroup]="productForm" (submit)="updateProduct()">
 
-                <p class="h4 mb-4">Nuevo Producto</p>
+                <p class="h4 mb-4">Actualizar Producto</p>
                 <div class="row">
                     <div class="col-lg-3">
                         <!-- SKU -->
                         <div class="md-form mt-0">
-                            <input type="text" id="sku" name="sku" ngModel class="form-control">
-                            <label for="inputIconEx2">SKU</label>
+                            <input type="text" id="sku" name="sku" formControlName="sku" class="form-control" autofocus>
+                            <label class="active" for="inputIconEx2">SKU</label>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <!-- Name -->
                         <div class="md-form mt-0">
-                            <input type="text" id="title" name="title" ngModel class="form-control form-control-lg">
-                            <label for="inputLGEx">Nombre</label>
+                            <input type="text" id="title" name="title" formControlName="title" class="form-control form-control-lg" autofocus>
+                            <label class="active" for="inputLGEx">Nombre</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="md-form mt-0">
-                            <textarea id="description" name="description" ngModel class="md-textarea form-control" rows="3"></textarea>
-                            <label for="form10">Descripción</label>
+                            <textarea id="description" name="description" formControlName="description" class="md-textarea form-control" rows="3" autofocus></textarea>
+                            <label class="active" for="form10">Descripción</label>
                         </div>
                     </div>
                 </div>
@@ -36,21 +36,21 @@
                     <div class="col-lg-6">
                         <!-- SKU -->
                         <div class="md-form mt-0">
-                            <input type="text" id="brand" name="brand" ngModel class="form-control">
-                            <label for="inputIconEx2">Marca</label>
+                            <input type="text" id="brand" name="brand" formControlName="brand" class="form-control" autofocus>
+                            <label class="active" for="inputIconEx2">Marca</label>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Status -->
                         <div class="md-form mt-0">
-                            <input type="text" id="status" name="status" ngModel class="form-control form-control-lg">
-                            <label for="inputLGEx">Status</label>
+                            <input type="text" id="status" name="status" formControlName="status" class="form-control form-control-lg" autofocus>
+                            <label class="active" for="inputLGEx">Status</label>
                         </div>
                     </div>
                 </div>
                 <div class="row py-3">
                     <div class="col-lg-12">
-                        <select name='idCategory' id='idCategory' ngModel class="browser-default custom-select">
+                        <select name='idCategory' id='idCategory' formControlName="idCategory" class="browser-default custom-select">
                             <option selected>Seleccione una categoria</option>
                             <option *ngFor="let item of listCategories"  value="{{item.id}}">{{item.name}}</option>
                           </select>
@@ -62,23 +62,22 @@
                     <div class="col-lg-6">
                         <!-- PRICE -->
                         <div class="md-form mt-0">
-                            <input type="number" id="price" name="price" ngModel class="form-control">
-                            <label for="inputIconEx2">Precio</label>
+                            <input type="number" id="price" name="price" formControlName="price" class="form-control" autofocus>
+                            <label class="active" for="inputIconEx2">Precio</label>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- SEELING PRICE -->
                         <div class="md-form mt-0">
-                            <input type="number" id="seelingPrice" name="seelingPrice" ngModel class="form-control form-control-lg">
-                            <label for="inputLGEx">Precio de Venta</label>
+                            <input type="number" id="seelingPrice" name="seelingPrice" formControlName="seelingPrice" class="form-control form-control-lg" autofocus>
+                            <label class="active" for="inputLGEx">Precio de Venta</label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Subject -->
                 <label for="customRange2">Ranking Inicial:</label>
-                <input type="range" class="custom-range" min="0" max="5" id="ranking" name="ranking" ngModel>
-
+                <input type="range" class="custom-range" min="0" max="5" id="ranking" name="ranking" formControlName="ranking">
 
 
                 <ngx-dropzone (change)="onSelect($event)">
@@ -87,8 +86,6 @@
                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                     </ngx-dropzone-preview>
                 </ngx-dropzone>
-
-
 
                 <div class="row pt-5">
                     <div class="col">

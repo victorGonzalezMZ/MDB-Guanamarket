@@ -22,7 +22,8 @@
             <!-- Left -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" *ngFor="let item of menuProfileItems; let i=index">
-                    <a class="nav-link waves-effect" [routerLink]="item.route" routerLinkActive="active"><i class="fas {{item.icon}}"></i>{{item.title}}
+                    <a class="nav-link waves-effect" [routerLink]="item.route" routerLinkActive="active"><i
+                            class="fas {{item.icon}}"></i>{{item.title}}
                     </a>
                 </li>
             </ul>
@@ -31,7 +32,7 @@
             <ul class="navbar-nav nav-flex-icons">
                 <li class="nav-item">
                     <a class="nav-link waves-effect">
-                        <span class="badge red z-depth-1 mr-1"> 1 </span>
+                        <span class="badge red z-depth-1 mr-1">{{cartNoItems}}</span>
                         <i class="fas fa-shopping-cart"></i>
                         <span class="clearfix d-none d-sm-inline-block">Carrito</span>
                     </a>
@@ -40,8 +41,19 @@
                 <li class="dropdown" (click)="isRevise()">
                     <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
                         <img src="http://placehold.it/50x50" class="img-circle special-img"><b class="caret"></b></a>
+
                     <ul class="dropdown-menu" *ngIf="!userAuthenticaded">
-                        <li><a href="#" routerLink="/login" routerLinkActive="active"><i class="far fa-user"></i>&nbsp;Iniciar Sesión</a></li>
+                        <li>
+                            <a href="#" routerLink="/login" routerLinkActive="active">
+                                <i class="far fa-user"></i>&nbsp;Iniciar Sesión
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" routerLink="/signup" routerLinkActive="active">
+                                <i class="fas fa-user-plus"></i>&nbsp;Registrate
+                            </a>
+                        </li>
+
                     </ul>
                     <ul class="dropdown-menu" *ngIf="userAuthenticaded">
                         <li><a href="#"><i class="fa fa-cog"></i>&nbsp;Mi Cuenta</a></li>

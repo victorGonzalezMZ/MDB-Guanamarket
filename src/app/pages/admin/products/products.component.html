@@ -53,7 +53,7 @@
                                 <td>{{el.price | currency }} MXP</td>
                                 <td>{{el.seelingPrice | currency}} MXP</td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-warning btn-rounded"><i class="fas fa-edit"></i></button>
+                                    <button type="button" (click)="click_updateProduct(el.id)" class="btn btn-sm btn-warning btn-rounded"><i class="fas fa-edit"></i></button>
                                     <button type="button" (click)="click_deleteProduct(el.id)" class="btn btn-sm btn-danger btn-rounded"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>

@@ -25,10 +25,10 @@ export class ShopComponent implements OnInit {
 	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
 
 	minValue: number = 0;
-	maxValue: number = 2000;
+	maxValue: number = 2599;
 	options: Options = {
 		floor: 0,
-		ceil: 2000,
+		ceil: 2599,
 		translate: (value: number, label: LabelType): string => {
 			switch (label) {
 				case LabelType.Low:

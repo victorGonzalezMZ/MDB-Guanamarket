@@ -13,6 +13,10 @@ export class CategoriesService {
 		return this.http.get(`${settings.apinetcore.urlServer}category/GetCategoriesBySelect`);
 	}
 
+	getCategory(id:number){
+		return this.http.get(`${settings.apinetcore.urlServer}category/${id}`);
+	}
+
 	getCategories() {
 		return this.http.get(`${settings.apinetcore.urlServer}category`);
 	}

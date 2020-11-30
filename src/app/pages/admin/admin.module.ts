@@ -11,6 +11,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NewproductComponent } from './products/newproduct/newproduct.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { NewcategoryComponent } from './categories/newcategory/newcategory.component';
+import { UpdcategoryComponent } from './categories/updcategory/updcategory.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UpdproductComponent } from './products/updproduct/updproduct.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
 	declarations: [
@@ -21,6 +25,8 @@ import { NewcategoryComponent } from './categories/newcategory/newcategory.compo
 		NewproductComponent,
 		CategoriesComponent,
 		NewcategoryComponent,
+		UpdcategoryComponent,
+		UpdproductComponent,
 	],
 	imports: [
 		CommonModule,
@@ -28,6 +34,9 @@ import { NewcategoryComponent } from './categories/newcategory/newcategory.compo
 		AdminRoutesModule,
 		FormsModule,
 		NgFloatingActionMenuModule,
+		ReactiveFormsModule,
+		NgxDropzoneModule
+
 	]
 })
 export class AdminModule { }

@@ -22,19 +22,14 @@ export class ProductCardComponent implements OnInit {
 				color: '#f8f8f8',
 			},
 			showNumber: false,
-			labels: ["Bad", "Not Bad", "Average", "Good", "Best",],
+			labels: ["Muy Malo", "No tan malo", "Regular", "Bueno", "Excelente",],
 			colors: ["#ff4081", "#ff4081", "#ff4081", "#ff4081 ", "#ff4081"],
 			starSize: "10" // Set the default Size of component
 		}
 	}
 
 	viewProduct(item: any) {
-		let Id;
-
-		Id = item.id;
-
-		this.router.navigate(['/product-detail', Id]);
-
+		this.router.navigate(['/product-detail', item.id]);
 	}
 
 }

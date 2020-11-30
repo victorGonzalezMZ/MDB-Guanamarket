@@ -5,16 +5,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from '../services/core/login.service';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
 
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private http: HttpClient, private loginSvc: LoginService) { }
+	constructor(private jwtHelper: JwtHelperService, private router: Router, private http: HttpClient, private loginSvc: LoginService) { }
 
-  async canActivate() {
-    
-    
-		return true;
-  }
-  
+	async canActivate() {
+		const token: string = localStorage.getItem("jwt");
+		if (token && !this.jwtHelper.isTokenExpired(token))
+			return false;
+		else
+			return true;
+
+	}
+
 }

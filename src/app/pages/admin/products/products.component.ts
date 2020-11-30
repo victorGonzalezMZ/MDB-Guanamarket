@@ -96,4 +96,8 @@ export class ProductsComponent implements OnInit {
 		
 	}
 
+	click_updateProduct(id:number){
+		this.router.navigateByUrl(`/admin/products/update/${id}`);
+	}
+
 }

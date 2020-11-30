@@ -1,5 +1,5 @@
 <div class="py-5 product-main">
-    <div class="my-5 py-5 purple-gradient z-depth-5">
+    <div class="my-5 py-5 elegant-color z-depth-5">
         <h1 class="text-center d-flex justify-content-center py-3 white-text">Administración de Categorias</h1>
 
         <div class="container z-depth-3 p-5 my-5 white">
@@ -16,39 +16,44 @@
                 </div>
                 <!-- Filter Area -->
                 <div class="col-lg-12 d-flex flex-row-reverse">
-                    <button type="button" class="btn purple lighten-5" (click)="click_addCategory()"><i class="fas fa-plus pr-2" aria-hidden="true"></i>Agregar Categoria</button>
+                    <button type="button" class="btn purple-gradient" (click)="click_addCategory()">
+                        <i class="fas fa-plus-circle"></i>&nbsp;Nuevo Categoria.
+                    </button>
                 </div>
             </section>
             <!-- Section: Block Content -->
         </div>
 
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-12 mx-auto">
-                    <div class="table-responsive-sm table-responsive-md table-responsive-lg">
-                        <table class="table table-striped table-hover white">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th *ngFor="let head of headElements; let i = index" scope="col">
-                                        {{head}}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let el of elements; let i = index">
-                                    <th>
-                                        <button type="button" class="btn btn-sm btn-warning btn-rounded"><i class="fas fa-edit"></i></button>
-                                        <button type="button" (click)="click_deleteCategory(el.id)" class="btn btn-sm btn-danger btn-rounded"><i class="fas fa-trash"></i></button>
-                                    </th>
-                                    <th scope="row">{{el.id}}</th>
-                                    <td class="text-right badge badge-pill badge-default mt-3">{{el.name}} </td>
-                                    <td>{{el.createDate | date}}</td>
-                                    <td>{{el.updateDate | date}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="table-responsive-lg  table-responsive-sm table-responsive-md">
+            <div class=" table-users">
+                <table class="table table-striped table-hover white">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th *ngFor="let head of headElements; let i = index" scope="col">
+                                {{head}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let el of elements; let i = index">
+                            <td>
+                                <button type="button" (click)="click_updateCategory(el.id)" class="btn btn-sm btn-warning btn-rounded"><i
+                                        class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" (click)="click_deleteCategory(el.id)" class="btn btn-sm btn-danger btn-rounded">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <img src="http://placeimg.com/250/250/people/grayscale" width="100px" height="100px" class="img-fluid hover-shadow rounded-lg" alt="" />
+                            </td>
+                            <td scope="row">{{el.id}}</td>
+                            <td class="text-right badge badge-pill badge-default mt-3">{{el.name}} </td>
+                            <td>{{el.createDate | date}}</td>
+                            <td>{{el.updateDate | date}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

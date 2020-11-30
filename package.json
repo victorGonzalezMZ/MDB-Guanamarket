@@ -41,6 +41,7 @@
         "mdbootstrap": "^4.19.1",
         "ng-floating-action-menu": "0.0.3",
         "ng-starrating": "^1.0.20",
+        "ngx-dropzone": "^2.3.0",
         "ngx-lightbox": "^2.2.2",
         "ngx-toastr": "^13.1.0",
         "rxjs": "~6.5.4",

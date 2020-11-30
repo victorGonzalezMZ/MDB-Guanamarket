@@ -27,6 +27,9 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {ScrollingModule} from '@angular/cdk/scrolling'
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
 }
@@ -59,6 +62,7 @@ export function tokenGetter() {
 		HttpClientModule,
 		NgxSliderModule,
 		ReactiveFormsModule,
+		ScrollingModule,
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: tokenGetter,
@@ -66,6 +70,7 @@ export function tokenGetter() {
 				disallowedRoutes: [],
 			},
 		}),
+		NgxDropzoneModule
 		
 	],
 	providers: [],

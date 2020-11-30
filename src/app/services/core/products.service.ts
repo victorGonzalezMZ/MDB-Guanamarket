@@ -43,6 +43,13 @@ export class ProductsService {
 		});
 	}
 
+	updateProduct(obj:any){
+		return this.http.put(`${settings.apinetcore.urlServer}product`,obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
 	getAllProductsByParams(obj:any){
 		return this.http.post(`${settings.apinetcore.urlServer}product/GetAllProductsByParamsPost`,obj, {
 			headers: new HttpHeaders({

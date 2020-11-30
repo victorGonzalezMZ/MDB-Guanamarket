@@ -3,6 +3,11 @@ import { CarouselService } from 'src/app/services/core/carousel.service';
 import { MenuNavbarCategoriesService } from 'src/app/services/core/menu-navbar-categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 
+
+import {NavigationEnd, Router} from '@angular/router';
+import 'rxjs/add/operator/pairwise';
+import 'rxjs/add/operator/filter';
+
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
@@ -16,7 +21,15 @@ export class HomeComponent implements OnInit {
 	carouselItems: any[] = [];
 	
 
-	constructor(private navCategorySvc: MenuNavbarCategoriesService, private produtsSvc: ProductsService, private carouselSvc: CarouselService) { }
+	constructor(private navCategorySvc: MenuNavbarCategoriesService, private produtsSvc: ProductsService, private carouselSvc: CarouselService,private router: Router) { 
+		this.router.events
+           .filter(e => e instanceof NavigationEnd)
+           .pairwise().subscribe((e) => {
+			   if( e[0]['url']==='/login' && e[1]['url'] ==='/home'){
+					window.location.reload();
+			   }
+           });
+	}
 
 	ngOnInit(): void {
 		this.getData();

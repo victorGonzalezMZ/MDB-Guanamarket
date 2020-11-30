@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 export class CategoriesComponent implements OnInit {
 
 	elements: any = [];
-	headElements = ['', 'ID', 'NOMBRE', 'CREACIÓN', 'ACTUALIZACIÓN'];
+	headElements = ['ACCIONES','IMAGEN', 'ID', 'NOMBRE', 'CREACIÓN', 'ACTUALIZACIÓN'];
 	defaultBindingsList = [];
 
 	constructor(
@@ -39,8 +39,13 @@ export class CategoriesComponent implements OnInit {
 
 
 	click_addCategory() {
-
+		this.router.navigateByUrl(`/admin/categories/new`);
 	}
+
+	click_updateCategory(id:number){
+		this.router.navigateByUrl(`/admin/categories/update/${id}`);
+	}
+
 	click_deleteCategory(id:number) {
 
 		Swal.fire({

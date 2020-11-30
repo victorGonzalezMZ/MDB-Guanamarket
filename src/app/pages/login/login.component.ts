@@ -1,6 +1,5 @@
-import { HttpClient} from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm,FormBuilder, Validator,ReactiveFormsModule, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from "@angular/router";
 import { sha256 } from 'js-sha256';
 import { LoginService } from 'src/app/services/core/login.service';
@@ -24,14 +23,11 @@ export class LoginComponent {
 	});
 
 	constructor(private router: Router,
-		private http: HttpClient,
 		private loginSvc: LoginService,
 		private svcLogin: LoginmessengerService,
 		private fb: FormBuilder) { }
   
-	public loguear(){
-
-	}
+	
 
 	public recuerdameCheck(){
 		if(localStorage.getItem("Nick")){
@@ -54,14 +50,14 @@ export class LoginComponent {
 			localStorage.setItem("refreshToken", refreshToken);
 			this.invalidLogin = false;
 			this.svcLogin.sendCriterio(!this.invalidLogin);
-			
-			if(this.loginForm.get('Remember')){
+	
+			if(this.loginForm.get('Remember').value){
 				localStorage.setItem("Nick",this.loginForm.get('Nick').value);
 			}else{
 				localStorage.removeItem("Nick");
 			}
 		
-			this.router.navigate(["/"]);
+			this.router.navigate(["/home"]);
 		}, err => {
 			this.invalidLogin = true;
 		});

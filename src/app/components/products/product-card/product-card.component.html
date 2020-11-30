@@ -4,7 +4,7 @@
         <img [src]='imagesUrl+item.imagen' class="card-img-top" (click)="viewProduct( item )" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{item.title}}</h5>
-            <h4 class="card-title font-weight-bold blue-text">${{item.seelingPrice}} MXP</h4>
+            <h4 class="card-title font-weight-bold deep-purple-text">${{item.seelingPrice}} MXP</h4>
             <p class="card-text"><small class="text-muted">{{item.category}}</small></p>
             <div class="mb-1 d-flex justify-content-center">
                 <app-star-rating [rating]="item.ranking" [isEditable]="false" [dataSet]="dataSet"></app-star-rating>
