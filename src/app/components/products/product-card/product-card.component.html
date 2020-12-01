@@ -9,7 +9,7 @@
             <div class="mb-1 d-flex justify-content-center">
                 <app-star-rating [rating]="item.ranking" [isEditable]="false" [dataSet]="dataSet"></app-star-rating>
             </div>
-            <button type="button " class="btn btn-black btn-rounded btn-md px-3 white-text "><i class="fas fa-cart-plus "></i>&nbsp;Agregar al Carrito</button>
+            <button (click)="click_addCart(item)" type="button " class="btn btn-black btn-rounded btn-md px-3 white-text "><i class="fas fa-cart-plus "></i>&nbsp;Agregar al Carrito</button>
         </div>
     </div>
 

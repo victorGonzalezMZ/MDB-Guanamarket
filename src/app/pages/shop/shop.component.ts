@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/services/core/products.service';
 import settings from '../../settings';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { Router } from '@angular/router';
+import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
 
 @Component({
 	selector: 'app-shop',
@@ -45,7 +46,8 @@ export class ShopComponent implements OnInit {
 		private navCategorySvc: MenuNavbarCategoriesService,
 		private produtsSvc: ProductsService,
 		private brandSvc: BrandsService,
-		private router: Router) {
+		private router: Router,
+		private svcCarrito: CarritomessengerService) {
 			this.shortBy = "title";
 			this.ShortByDirection="ASC";
 			this.Category = null;
@@ -64,6 +66,11 @@ export class ShopComponent implements OnInit {
 
 	click_viewProduct(item: any) {
 		this.router.navigate(['/product-detail', item.id]);
+	}
+
+	click_addCart(item:any){
+		item.Quantity = 1;
+		this.svcCarrito.sendProdutAlCarrito(item);
 	}
 
 	/**

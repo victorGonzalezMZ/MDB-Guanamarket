@@ -25,10 +25,10 @@
                     <h2 class="font-weight-bold text-dark">${{product.seelingPrice}} MXP</h2>
                     <p class="lead font-weight-bold white-text ">{{product.title}}</p>
                     <p class="white-text ">{{product.description}}</p>
-                    <form class="d-flex justify-content-left ">
+                    <form class="d-flex justify-content-left" [formGroup]="quantityForm" (submit)="click_addCart()">
                         <!-- Default input -->
-                        <input type="number " value="1 " aria-label="Search " class="form-control " style="width: 100px ">
-                        <button class="btn btn-primary btn-md my-0 p " type="submit ">Add to cart
+                        <input type="number " value="1" aria-label="Search " class="form-control" formControlName="Quantity" style="width: 100px ">
+                        <button class="btn btn-primary btn-md my-0 p " type="submit ">Agregar al carrito
                             <i class="fas fa-shopping-cart ml-1 "></i>
                          </button>
                     </form>

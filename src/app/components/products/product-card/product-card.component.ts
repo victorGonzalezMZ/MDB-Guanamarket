@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
 import settings from '../../../settings';
 @Component({
 	selector: 'app-product-card',
@@ -13,7 +14,8 @@ export class ProductCardComponent implements OnInit {
 	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
 
 	
-	constructor(private router: Router) {}
+	constructor(private router: Router,
+				private svcCarrito: CarritomessengerService) {}
 
 	ngOnInit(): void {
 		this.dataSet = {
@@ -30,6 +32,11 @@ export class ProductCardComponent implements OnInit {
 
 	viewProduct(item: any) {
 		this.router.navigate(['/product-detail', item.id]);
+	}
+
+	click_addCart(item:any){
+		item.Quantity = 1;
+		this.svcCarrito.sendProdutAlCarrito(item);
 	}
 
 }

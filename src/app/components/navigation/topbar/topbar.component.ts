@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
 import { ViewChild } from '@angular/core';
+import { ItemCarritomessengerService } from 'src/app/services/observables/item-carritomessenger.service';
 
 const jwtHelper = new JwtHelperService();
 
@@ -24,24 +25,25 @@ export class TopbarComponent implements OnInit {
 	@Input() menuProfileItems: any[] = [];
 	
 	subscription$: Subscription;
-
+	subscriptionItemsCarrito$: Subscription;
 
 
 	constructor(private router: Router,
 				private svcLogin: LoginmessengerService,
-				private jwtHelper: JwtHelperService) { 
+				private jwtHelper: JwtHelperService,
+				private svcItemCarrito: ItemCarritomessengerService) { 
 		
-
-
-
 		this.subscription$ = this.svcLogin.onListenCriterio().subscribe( (criterio:boolean)=>{
 			
 			this.userAuthenticaded =criterio;
-			
-
+		
 		});	
+
+		this.subscriptionItemsCarrito$ = this.svcItemCarrito.onListenNoItems().subscribe( (noItems:number)=>{
+			this.cartNoItems = noItems;
+		});
 	}
-	ngRel
+	
 
 	ngOnInit(): void {
 		this.userAuthenticaded = this.isUserAuthenticated();
@@ -71,7 +73,7 @@ export class TopbarComponent implements OnInit {
 	}
 
 	isRevise(){
-		this.cartNoItems++;
+		this.cartNoItems=this.cartNoItems+1;
 	}
 
 }
