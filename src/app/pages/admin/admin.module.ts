@@ -15,6 +15,7 @@ import { UpdcategoryComponent } from './categories/updcategory/updcategory.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdproductComponent } from './products/updproduct/updproduct.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { PromotionsComponent } from './promotions/promotions.component';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 		NewcategoryComponent,
 		UpdcategoryComponent,
 		UpdproductComponent,
+		PromotionsComponent,
 	],
 	imports: [
 		CommonModule,

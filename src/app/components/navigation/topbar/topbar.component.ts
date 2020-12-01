@@ -71,7 +71,7 @@ export class TopbarComponent implements OnInit {
 	}
 
 	isRevise(){
-	
+		this.cartNoItems++;
 	}
 
 }
