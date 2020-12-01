@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProductdetailComponent } from './pages/productdetail/productdetail.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shopping-cart-detail.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'profile', component: ProfileComponent},
     { path: 'shopping-cart', component: ShoppingCartComponent},
+    { path: 'cart', component: ShoppingCartDetailComponent},
 ]
 
 @NgModule({

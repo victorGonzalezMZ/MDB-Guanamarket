@@ -31,6 +31,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling'
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shopping-cart-detail.component';
 
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
@@ -53,7 +54,8 @@ export function tokenGetter() {
 		ProductFiltersComponent,
 		ShopComponent,
 		ProfileComponent,
-		ShoppingCartComponent
+		ShoppingCartComponent,
+		ShoppingCartDetailComponent
 	],
 	imports: [
 		BrowserModule,

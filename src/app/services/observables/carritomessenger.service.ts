@@ -9,7 +9,10 @@ import { Observable, Subject } from 'rxjs';
 export class CarritomessengerService {
 
 	private subject$ = new Subject<any>();
-  	constructor() { }
+	private subjectDelete$ = new Subject<any>();
+	private subjectUpdate$ = new Subject<any>();
+
+	constructor() { }
 
 
   	/**
@@ -24,6 +27,25 @@ export class CarritomessengerService {
 	 */
 	onListenProductInCarrito(): Observable<any> {
 		return this.subject$.asObservable();
-  }
+	}
+
+	sendProductDeleteAlCarrito(item:any){
+		this.subjectDelete$.next(item);
+	}
+
+	onListenDeleteProductInCarrito(): Observable<any> {
+		return this.subjectDelete$.asObservable();
+	}
+	  
+	sendUpdateAlCarrito(item:any){
+		this.subjectUpdate$.next(item);
+	}
+
+	onListenUpdateProductInCarrito(): Observable<any> {
+		return this.subjectUpdate$.asObservable();
+	}
+
+
+
   
 }

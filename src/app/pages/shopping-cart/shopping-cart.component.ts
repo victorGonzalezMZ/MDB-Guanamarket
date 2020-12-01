@@ -16,6 +16,12 @@ export class ShoppingCartComponent implements OnInit {
 		this.svcCarrito.onListenProductInCarrito().subscribe( (item:any)=>{
 			this.addProductToCart_Local(item);
 		});	
+		this.svcCarrito.onListenDeleteProductInCarrito().subscribe((item:any) =>{
+			this.deleteProductToCart_Local(item);
+		});
+		this.svcCarrito.onListenUpdateProductInCarrito().subscribe((item:any)=>{
+			this.updateProductToCart_Loca(item);
+		});
 	 }
 
 	ngOnInit(): void {
@@ -29,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
 	 * 
 	 * @param item 
 	 */
-	async addProductToCart_Local(item:any){
+	addProductToCart_Local(item:any){
 		let productExists = false
 		let cartItems = [];
 
@@ -58,15 +64,39 @@ export class ShoppingCartComponent implements OnInit {
 				})
 			}
 
-			localStorage.removeItem("carrito");
-			await localStorage.setItem("carrito",JSON.stringify(
-				cartItems
-			));
-			this.countItemsToCart_Local();
+			this.orchestrationTokenCarrito(cartItems);
 		}
 
 	}
 	
+	deleteProductToCart_Local(item:any){
+		let cartItems = [];
+		cartItems = JSON.parse(localStorage.getItem("carrito"));
+		cartItems = cartItems.filter(({ Id_Product }) => Id_Product !== item.id); 
+		this.orchestrationTokenCarrito(cartItems);
+	}
+
+	updateProductToCart_Loca(item:any){
+		let cartItems = [];
+		cartItems = JSON.parse(localStorage.getItem("carrito"));
+		for (let i in cartItems) {
+			if (cartItems[i].Id_Product === item.id) {
+			  cartItems[i].Quantity = item.Quantity
+			  break;
+			}
+		}
+		this.orchestrationTokenCarrito(cartItems);
+	}
+
+	async orchestrationTokenCarrito(cartItems:any){
+		localStorage.removeItem("carrito");
+		await localStorage.setItem("carrito",JSON.stringify(
+			cartItems
+		));
+		this.countItemsToCart_Local();
+	}
+
+
 	countItemsToCart_Local(){
 		let cartItems = [];
 		let cartTotal = 0
