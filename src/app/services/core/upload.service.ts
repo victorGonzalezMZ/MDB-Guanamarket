@@ -18,4 +18,19 @@ export class UploadService {
 			})
 		});
 	}
+
+
+	uploadImageUser(formData, nick:string) {
+		return this.http.post(`api/update-image-user/${nick}`, formData);
+	}
+
+	deleteImageUser(imageName: string, nick:string) {
+		return this.http.delete(`api/delete-image-user/${imageName}/${nick}`,{
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
+
+
 }

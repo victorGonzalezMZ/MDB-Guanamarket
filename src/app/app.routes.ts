@@ -7,6 +7,7 @@ import { LoginGuard } from './guards/login.guard';
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
 import { ProductdetailComponent } from './pages/productdetail/productdetail.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
@@ -18,7 +19,8 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent},
     { path: 'product-detail/:id', component: ProductdetailComponent },
     { path: 'admin', canActivate:[AuthGuardGuard,AdminGuard],loadChildren:()=> import('./pages/admin/admin.module').then(module=>module.AdminModule) },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'profile', component: ProfileComponent}
 ]
 
 @NgModule({

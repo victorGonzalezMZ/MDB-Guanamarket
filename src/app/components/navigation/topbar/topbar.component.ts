@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
+import { ViewChild } from '@angular/core';
 
 const jwtHelper = new JwtHelperService();
 
@@ -23,14 +24,21 @@ export class TopbarComponent implements OnInit {
 	@Input() menuProfileItems: any[] = [];
 	
 	subscription$: Subscription;
-	
+
+
 
 	constructor(private router: Router,
 				private svcLogin: LoginmessengerService,
 				private jwtHelper: JwtHelperService) { 
+		
+
+
+
 		this.subscription$ = this.svcLogin.onListenCriterio().subscribe( (criterio:boolean)=>{
+			
 			this.userAuthenticaded =criterio;
 			
+
 		});	
 	}
 	ngRel
@@ -63,7 +71,7 @@ export class TopbarComponent implements OnInit {
 	}
 
 	isRevise(){
-		console.log("Hola mundo");
+	
 	}
 
 }

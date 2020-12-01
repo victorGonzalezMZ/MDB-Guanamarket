@@ -29,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {ScrollingModule} from '@angular/cdk/scrolling'
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
@@ -49,7 +50,8 @@ export function tokenGetter() {
 		SidebarComponent,
 		SignupComponent,
 		ProductFiltersComponent,
-		ShopComponent
+		ShopComponent,
+		ProfileComponent
 	],
 	imports: [
 		BrowserModule,

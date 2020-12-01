@@ -18,8 +18,25 @@ export class UsersService {
 		});
 	}
 
+	getUserByNick(nick:string){
+		return this.http.get(`${settings.apinetcore.urlServer}user/GetUserByNick/${nick}`, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
+
 	registerNewUser(obj:any){
 		return this.http.post(`${settings.apinetcore.urlServer}user`,obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
+
+
+	updateUser(obj:any){
+		return this.http.put(`${settings.apinetcore.urlServer}user`,obj, {
 			headers: new HttpHeaders({
 				"Content-Type": "application/json"
 			})

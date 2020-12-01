@@ -1,0 +1,197 @@
+<div class="py-5">
+    <div class="container my-5 py-5 z-depth-5 purple-gradient">
+        <div class="container bootstrap snippet">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h1 class="white-text">Mis datos</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <!--left col-->
+                    <div class="text-center">
+                        <img [src]="imagesUrl+imagenLast" class="avatar img-circle img-thumbnail" alt="avatar">
+                        <h6>Carga una imagen diferente</h6>
+                        <input type="file" class="text-center center-block file-upload" #inputImage (change)="handleImage($event)">
+                    </div>
+                    <ul class="list-group py-5">
+                        <li class="list-group-item deep-purple text-white">Actividad&nbsp;<i class="fas fa-tachometer-alt"></i></li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Compras Realizadas</strong></span> 125</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Productos Comentados</strong></span> 13</li>
+                    </ul>
+                </div>
+                <!--/col-3-->
+                <div class="col-sm-8">
+                    <ul class="nav nav-tabs py-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos Generales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#facturacion" role="tab" aria-controls="profile" aria-selected="false">Datos de Envío</a>
+                        </li>
+                    </ul>
+                    <div *ngIf="invalidPassword" class="alert alert-danger">Upps el usuario o la contraseña son incorrectos vuelve a intentar.</div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">
+                            <hr>
+                            <form class="form" [formGroup]="userForm" (submit)="updateProfile()" autocomplete="off">
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="Firstname"><h4>Nombre </h4></label>
+                                        <input type="text" class="form-control" name="Firstname" id="Firstname" formControlName="Firstname" placeholder="Firstname" title="Ingresa tu nombre">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="Lastname"><h4>Apellidos</h4></label>
+                                        <input type="text" class="form-control" name="Lastname" id="Lastname" formControlName="Lastname" placeholder="Apellidos" title="Ingresa tus apellidos">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="Email"><h4>Correo Eletronico</h4></label>
+                                        <input type="email" class="form-control" name="Email" id="Email" formControlName="Email" placeholder="you@email.com" title="Ingresa tu correo electronico">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="Phone"><h4>Celular</h4></label>
+                                        <input type="text" class="form-control" name="Phone" id="Phone" formControlName="Phone" placeholder="111-111-11-11" title="Ingresa tu número celular a 10 digitos">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="City"><h4>Ciudad</h4></label>
+                                        <input type="text" class="form-control" name="City" id="City" formControlName="City" placeholder="Ciuidad" title="Ingresa tu ciudad">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="State"><h4>Estado</h4></label>
+                                        <input type="text" class="form-control" name="State" id="State" formControlName="State" placeholder="Guanajuato" title="Ingresa tu estado">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="Country"><h4>Pais</h4></label>
+                                        <input type="Country" class="form-control" id="location" formControlName="Country" placeholder="México" title="Ingresa tu país">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="Password"><h4>Password</h4></label>
+                                        <input type="Password" class="form-control" name="Password" id="Password" formControlName="Password" placeholder="Contraseña" title="Ingresa tu contraseña">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label class="white-text" for="PasswordVerify"><h4>Password Verify</h4></label>
+                                        <input type="password" class="form-control" name="PasswordVerify" id="PasswordVerify" formControlName="PasswordVerify" placeholder="Repite tu contraseña" title="Confirmemos tu contraseña">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <br>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-lg btn-deep-purple text-white" type="submit"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr>
+
+                        </div>
+                        <!--/tab-pane-->
+                        <div class="tab-pane" id="facturacion">
+
+                            <h2></h2>
+
+                            <hr>
+                            <form class="form" action="##" method="post" id="registrationForm">
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="first_name"><h4>First name</h4></label>
+                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="last_name"><h4>Last name</h4></label>
+                                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="phone"><h4>Phone</h4></label>
+                                        <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-6">
+                                        <label for="mobile"><h4>Mobile</h4></label>
+                                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="email"><h4>Email</h4></label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="email"><h4>Location</h4></label>
+                                        <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="password"><h4>Password</h4></label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-xs-6">
+                                        <label for="password2"><h4>Verify</h4></label>
+                                        <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <br>
+                                        <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                        <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!--/tab-pane-->
+                    </div>
+                    <!--/tab-pane-->
+                </div>
+                <!--/tab-content-->
+
+            </div>
+            <!--/col-9-->
+        </div>
+        <!--/row-->
+    </div>
+</div>
