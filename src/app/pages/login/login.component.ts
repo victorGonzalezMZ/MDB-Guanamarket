@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from "@angular/router";
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { sha256 } from 'js-sha256';
 import { LoginService } from 'src/app/services/core/login.service';
 import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
@@ -25,6 +26,7 @@ export class LoginComponent {
 	constructor(private router: Router,
 		private loginSvc: LoginService,
 		private svcLogin: LoginmessengerService,
+		private jwtHelper: JwtHelperService,
 		private fb: FormBuilder) { }
   
 	
@@ -49,14 +51,15 @@ export class LoginComponent {
 			localStorage.setItem("jwt", token);
 			localStorage.setItem("refreshToken", refreshToken);
 			this.invalidLogin = false;
-			this.svcLogin.sendCriterio(!this.invalidLogin);
-	
+			this.svcLogin.sendCriterio(true);
 			if(this.loginForm.get('Remember').value){
 				localStorage.setItem("Nick",this.loginForm.get('Nick').value);
 			}else{
 				localStorage.removeItem("Nick");
 			}
-		
+	
+			const token_decode = this.jwtHelper.decodeToken(token);
+			sessionStorage.setItem("Id_User",token_decode.Id);
 			this.router.navigate(["/home"]);
 		}, err => {
 			this.invalidLogin = true;

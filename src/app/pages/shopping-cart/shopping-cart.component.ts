@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ShoppingcartService } from 'src/app/services/core/shoppingcart.service';
 import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
 import { ItemCarritomessengerService } from 'src/app/services/observables/item-carritomessenger.service';
-
+import { ShoppingCart } from 'src/app/models/shoppingcart'
+import { parse } from 'path';
 @Component({
 	selector: 'orquestador-shopping-cart',
 	templateUrl: './shopping-cart.component.html',
@@ -12,7 +14,8 @@ export class ShoppingCartComponent implements OnInit {
 
 
 	constructor(private svcCarrito: CarritomessengerService,
-				private svcItemCarrito: ItemCarritomessengerService) {
+				private svcItemCarrito: ItemCarritomessengerService,
+				private svcCarritoRed : ShoppingcartService) {
 		this.svcCarrito.onListenProductInCarrito().subscribe( (item:any)=>{
 			this.addProductToCart_Local(item);
 		});	
@@ -20,7 +23,7 @@ export class ShoppingCartComponent implements OnInit {
 			this.deleteProductToCart_Local(item);
 		});
 		this.svcCarrito.onListenUpdateProductInCarrito().subscribe((item:any)=>{
-			this.updateProductToCart_Loca(item);
+			this.updateProductToCart_Local(item);
 		});
 	 }
 
@@ -69,6 +72,15 @@ export class ShoppingCartComponent implements OnInit {
 
 	}
 	
+	addProductToCart_Red(item:any){
+		const obj:ShoppingCart = new ShoppingCart(
+			0, parseInt(sessionStorage.getItem("Id_User")),item.id,item.Quantity
+		);
+		this.svcCarritoRed.addItemShoppingCart(obj).subscribe((data: any) => {
+			this.countItemsToCart_Red();
+		});
+	}
+
 	deleteProductToCart_Local(item:any){
 		let cartItems = [];
 		cartItems = JSON.parse(localStorage.getItem("carrito"));
@@ -76,7 +88,16 @@ export class ShoppingCartComponent implements OnInit {
 		this.orchestrationTokenCarrito(cartItems);
 	}
 
-	updateProductToCart_Loca(item:any){
+	deleteProductToCart_Red(item:any){
+		const obj:ShoppingCart = new ShoppingCart(
+			0, parseInt(sessionStorage.getItem("Id_User")),item.id,0
+		);
+		this.svcCarritoRed.removeShoppingCart(obj).subscribe((data: any) => {
+			this.countItemsToCart_Red();
+		});
+	}
+
+	updateProductToCart_Local(item:any){
 		let cartItems = [];
 		cartItems = JSON.parse(localStorage.getItem("carrito"));
 		for (let i in cartItems) {
@@ -88,6 +109,15 @@ export class ShoppingCartComponent implements OnInit {
 		this.orchestrationTokenCarrito(cartItems);
 	}
 
+	updateProductToCart_Red(item:any){
+		const obj:ShoppingCart = new ShoppingCart(
+			0, parseInt(sessionStorage.getItem("Id_User")),item.id,item.Quantity
+		);
+		this.svcCarritoRed.updateItemShoppingCart(obj).subscribe((data: any) => {
+			this.countItemsToCart_Red();
+		});
+	}
+
 	async orchestrationTokenCarrito(cartItems:any){
 		localStorage.removeItem("carrito");
 		await localStorage.setItem("carrito",JSON.stringify(
@@ -96,6 +126,10 @@ export class ShoppingCartComponent implements OnInit {
 		this.countItemsToCart_Local();
 	}
 
+
+	orchestrationCarritoLocalToRed(){
+
+	}
 
 	countItemsToCart_Local(){
 		let cartItems = [];
@@ -109,6 +143,18 @@ export class ShoppingCartComponent implements OnInit {
 		this.svcItemCarrito.sendNoItems(cartTotal);
 	}
 	
+	countItemsToCart_Red(){
+		let cartItems = [];
+		let cartTotal = 0
+		this.svcCarritoRed.getAllItemsShopping(parseInt(sessionStorage.getItem("Id_User"))).subscribe((data: any) => {
+			cartItems = data;
+			cartItems.forEach(item => {
+					cartTotal += item.quantity
+			});
+			this.svcItemCarrito.sendNoItems(cartTotal);
+		});
+	}
+
 
 
 }

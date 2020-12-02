@@ -58,6 +58,7 @@ export class TopbarComponent implements OnInit {
 		localStorage.removeItem("jwt");
 		localStorage.removeItem("refreshToken");
 		this.userAuthenticaded = false;
+		sessionStorage.removeItem("Id_User");
 		window.location.reload();
 	}
 
