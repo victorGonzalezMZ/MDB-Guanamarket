@@ -4,7 +4,7 @@ import { ShoppingcartService } from 'src/app/services/core/shoppingcart.service'
 import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
 import { ItemCarritomessengerService } from 'src/app/services/observables/item-carritomessenger.service';
 import { ShoppingCart } from 'src/app/models/shoppingcart'
-import { parse } from 'path';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Component({
 	selector: 'orquestador-shopping-cart',
 	templateUrl: './shopping-cart.component.html',
@@ -15,30 +15,59 @@ export class ShoppingCartComponent implements OnInit {
 
 	constructor(private svcCarrito: CarritomessengerService,
 				private svcItemCarrito: ItemCarritomessengerService,
-				private svcCarritoRed : ShoppingcartService) {
+				private svcCarritoRed : ShoppingcartService,
+				private jwtHelper: JwtHelperService) {
 		this.svcCarrito.onListenProductInCarrito().subscribe( (item:any)=>{
-			this.addProductToCart_Local(item);
+			if(!this.isLogueadoUser()){
+				this.addProductToCart_Local(item);
+			}else{
+				this.addProductToCart_Red(item);
+			}
+			
 		});	
 		this.svcCarrito.onListenDeleteProductInCarrito().subscribe((item:any) =>{
-			this.deleteProductToCart_Local(item);
+			if(!this.isLogueadoUser()){
+				this.deleteProductToCart_Local(item);
+			}else{
+				this.deleteProductToCart_Red(item);
+			}
 		});
 		this.svcCarrito.onListenUpdateProductInCarrito().subscribe((item:any)=>{
-			this.updateProductToCart_Local(item);
+			if(!this.isLogueadoUser()){
+				this.updateProductToCart_Local(item);
+			}else{
+				this.updateProductToCart_Red(item);
+			}
+			
 		});
 	 }
 
 	ngOnInit(): void {
-		this.countItemsToCart_Local();
+		if(!this.isLogueadoUser())
+			this.countItemsToCart_Local();
+		else
+			this.countItemsToCart_Red();
 	}
+
 
 	ngOnDestroy(): void {
 		
 	}
+
+	isLogueadoUser(){
+		const token = localStorage.getItem("jwt");
+		const token_decode = this.jwtHelper.decodeToken(token);
+		if (token && !this.jwtHelper.isTokenExpired(token)) {
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * 
 	 * @param item 
 	 */
-	addProductToCart_Local(item:any){
+	async addProductToCart_Local(item:any){
 		let productExists = false
 		let cartItems = [];
 
@@ -77,6 +106,7 @@ export class ShoppingCartComponent implements OnInit {
 			0, parseInt(sessionStorage.getItem("Id_User")),item.id,item.Quantity
 		);
 		this.svcCarritoRed.addItemShoppingCart(obj).subscribe((data: any) => {
+			this.svcCarrito.sendFinishedProcess(true);
 			this.countItemsToCart_Red();
 		});
 	}
@@ -93,6 +123,7 @@ export class ShoppingCartComponent implements OnInit {
 			0, parseInt(sessionStorage.getItem("Id_User")),item.id,0
 		);
 		this.svcCarritoRed.removeShoppingCart(obj).subscribe((data: any) => {
+			this.svcCarrito.sendFinishedProcess(true);
 			this.countItemsToCart_Red();
 		});
 	}
@@ -114,6 +145,7 @@ export class ShoppingCartComponent implements OnInit {
 			0, parseInt(sessionStorage.getItem("Id_User")),item.id,item.Quantity
 		);
 		this.svcCarritoRed.updateItemShoppingCart(obj).subscribe((data: any) => {
+			this.svcCarrito.sendFinishedProcess(true);
 			this.countItemsToCart_Red();
 		});
 	}
@@ -123,6 +155,7 @@ export class ShoppingCartComponent implements OnInit {
 		await localStorage.setItem("carrito",JSON.stringify(
 			cartItems
 		));
+		this.svcCarrito.sendFinishedProcess(true);
 		this.countItemsToCart_Local();
 	}
 

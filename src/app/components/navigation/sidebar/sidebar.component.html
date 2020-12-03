@@ -2,91 +2,29 @@
 <nav class="purple darken-3" id="sidebar">
 
     <div class="avatar mx-auto mb-4">
-        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" class="rounded-circle img-fluid" alt="First sample avatar image">
+        <img [src]="imagenAvatar" class="rounded-circle img-fluid" alt="First sample avatar image">
     </div>
 
     <ul class="list-unstyled components">
 
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Home 1</a>
+        <li *ngFor="let item of menuSideBar; let i = index; let last = last">
+
+            <a *ngIf="item.isInit" [routerLink]="item.route" routerLinkActive="active">
+                <i class="fas {{item.icon}}"></i>&nbsp; {{item.title}}
+            </a>
+
+            <div *ngIf="!item.isInit" class="sidebar-heading">
+                {{item.title}}
+            </div>
+
+            <div *ngIf="!item.isInit" class="sidebar-subitems">
+                <li *ngFor="let subitem of item.collapseItem">
+                    <a (click)="ocultarMenus()" [routerLink]="subitem.route" routerLinkActive="active">
+                        <i class="fas {{subitem.icon}}"></i>&nbsp; {{subitem.title}}
+                    </a>
                 </li>
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">About</a>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
+            </div>
+            <hr>
         </li>
     </ul>
-
-
 </nav>

@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
 			"phone": this.userForm.get('Phone').value,
 		};
 
-		console.log("Hola mundo2");
+
 		if(this.userForm.get('Password').value != ""){
 			if(this.userForm.get('Password').value == this.userForm.get('PasswordVerify').value){
 				obj.password = sha256(this.userForm.get('Password').value);

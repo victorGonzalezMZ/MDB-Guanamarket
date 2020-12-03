@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { MenuTopbarService } from './services/core/menu-topbar.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import settings from 'src/app/settings';
 
 const jwtHelper = new JwtHelperService();
 
@@ -12,15 +13,20 @@ declare var App: any;
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+	
 	title = 'GuanaMarket Store';
 	menuItems:any[] = [];
+	imagenAvatar:string='';
+	imagesUrl = settings.apinode.urlServer + 'get-image-user/';
 
-	constructor(private menuSvc: MenuTopbarService) {}
+	constructor(private menuSvc: MenuTopbarService,
+				private jwtHelper: JwtHelperService) {}
 
 	ngOnInit() {
 		App.init();
 		this.getData();
-		console.log('data prueba');
+		this.imagenAvatar= this.imagesUrl+'no-image-avatar.jpeg';
+		this.isUserAuthenticated();
 	}
 
 	getData(){
@@ -32,10 +38,11 @@ export class AppComponent implements OnInit {
 
 	isUserAuthenticated() {
 		const token: string = localStorage.getItem("jwt");
+		const token_decode = this.jwtHelper.decodeToken(token);
 		if (token && !jwtHelper.isTokenExpired(token)) {
+			this.imagenAvatar = this.imagesUrl+token_decode['imagen'];
 			return true;
-		}
-		else {
+		}else {
 			return false;
 		}
 	}

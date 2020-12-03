@@ -11,6 +11,7 @@ export class CarritomessengerService {
 	private subject$ = new Subject<any>();
 	private subjectDelete$ = new Subject<any>();
 	private subjectUpdate$ = new Subject<any>();
+	private subjectFinished$ = new Subject<boolean>();
 
 	constructor() { }
 
@@ -45,7 +46,13 @@ export class CarritomessengerService {
 		return this.subjectUpdate$.asObservable();
 	}
 
+	sendFinishedProcess(bandera:boolean){
+		this.subjectFinished$.next(bandera);
+	}
 
+	onListenFinishedProductInCarrito(): Observable<boolean> {
+		return this.subjectFinished$.asObservable();
+	}
 
   
 }

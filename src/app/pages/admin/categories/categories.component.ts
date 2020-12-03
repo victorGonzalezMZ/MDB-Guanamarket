@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 export class CategoriesComponent implements OnInit {
 
 	elements: any = [];
-	headElements = ['ACCIONES','IMAGEN', 'ID', 'NOMBRE', 'CREACIÓN', 'ACTUALIZACIÓN'];
+	headElements = ['ACCIONES','ID', 'NOMBRE', 'CREACIÓN', 'ACTUALIZACIÓN'];
 	defaultBindingsList = [];
 
 	constructor(

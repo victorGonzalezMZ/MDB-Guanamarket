@@ -38,10 +38,10 @@
                     </a>
                 </li>
 
-                <li class="dropdown" (click)="isRevise()">
+                <li class="dropdown" gi>
                     <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
 
-                        <img src="http://placehold.it/50x50" class="img-circle special-img"><b class="caret"></b></a>
+                        <img [src]="imagenAvatar" width="50" height="50" class="img-circle special-img"><b class="caret"></b></a>
 
                     <ul class="dropdown-menu" *ngIf="!userAuthenticaded">
                         <li>

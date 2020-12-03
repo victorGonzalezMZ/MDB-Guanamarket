@@ -23,7 +23,8 @@ export class TopbarComponent implements OnInit {
 	cartNoItems:number=0;
 
 	@Input() menuProfileItems: any[] = [];
-	
+	@Input() imagenAvatar: string = ""
+
 	subscription$: Subscription;
 	subscriptionItemsCarrito$: Subscription;
 
@@ -51,6 +52,7 @@ export class TopbarComponent implements OnInit {
 
 	ngOnDestroy(): void {
 		this.subscription$.unsubscribe();
+		this.subscriptionItemsCarrito$.unsubscribe();
 	}
 
 
@@ -64,17 +66,11 @@ export class TopbarComponent implements OnInit {
 
 	isUserAuthenticated() {
 		const token: string = localStorage.getItem("jwt");
-		const token_decode = this.jwtHelper.decodeToken(token);
-		console.log(token_decode);
-		
 		if (token && !jwtHelper.isTokenExpired(token))
 			return true;
 		else 
 			return false;
 	}
 
-	isRevise(){
-		this.cartNoItems=this.cartNoItems+1;
-	}
 
 }
