@@ -30,6 +30,7 @@ export class SidebarComponent implements OnInit {
 		}else{
 			this.svcMenuSidebar.getSidebarMenusWithoutToken().subscribe((data:any)=>{
 				this.menuSideBar = data.menus
+				console.log(data.menus);
 			});	
 		}
 	}

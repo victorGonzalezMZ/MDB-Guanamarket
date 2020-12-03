@@ -56,7 +56,6 @@ export class ShoppingCartComponent implements OnInit {
 
 	isLogueadoUser(){
 		const token = localStorage.getItem("jwt");
-		const token_decode = this.jwtHelper.decodeToken(token);
 		if (token && !this.jwtHelper.isTokenExpired(token)) {
 			return true;
 		}

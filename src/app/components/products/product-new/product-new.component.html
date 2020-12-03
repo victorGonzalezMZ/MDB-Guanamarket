@@ -1,0 +1,19 @@
+<div class="card hoverable mb-4" *ngFor="let item of listProductsNew">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-6 px-0">
+                <a>
+                    <img [src]="imagesUrl+item.imagen" class="img-fluid">
+                </a>
+            </div>
+            <div class="col-6">
+                <a>
+                    <strong>{{item.title}}</strong>
+                </a>
+                <h6 class="h6-responsive font-weight-bold dark-grey-text">
+                    <strong>{{item.seelingPrice | currency:'MXN'}}</strong>
+                </h6>
+            </div>
+        </div>
+    </div>
+</div>

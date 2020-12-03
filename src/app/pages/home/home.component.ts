@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CarouselService } from 'src/app/services/core/carousel.service';
 import { MenuNavbarCategoriesService } from 'src/app/services/core/menu-navbar-categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
-
-
 import {NavigationEnd, Router} from '@angular/router';
 import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/filter';
 import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
+
 
 @Component({
 	selector: 'app-home',
@@ -18,16 +17,20 @@ export class HomeComponent implements OnInit {
 
 	menuCategories: any[] = [];
 	listProducts: any[] = [];
+	listProductsNew: any[] = [];
 	category: string;
 	carouselItems: any[] = [];
 	
-
 	constructor(
 			private navCategorySvc: MenuNavbarCategoriesService, 
 			private produtsSvc: ProductsService, 
 			private carouselSvc: CarouselService,
 			private router: Router) { 
-				
+		
+		this.produtsSvc.GetTop3NewProducts().subscribe((data:any)=>{
+			this.listProductsNew = data.listProducts
+		});
+
 		this.router.events
            .filter(e => e instanceof NavigationEnd)
            .pairwise().subscribe((e) => {
@@ -48,7 +51,8 @@ export class HomeComponent implements OnInit {
 
 		//Cargar products
 		this.getAllProducts();
-
+		
+	
 		//Cargar Carousel
 		this.getCarousel();
 	}

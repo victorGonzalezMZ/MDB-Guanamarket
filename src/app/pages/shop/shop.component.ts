@@ -6,6 +6,9 @@ import settings from '../../settings';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { Router } from '@angular/router';
 import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
+import { WishlistmessengerService } from 'src/app/services/observables/wishlistmessenger.service';
+import Swal from 'sweetalert2'
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
 	selector: 'app-shop',
@@ -47,7 +50,10 @@ export class ShopComponent implements OnInit {
 		private produtsSvc: ProductsService,
 		private brandSvc: BrandsService,
 		private router: Router,
-		private svcCarrito: CarritomessengerService) {
+		private svcCarrito: CarritomessengerService,
+		private svcWishList: WishlistmessengerService,
+		private jwtHelper: JwtHelperService) {
+
 			this.shortBy = "title";
 			this.ShortByDirection="ASC";
 			this.Category = null;
@@ -71,6 +77,24 @@ export class ShopComponent implements OnInit {
 	click_addCart(item:any){
 		item.Quantity = 1;
 		this.svcCarrito.sendProdutAlCarrito(item);
+	}
+
+	click_addWishList(item:any){
+		if(this.isUserAuthenticated()){
+			this.svcWishList.sendProductAlWishList(item);
+			Swal.fire(
+				'Excelente !',
+				`${item.title} fue agregado a lista de deseos!!!`,
+				'success'
+			  );
+		}else{
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'No tienes una sesión iniciada !',
+				footer: '<a [routerLink]="/login" routerLinkActive="active">Logueate para agregar</a>'
+			})
+		}
 	}
 
 	/**
@@ -126,14 +150,18 @@ export class ShopComponent implements OnInit {
 			"MinValor": this.minValue,
 			"MaxValor": this.maxValue,
 		};
-
-		console.log(obj);
 		this.produtsSvc.getAllProductsByParams(obj).subscribe((data: any) => {
 			console.log( data.listProducts);
 			this.listProducts = data.listProducts;
 		});
 	}
 
-	
+	isUserAuthenticated() {
+		const token: string = localStorage.getItem("jwt");
+		if (token && !this.jwtHelper.isTokenExpired(token))
+			return true;
+		else 
+			return false;
+	}
 
 }

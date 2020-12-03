@@ -9,7 +9,19 @@ import settings from '../../settings';
 export class ProductsService {
 
   constructor(private http: HttpClient) { }
+	/** */
 
+	GetTop3NewProducts(){
+		return this.http.get(`${settings.apinetcore.urlServer}product/GetTop3NewProducts`);
+	}
+
+	GetTop3Random(){
+		return this.http.get(`${settings.apinetcore.urlServer}product/GetTop3Random`);
+	}
+
+	GetTop3ByCategory(category:string,id:number){
+		return this.http.get(`${settings.apinetcore.urlServer}product/GetTop3ByCategory/${category}/${id}`);
+	}
 	getAllProducts() {
 		return this.http.get(`${settings.apinetcore.urlServer}product`);
 	}

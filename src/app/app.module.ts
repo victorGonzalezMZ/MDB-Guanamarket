@@ -32,6 +32,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shopping-cart-detail.component';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
+import { WishListDetailComponent } from './pages/wish-list-detail/wish-list-detail.component';
+import { ProductNewComponent } from './components/products/product-new/product-new.component';
 
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
@@ -55,7 +58,10 @@ export function tokenGetter() {
 		ShopComponent,
 		ProfileComponent,
 		ShoppingCartComponent,
-		ShoppingCartDetailComponent
+		ShoppingCartDetailComponent,
+		WishListComponent,
+		WishListDetailComponent,
+		ProductNewComponent
 	],
 	imports: [
 		BrowserModule,

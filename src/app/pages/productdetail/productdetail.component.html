@@ -20,9 +20,9 @@
                         <a href=""><span class="badge blue mr-1">{{product.category}}</span></a>
                     </div>
                     <p class="lead">
-                        <span *ngIf="product.price > product.seelingPrice" class="mr-1 text-dark"><del>$ {{product.price}} MXP</del></span>
+                        <span *ngIf="product.price > product.seelingPrice" class="mr-1 text-dark"><del>{{product.price | currency:'MXN'}}</del></span>
                     </p>
-                    <h2 class="font-weight-bold text-dark">${{product.seelingPrice}} MXP</h2>
+                    <h2 class="font-weight-bold text-dark">{{product.seelingPrice | currency:'MXN'}}</h2>
                     <p class="lead font-weight-bold white-text ">{{product.title}}</p>
                     <p class="white-text ">{{product.description}}</p>
                     <form class="d-flex justify-content-left" [formGroup]="quantityForm" (submit)="click_addCart()">
@@ -44,9 +44,7 @@
         <div class="row d-flex justify-content-center wow fadeIn ">
             <!--Grid column-->
             <div class="col-md-6 text-center ">
-                <h4 class="my-4 h4 ">Productos Relacionados</h4>
-                <p>Productos basados en tus gustos</p>
-
+                <h4 class="my-4 h4 white-text">Productos Relacionados</h4>
             </div>
             <!--Grid column-->
 
@@ -57,28 +55,34 @@
         <div class="row wow fadeIn ">
 
             <!--Grid column-->
-            <div class="col-lg-4 col-md-12 mb-4 ">
+            <div class="col-md-4 mb-4" *ngFor="let item of productsAdditional">
+                <!--Card-->
+                <div class="card">
 
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg " class="img-fluid " alt=" ">
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img [src]="imagesUrl+item.imagen" class="card-img-top" alt="">
+                        <a (click)="viewProduct(item)">
+                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h5 class="card-title">{{item.title}} </h5>
+                        <!--Text-->
+                        <p class="mb-0 text-muted">{{item.seelingPrice | currency:'MXN'}}</p>
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--/.Card-->
 
             </div>
             <!--Grid column-->
 
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4 ">
-
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg " class="img-fluid " alt=" ">
-
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4 ">
-
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg " class="img-fluid " alt=" ">
-
-            </div>
-            <!--Grid column-->
 
         </div>
         <!--Grid row-->
