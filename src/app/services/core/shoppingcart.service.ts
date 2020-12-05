@@ -15,7 +15,7 @@ export class ShoppingcartService {
 	}
 
 	addItemShoppingCart(cart:ShoppingCart){
-		return this.http.post(`${settings.apinetcore.urlServer}shoppingCart/add_Shoppingcart`,cart, {
+		return this.http.post(`${settings.apinetcore.urlServer}shoppingCart/add_Shoppingcart_fromlocal`,cart, {
 			headers: new HttpHeaders({
 				"Content-Type": "application/json"
 			})

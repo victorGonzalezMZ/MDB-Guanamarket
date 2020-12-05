@@ -10,6 +10,10 @@ header,
     margin-right: -15px;
 }
 
+.input-search ::placeholder {
+    color: white;
+}
+
 @media (max-width: 740px) {
     html,
     body,

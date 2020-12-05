@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Cart } from 'src/app/models/cart';
 import { CheckoutService } from 'src/app/services/core/checkout.service';
@@ -47,7 +47,8 @@ export class CheckoutComponent implements OnInit {
 		private productsSvc: ProductsService,
 		private svcCarritoRed : ShoppingcartService,
 		private jwtHelper: JwtHelperService,
-		private svcUser: UsersService) {
+		private svcUser: UsersService,
+		private routerLink: Router) {
 		this.router.params.subscribe(params => {
 			
 		});
@@ -102,6 +103,8 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	registerCheckout() {
+		this.confirmarOrden();
+		/*
 		const obj = {
 			// "Nick":[ localStorage.getItem("Nick") || ''],
 			"checkoutName": this.checkoutForm.value.checkoutName,
@@ -135,6 +138,8 @@ export class CheckoutComponent implements OnInit {
 				text: `${JSON.stringify(err)}`,
 			});
 		});
+		*/
+		
 
 	}
 
@@ -231,6 +236,10 @@ export class CheckoutComponent implements OnInit {
 				text: '',
 			});
 		});
+	}
+
+	confirmarOrden(){
+		this.routerLink.navigateByUrl('/shipment-order');
 	}
 
 }

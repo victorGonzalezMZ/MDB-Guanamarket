@@ -6,6 +6,8 @@ import { ItemCarritomessengerService } from 'src/app/services/observables/item-c
 import { ShoppingCart } from 'src/app/models/shoppingcart'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
+import Swal from 'sweetalert2';
+
 @Component({
 	selector: 'orquestador-shopping-cart',
 	templateUrl: './shopping-cart.component.html',
@@ -118,8 +120,10 @@ export class ShoppingCartComponent implements OnInit {
 		);
 		this.svcCarritoRed.addItemShoppingCart(obj).subscribe((data: any) => {
 			this.svcCarrito.sendFinishedProcess(true);
+			this.sendMessageUser("Producto agregado al carrito");
 			this.countItemsToCart_Red();
 		});
+
 	}
 
 	deleteProductToCart_Local(item:any){
@@ -167,13 +171,25 @@ export class ShoppingCartComponent implements OnInit {
 			cartItems
 		));
 		this.svcCarrito.sendFinishedProcess(true);
+		this.sendMessageUser("Producto agregado al carrito");
 		this.countItemsToCart_Local();
 	}
 
+	sendMessageUser(message:string){
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: `${message}`,
+			showConfirmButton: false,
+			timer: 500
+		});
+	}
 
 	orchestrationCarritoLocalToRed(){
 
 	}
+
+
 
 	countItemsToCart_Local(){
 		let cartItems = [];

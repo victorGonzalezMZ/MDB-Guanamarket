@@ -51,6 +51,7 @@ export class ProductdetailComponent implements OnInit {
 
 	click_addCart(){
 		this.product.Quantity =parseInt(this.quantityForm.get("Quantity").value);
+		console.log(this.product.Quantity);
 		this.svcCarrito.sendProdutAlCarrito(this.product);
 	}
 

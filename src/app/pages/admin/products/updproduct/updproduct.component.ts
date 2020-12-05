@@ -129,7 +129,7 @@ export class UpdproductComponent implements OnInit {
 			if(response){
 				Swal.fire(
 					'Bien hecho!',
-					`Tu producto con ID ${response} fue actualizado correctamente!`,
+					`Tu producto con ID ${this._id} fue actualizado correctamente!`,
 					'success'
 				)
 			}
