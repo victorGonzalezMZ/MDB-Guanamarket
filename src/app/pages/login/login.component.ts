@@ -48,8 +48,11 @@ export class LoginComponent {
 		this.loginSvc.authenticateUser(obj).subscribe(response => {
 			const token = (<any>response).token;
 			const refreshToken = (<any>response).refreshToken;
+			const token_decode = this.jwtHelper.decodeToken(token);
 			localStorage.setItem("jwt", token);
 			localStorage.setItem("refreshToken", refreshToken);
+			sessionStorage.setItem("Id_User",token_decode.Id);
+			sessionStorage.setItem("nick",token_decode["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
 			this.invalidLogin = false;
 			this.svcLogin.sendCriterio(true);
 			if(this.loginForm.get('Remember').value){
@@ -57,11 +60,6 @@ export class LoginComponent {
 			}else{
 				localStorage.removeItem("Nick");
 			}
-	
-			const token_decode = this.jwtHelper.decodeToken(token);
-			console.log(token_decode);
-			sessionStorage.setItem("Id_User",token_decode.Id);
-			sessionStorage.setItem("nick",token_decode["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
 			this.router.navigate(["/home"]);
 		}, err => {
 			this.invalidLogin = true;

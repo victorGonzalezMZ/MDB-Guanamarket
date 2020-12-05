@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
 import { ProductdetailComponent } from './pages/productdetail/productdetail.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ShipmentConfirmationComponent } from './pages/shipment-confirmation/shipment-confirmation.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shopping-cart-detail.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardGuard]},
     { path: 'cart', component: ShoppingCartDetailComponent},
     { path: 'wishlist', component: WishListDetailComponent},
-    { path: "checkout", component: CheckoutComponent}
+    { path: "checkout", component: CheckoutComponent},
+    { path: "shipment-order", component: ShipmentConfirmationComponent}
 ]
 
 @NgModule({

@@ -38,6 +38,7 @@ import { ProductNewComponent } from './components/products/product-new/product-n
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductsRandomComponent } from './components/products/products-random/products-random.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { ShipmentConfirmationComponent } from './pages/shipment-confirmation/shipment-confirmation.component';
 
 
 export function tokenGetter() {
@@ -67,7 +68,8 @@ export function tokenGetter() {
 		WishListDetailComponent,
 		ProductNewComponent,
 		ProductsRandomComponent,
-		CheckoutComponent
+		CheckoutComponent,
+		ShipmentConfirmationComponent
 	],
 	imports: [
 		BrowserModule,

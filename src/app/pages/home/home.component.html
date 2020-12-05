@@ -11,7 +11,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark purple darken-2  mt-3 mb-5">
 
             <!-- Navbar brand -->
-            <span class="navbar-brand">Categories:</span>
+            <span class="navbar-brand">Categorias:</span>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
                 <ul class="navbar-nav mr-auto nav-pills">
 
                     <li class="nav-item">
-                        <a class="nav-link active" [ngClass]="{'active': category == 'All'}" (click)="filtrarByCategory('All')">All</a>
+                        <a class="nav-link active" [ngClass]="{'active': category == 'All'}" (click)="filtrarByCategory('All')">Todas</a>
                     </li>
 
                     <li class="nav-item" *ngFor="let item of menuCategories; let i=index ">
@@ -37,7 +37,7 @@
 
                 <div class="form-inline white-text">
                     <div class="md-form my-0 white-text">
-                        <input class="form-control mr-sm-2 white-text" type="text" placeholder="Search" aria-label="Search" (keyup.enter)="filtrarBySearch(searchCriterio.value)" #searchCriterio>
+                        <input class="form-control mr-sm-2 white-text" type="text" placeholder="Buscar" aria-label="Search" (keyup)="filtrarBySearch(searchCriterio.value)" (keyup.enter)="filtrarBySearch(searchCriterio.value)" #searchCriterio>
                     </div>
                 </div>
             </div>

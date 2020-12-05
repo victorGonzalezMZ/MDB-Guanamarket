@@ -32,7 +32,8 @@ export class ShoppingCartDetailComponent implements OnInit {
 		this.subscription$ = this.svcCarrito.onListenFinishedProductInCarrito().subscribe((item:any)=>{
 			this.getListado();
 		})
-					
+
+		
 	
 	 }
 
@@ -43,6 +44,7 @@ export class ShoppingCartDetailComponent implements OnInit {
 
 	ngOnDestroy(): void {
 		this.subscription$.unsubscribe();
+		
 	}
 
 	isLogueadoUser(){

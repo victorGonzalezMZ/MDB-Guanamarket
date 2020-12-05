@@ -5,6 +5,7 @@ import { CarritomessengerService } from 'src/app/services/observables/carritomes
 import { ItemCarritomessengerService } from 'src/app/services/observables/item-carritomessenger.service';
 import { ShoppingCart } from 'src/app/models/shoppingcart'
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
 @Component({
 	selector: 'orquestador-shopping-cart',
 	templateUrl: './shopping-cart.component.html',
@@ -12,11 +13,19 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class ShoppingCartComponent implements OnInit {
 
+	subscriptionLogin$: Subscription;
 
 	constructor(private svcCarrito: CarritomessengerService,
 				private svcItemCarrito: ItemCarritomessengerService,
 				private svcCarritoRed : ShoppingcartService,
-				private jwtHelper: JwtHelperService) {
+				private jwtHelper: JwtHelperService,
+				private svcLogin: LoginmessengerService) {
+		
+		this.subscriptionLogin$ = this.svcLogin.onListenCriterio().subscribe( (criterio:boolean)=>{
+			this.cargarItemsToCart();
+			console.log("Ando aqui en el carrito vine por login");
+		});	
+										
 		this.svcCarrito.onListenProductInCarrito().subscribe( (item:any)=>{
 			if(!this.isLogueadoUser()){
 				this.addProductToCart_Local(item);
@@ -43,16 +52,18 @@ export class ShoppingCartComponent implements OnInit {
 	 }
 
 	ngOnInit(): void {
+		this.cargarItemsToCart();
+	}
+
+	cargarItemsToCart(){
 		if(!this.isLogueadoUser())
 			this.countItemsToCart_Local();
 		else
 			this.countItemsToCart_Red();
 	}
 
-
 	ngOnDestroy(): void {
-		
-		
+		this.subscriptionLogin$.unsubscribe();
 	}
 
 	isLogueadoUser(){

@@ -117,6 +117,7 @@ export class CheckoutComponent implements OnInit {
 			"cc_expiration": this.checkoutForm.value.cc_expiration,
 			"cc_cvv": this.checkoutForm.value.cc_cvv
 		};
+		console.log(JSON.stringify(obj));
 		this.checkoutSvc.insertCheckout(obj).subscribe(response => {
 			console.log(obj);
 			if (response > 0) {
@@ -131,7 +132,7 @@ export class CheckoutComponent implements OnInit {
 			Swal.fire({
 				icon: 'error',
 				title: 'Oops...',
-				text: `${err}`,
+				text: `${JSON.stringify(err)}`,
 			});
 		});
 
