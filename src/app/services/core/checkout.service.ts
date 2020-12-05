@@ -10,10 +10,10 @@ export class CheckoutService {
 	constructor(private http: HttpClient) { }
 
 	getcheckout(nick: any) {
-		return this.http.get(`${settings.apinode.urlServer}checkout/${nick}`);
+		return this.http.get(`${settings.apinetcore.urlServer}checkout/${nick}`);
 	}
 	getUserbyName(nick: string) {
-		return this.http.post(`${settings.apinode.urlServer}checkout/getchkUserByNick/`, JSON.stringify(nick), {
+		return this.http.post(`${settings.apinetcore.urlServer}checkout/getchkUserByNick/`, JSON.stringify(nick), {
 			headers: new HttpHeaders({
 				"Content-Type": "application/json"
 			})
@@ -23,7 +23,7 @@ export class CheckoutService {
 	 * INSERTAR checkout --> ENVIAR JSON
 	 */
 	insertCheckout(obj: any) {
-		return this.http.post(`${settings.apinode.urlServer}checkout`, obj, {
+		return this.http.post(`${settings.apinetcore.urlServer}checkout`, obj, {
 			headers: new HttpHeaders({
 				"Content-Type": "application/json"
 			})
@@ -33,7 +33,7 @@ export class CheckoutService {
 	 *validar codigo promocion --> ENVIAR JSON
 	 */
 	validCodePromo(code: string) {
-		return this.http.post(`${settings.apinode.urlServer}checkout/validCodePromo`, JSON.stringify(code), {
+		return this.http.post(`${settings.apinetcore.urlServer}checkout/validCodePromo`, JSON.stringify(code), {
 			headers: new HttpHeaders({
 				"Content-Type": "application/json"
 			})
