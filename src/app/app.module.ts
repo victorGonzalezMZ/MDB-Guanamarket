@@ -35,6 +35,9 @@ import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shoppi
 import { WishListComponent } from './pages/wish-list/wish-list.component';
 import { WishListDetailComponent } from './pages/wish-list-detail/wish-list-detail.component';
 import { ProductNewComponent } from './components/products/product-new/product-new.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ProductsRandomComponent } from './components/products/products-random/products-random.component';
+
 
 export function tokenGetter() {
 	return localStorage.getItem("jwt");
@@ -61,7 +64,8 @@ export function tokenGetter() {
 		ShoppingCartDetailComponent,
 		WishListComponent,
 		WishListDetailComponent,
-		ProductNewComponent
+		ProductNewComponent,
+		ProductsRandomComponent
 	],
 	imports: [
 		BrowserModule,
@@ -82,7 +86,8 @@ export function tokenGetter() {
 				disallowedRoutes: [],
 			},
 		}),
-		NgxDropzoneModule
+		NgxDropzoneModule,
+		NgSelectModule,
 		
 	],
 	providers: [],

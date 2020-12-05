@@ -59,7 +59,9 @@ export class LoginComponent {
 			}
 	
 			const token_decode = this.jwtHelper.decodeToken(token);
+			console.log(token_decode);
 			sessionStorage.setItem("Id_User",token_decode.Id);
+			sessionStorage.setItem("nick",token_decode["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
 			this.router.navigate(["/home"]);
 		}, err => {
 			this.invalidLogin = true;

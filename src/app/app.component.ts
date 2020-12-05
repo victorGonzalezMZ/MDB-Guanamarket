@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { MenuTopbarService } from './services/core/menu-topbar.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import settings from 'src/app/settings';
+import { AvatarmessengerService } from './services/observables/avatarmessenger.service';
 
 const jwtHelper = new JwtHelperService();
 
@@ -20,13 +21,17 @@ export class AppComponent implements OnInit {
 	imagesUrl = settings.apinode.urlServer + 'get-image-user/';
 
 	constructor(private menuSvc: MenuTopbarService,
-				private jwtHelper: JwtHelperService) {}
+				private jwtHelper: JwtHelperService,
+				private svcAvatar: AvatarmessengerService) {}
 
 	ngOnInit() {
 		App.init();
 		this.getData();
 		this.imagenAvatar= this.imagesUrl+'no-image-avatar.jpeg';
 		this.isUserAuthenticated();
+		this.svcAvatar.onListenChangeAvar().subscribe( (imagen:string)=>{
+			this.imagenAvatar = this.imagesUrl+imagen;
+		})
 	}
 
 	getData(){

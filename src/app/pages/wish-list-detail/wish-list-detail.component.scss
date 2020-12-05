@@ -1,0 +1,25 @@
+html,
+body,
+header {
+    height: 60vh;
+}
+
+.spacing-navbar {
+    margin-top: 30px;
+    max-width: calc(100% - 2em);
+    margin: 3em auto;
+    overflow: hidden;
+    width: 80%;
+}
+
+@media (max-width: 500px) {
+    .spacing-navbar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .spacing-navbar {
+        width: 90%;
+    }
+}

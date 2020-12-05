@@ -1,0 +1,113 @@
+<div class="py-5 product-main">
+    <div class="my-5 py-5 elegant-color z-depth-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center py-3 white-text">Administración de Usuarios</h1>
+        </div>
+        <!-- Default form contact -->
+        <div class="container">
+            <form class="text-center border border-light p-5 white" #newUserForm="ngForm" (ngSubmit)="registerNewUser(newUserForm)">
+
+                <p class="h4 mb-4">Nuevo Usuario</p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="firstName" name="firstName" ngModel class="form-control" maxlength="10">
+                            <label for="inputIconEx2">Nombre</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="lastname" name="lastname" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Apellidos</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="nick" name="nick" ngModel class="form-control">
+                            <label for="inputIconEx2">Nombre usuario</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="email" name="email" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Email</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="number" id="phone" name="phone" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Telefono</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-lg-9">
+                        <div class="md-form mt-0">
+                            <input type="text" id="address" name="address" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Domicilio (Calle, #, Edificio, Colonia)</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="md-form mt-0">
+                            <input type="number" id="zip" name="zip" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Código Postal</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- PRICE -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="city" name="city" ngModel class="form-control">
+                            <label for="inputIconEx2">Ciudad</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- SEELING PRICE -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="state" name="state" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">Estado</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- SEELING PRICE -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="country" name="country" ngModel class="form-control form-control-lg">
+                            <label for="inputLGEx">País</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <ngx-dropzone (change)="onSelect($event)">
+                    <ngx-dropzone-label>Colocar Imagen</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+
+
+
+                <div class="row pt-5">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-info btn-block" type="submit"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- Default form contact -->
+    </div>
+</div>

@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UpdproductComponent } from './products/updproduct/updproduct.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PromotionsComponent } from './promotions/promotions.component';
+import { NewuserComponent } from './users/newuser/newuser.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { PromotionsComponent } from './promotions/promotions.component';
 		UpdcategoryComponent,
 		UpdproductComponent,
 		PromotionsComponent,
+		NewuserComponent,
 	],
 	imports: [
 		CommonModule,

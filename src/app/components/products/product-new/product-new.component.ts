@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import settings from 'src/app/settings';
 
 @Component({
@@ -13,10 +14,14 @@ export class ProductNewComponent implements OnInit {
 
 	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit(): void {
 
+	}
+
+	viewProduct(item: any) {
+		this.router.navigate(['/product-detail', item.id]);
 	}
 
 }

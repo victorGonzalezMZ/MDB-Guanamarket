@@ -32,9 +32,11 @@ export class SignupComponent {
 				"state": "",
 				"country": "",
 				"zip": "",
-				"imagen": ""
+				"imagen": "imagen.png",
+				"phone":""
 			};
 
+			console.log(JSON.stringify(obj));
 			this.userSvc.registerNewUser(obj).subscribe(response => {
 				if (response > 0) {
 					const obj_login = {

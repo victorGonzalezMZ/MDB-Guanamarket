@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 	menuCategories: any[] = [];
 	listProducts: any[] = [];
 	listProductsNew: any[] = [];
+	listProductsRandom: any[] = [];
 	category: string;
 	carouselItems: any[] = [];
 	
@@ -31,6 +32,10 @@ export class HomeComponent implements OnInit {
 			this.listProductsNew = data.listProducts
 		});
 
+		this.produtsSvc.GetTop3Random().subscribe((data:any)=>{
+			this.listProductsRandom = data.listProducts;
+		});
+		
 		this.router.events
            .filter(e => e instanceof NavigationEnd)
            .pairwise().subscribe((e) => {

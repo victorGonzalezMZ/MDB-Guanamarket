@@ -1,1 +1,58 @@
-<p>wish-list-detail works!</p>
+<main class="mt-5 pt-4">
+
+    <div class="container mt-4">
+        <h1> Lista de Deseados </h1>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="row d-flex">
+            <div class="col-md-9">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control mt-2" placeholder="Search" (keyup.enter)="searchWishList(searchWishlist.value)" #searchWishlist>
+                    <div class="input-group-append">
+                        <button class="btn mb-2 warning-color-dark" type="button" (click)="searchWishList(searchWishlist.value)"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ng-select class="col mb-3" placeholder="Orden" [items]="orders" (change)="changeOrder()" [(ngModel)]="selectedOrder">
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div [ngStyle]="{'margin-bottom':'350px'}">
+
+        <div class="container my-2 py-5 z-depth-5 purple-gradient rounded-lg">
+
+            <div class="row d-flex justify-content-center py-4" *ngFor="let item of wishlist_Items; let i = index">
+
+                <div class="col-md-4">
+                    <img class="img-fluid z-depth-5" [src]="imagesUrl+item.imagen" />
+                </div>
+                <div class="col-md-8">
+                    <div class="row justify-content-start mt-2">
+                        <div class="col-md-12">
+                            <h2 class="white-text">{{item.title}}</h2>
+                        </div>
+                    </div>
+                    <div class="row justify-content-start mt-2">
+                        <div class="col-md-12">
+                            <h4 class="white-text">{{item.seelingPrice | currency:'MXN'}}</h4>
+                        </div>
+                    </div>
+                    <div class="row p-5 justify-content-end mt-2">
+                        <button class="btn btn-primary" (click)="goProductPage(item)"><i class="fas fa-eye"></i>&nbsp;Ver</button>
+                        <button class="btn btn-dark" (click)="addShoppinCart(item)"><i class="fas fa-shopping-cart"></i>&nbsp;Carrito</button>
+                        <button class="btn btn-danger" (click)="removeWishList(item)"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</button>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+
+        </div>
+    </div>
+
+</main>

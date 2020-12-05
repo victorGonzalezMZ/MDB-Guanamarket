@@ -7,6 +7,7 @@ import settings from '../../settings';
 import { sha256 } from 'js-sha256';
 import Swal from 'sweetalert2'
 import { ViewChild } from '@angular/core';
+import { AvatarmessengerService } from 'src/app/services/observables/avatarmessenger.service';
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
@@ -42,7 +43,8 @@ export class ProfileComponent implements OnInit {
 	constructor(private fb: FormBuilder, 
 		private uploadSvc: UploadService,
 		private userSvc: UsersService,
-		private jwtHelper: JwtHelperService) { 
+		private jwtHelper: JwtHelperService,
+		private svcAvatar: AvatarmessengerService) { 
 
 			const token = localStorage.getItem("jwt");
 			const token_decode = this.jwtHelper.decodeToken(token);
@@ -77,7 +79,7 @@ export class ProfileComponent implements OnInit {
 	}
 
 	public updateProfile(){
-		console.log("Hola mundo");
+	
 		const obj = {
 			"id": this._id,
 			"nick": this._nick,
@@ -111,12 +113,16 @@ export class ProfileComponent implements OnInit {
 				this.uploadSvc.uploadImageUser(formData,this._nick).subscribe((res:any) => {
 					this.inputImage.nativeElement.value="";
 					obj.imagen = res.imagen;		
+					this.imagenLast = res.imagen;
+					this.svcAvatar.sendChangeAvatar(res.imagen);
 					this.updateProfileSend(obj);
 				});
 			});
 		}else{
 			this.updateProfileSend(obj);
 		}
+
+		this.getData(this._nick);
 
 	}
 

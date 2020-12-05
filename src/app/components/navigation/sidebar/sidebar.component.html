@@ -9,7 +9,7 @@
 
         <li *ngFor="let item of menuSideBar; let i = index; let last = last">
 
-            <a *ngIf="item.isInit" [routerLink]="item.route" routerLinkActive="active">
+            <a (click)="ocultarMenus()" *ngIf="item.isInit" [routerLink]="item.route" routerLinkActive="active">
                 <i class="fas {{item.icon}}"></i>&nbsp; {{item.title}}
             </a>
 

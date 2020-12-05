@@ -1,21 +1,14 @@
-<!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark purple darken-3 scrolling-navbar">
-
-    <div class="container">
-
-        <!-- Collapse button -->
-        <button type="button" id="sidebarCollapse" class="btn btn-sm purple darken-3">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Brand -->
-        <a class="navbar-brand waves-effect" routerLink="/home">
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 550.000000 491.000000" preserveAspectRatio="xMidYMid meet">
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="550.000000pt" height="491.000000pt" viewBox="0 0 550.000000 491.000000"
+ preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
 </metadata>
 <g transform="translate(0.000000,491.000000) scale(0.100000,-0.100000)"
-fill="#ffffff" stroke="none">
+fill="#000000" stroke="none">
 <path d="M1560 4696 c0 -8 -9 -17 -19 -21 -11 -3 -22 -12 -25 -20 -3 -8 -12
 -15 -21 -15 -8 0 -15 -7 -15 -15 0 -8 -9 -15 -20 -15 -11 0 -20 -7 -20 -15 0
 -8 -4 -15 -10 -15 -5 0 -10 -20 -10 -45 0 -25 5 -45 10 -45 6 0 10 -9 10 -19
@@ -196,64 +189,3 @@ c0 -8 8 -17 18 -21 17 -5 73 -108 72 -133 0 -8 9 -26 19 -41 11 -15 25 -48 32
 -2 4 -10 6 -16 6 -7 -1 -74 -9 -149 -18z"/>
 </g>
 </svg>
-
-        </a>
-        <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <!-- Left -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item" *ngFor="let item of menuProfileItems; let i=index">
-                    <a *ngIf="item.visible" class="nav-link waves-effect" [routerLink]="item.route" routerLinkActive="active"><i
-                            class="fas {{item.icon}}"></i>{{item.title}}
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Right -->
-            <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item">
-                    <a class="nav-link waves-effect" href="javascript:void(0);" routerLink="/cart" routerLinkActive="active">
-                        <span class="badge red z-depth-1 mr-1">{{cartNoItems}}</span>
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="clearfix d-none d-sm-inline-block">Carrito</span>
-                    </a>
-                </li>
-
-                <li class="dropdown" gi>
-                    <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
-
-                        <img [src]="imagenAvatar" width="50" height="50" class="img-circle special-img"><b class="caret"></b></a>
-
-                    <ul class="dropdown-menu" *ngIf="!userAuthenticaded">
-                        <li>
-                            <a href="javascript:void(0);" routerLink="/login" routerLinkActive="active">
-                                <i class="far fa-user"></i>&nbsp;Iniciar Sesión
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" routerLink="/signup" routerLinkActive="active">
-                                <i class="fas fa-user-plus"></i>&nbsp;Registrate
-                            </a>
-                        </li>
-
-                    </ul>
-                    <ul class="dropdown-menu" *ngIf="userAuthenticaded">
-                        <li><a href="javascript:void(0);" routerLink="/profile" routerLinkActive="active"><i class="fa fa-cog"></i>&nbsp;Mi Cuenta</a></li>
-                        <li class="divider"></li>
-                        <li><a (click)="logOut()"><i class="fas fa-sign-in-alt"></i>&nbsp;Cerrar Sesión</a></li>
-                    </ul>
-                </li>
-
-
-            </ul>
-
-        </div>
-
-    </div>
-</nav>
-<!-- Navbar -->

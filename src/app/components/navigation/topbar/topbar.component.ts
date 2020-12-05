@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
-import { ViewChild } from '@angular/core';
 import { ItemCarritomessengerService } from 'src/app/services/observables/item-carritomessenger.service';
 
 const jwtHelper = new JwtHelperService();

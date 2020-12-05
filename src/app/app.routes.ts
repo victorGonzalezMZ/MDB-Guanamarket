@@ -10,8 +10,8 @@ import { ProductdetailComponent } from './pages/productdetail/productdetail.comp
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shopping-cart-detail.component';
-import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { WishListDetailComponent } from './pages/wish-list-detail/wish-list-detail.component';
 
 const routes: Routes = [
 
@@ -22,9 +22,9 @@ const routes: Routes = [
     { path: 'product-detail/:id', component: ProductdetailComponent },
     { path: 'admin', canActivate:[AuthGuardGuard,AdminGuard],loadChildren:()=> import('./pages/admin/admin.module').then(module=>module.AdminModule) },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'profile', component: ProfileComponent},
-    { path: 'shopping-cart', component: ShoppingCartComponent},
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardGuard]},
     { path: 'cart', component: ShoppingCartDetailComponent},
+    { path: 'wishlist', component: WishListDetailComponent},
 ]
 
 @NgModule({
