@@ -55,15 +55,17 @@ export class CheckoutComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.totalItems = 0;
-		this.getCheckout();
+		
 		this.getListado();
 	}
 
 	getListado(){
-		if(!this.isLogueadoUser())
+		if(!this.isLogueadoUser()){
 			this.getList_LOCAL();
-		else
+		}else{
+			this.getCheckout();
 			this.getList_RED();
+		}
 	}
 
 	isLogueadoUser(){
@@ -78,8 +80,7 @@ export class CheckoutComponent implements OnInit {
 
 		this.nick = localStorage.getItem("Nick");
 		
-		
-
+	
 		this.svcUser.getUserByNick(this.nick).subscribe((data: any) => {
 
 			this.checkoutForm.setValue({
@@ -121,7 +122,7 @@ export class CheckoutComponent implements OnInit {
 			if (response > 0) {
 				Swal.fire(
 					'Bien hecho!',
-					`Tu Porceso de pago fue aceptado de ${response} correctamente!`,
+					`Tu Proceso de pago fue aceptado de ${response} correctamente!`,
 					'success'
 				)
 			}

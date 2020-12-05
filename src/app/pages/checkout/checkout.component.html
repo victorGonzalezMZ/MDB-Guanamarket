@@ -35,7 +35,7 @@
 
                         <!--email-->
                         <div class="md-form mb-5">
-                            <input type="text" id="checkoutemail" name="checkoutemail" formControlName="checkoutemail" class="form-control" placeholder="youremail@correo.com" />
+                            <input type="text" id="checkoutemail" name="checkoutemail" formControlName="checkoutemail" class="form-control" placeholder="" />
                             <label for="checkoutemail" class="active">Email </label>
                         </div>
 
@@ -98,7 +98,7 @@
                             <!--Grid column-->
                             <!--Grid column-->
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <label for="zip">Codigo Postal</label>
+                                <label for="zip">Código Postal</label>
                                 <input type="text" class="form-control" formControlName="checkoutZip" id="checkoutZip" name="checkoutZip" placeholder="" required="" />
                                 <div class="invalid-feedback">
                                     Codigo Postal, Requerido.
@@ -106,7 +106,7 @@
                             </div>
                             <!--Grid column-->
                             <div class="col-lg-12 col-md-12 mb-12 pb-5">
-                                <label for="country">Pais</label>
+                                <label for="country">País</label>
                                 <input type="text" class="form-control" formControlName="checkoutCountry" id="checkoutCountry" name="checkoutCountry" placeholder="" required="" />
                                 <div class="invalid-feedback">
                                     Pais, Requerido.
@@ -119,11 +119,11 @@
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
                                 <input id="credit" name="paymentMethod" formControlName="paymentMethod" value="credit" type="radio" class="custom-control-input" checked required>
-                                <label class="custom-control-label" for="credit">Credit card</label>
+                                <label class="custom-control-label" for="credit">Tarjeta de Crédito</label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input id="debit" name="paymentMethod" formControlName="paymentMethod" value="debit" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="debit">Debit card</label>
+                                <label class="custom-control-label" for="debit">Tarjeta de Debito</label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input id="paypal" name="paymentMethod" formControlName="paymentMethod" value="paypal" type="radio" class="custom-control-input" required>
@@ -140,31 +140,31 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="cc-number">Credit card number</label>
+                                <label for="cc-number">Número de tarjeta</label>
                                 <input type="text" class="form-control" formControlName="cc_number" id="cc_number" name="cc_number" placeholder="" required>
                                 <div class="invalid-feedback">
-                                    Credit card number is required
+                                    Número de tarjeta requerido
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 mb-3">
-                                <label for="cc-expiration">Expiration</label>
+                                <label for="cc-expiration">Expiración</label>
                                 <input type="text" class="form-control" id="cc_expiration" formControlName="cc_expiration" name="cc_expiration" placeholder="" required>
                                 <div class="invalid-feedback">
-                                    Expiration date required
+                                    Fecha de expiración requerida
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="cc-cvv">CVV</label>
                                 <input type="text" class="form-control" id="cc_cvv" formControlName="cc_cvv" name="cc_cvv" placeholder="" required>
                                 <div class="invalid-feedback">
-                                    Security code required
+                                    Código de seguridad requerido
                                 </div>
                             </div>
                         </div>
                         <hr class="mb-4">
-                        <button [disabled]="checkoutForm.invalid" class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                        <button [disabled]="checkoutForm.invalid" class="btn btn-primary btn-lg btn-block" type="submit">Realizar Pago</button>
 
                     </form>
 
