@@ -1,0 +1,83 @@
+<div class="py-5 product-main">
+    <div class="my-5 py-5 elegant-color z-depth-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center py-3 white-text">Administración Promoción</h1>
+        </div>
+        <!-- Default form contact  [formGroup]="updatePromotionForm"  -->
+        <div class="container">
+            <form class="text-center border border-light p-5 white" [formGroup]="updatePromotionForm" (submit)="updatePromotion()">
+                <p class="h4 mb-4">Actualiza Promoción</p>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- codigo -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="codigo" name="codigo" formControlName="codigo" placeholder="codigo" class="form-control">
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="title" name="title" formControlName="title" placeholder="Titulo" class="form-control form-control-lg">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="md-form mt-0">
+                            <input type="number" id="discount" placeholder="Descuento %" name="discount" formControlName="discount"  class="form-control">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="md-form mt-0">
+                            <textarea id="description" placeholder="Descripción" name="description" formControlName="description" class="md-textarea form-control"
+                                rows="3"></textarea>
+                           
+                        </div>
+                    </div>
+                                        
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- expira -->
+                        <div class="md-form mt-0">
+                            <div class="md-form md-outline input-with-post-icon datepicker">
+                                <input placeholder="Select date" type="date"  formControlName="expires_date"  id="expires_date" name="expires_date"  class="form-control">
+                                <label for="expires_date">Fecha de Expiración...</label>
+                              </div>
+                        </div>                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="md-form ">
+                            <select class="custom-select d-block w-100" formControlName="theme"   id="theme" name="theme" required="">
+                                <option value="">Selecciona un tema...</option>
+                                <option value="primary">Azul Intenso</option>
+                                <option value="info">Azul calido</option>
+                                <option value="success">Verde luminoso</option>
+                                <option value="warning">Amarillo</option>
+                                <option value="danger">Rojo</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-info btn-block" type="submit"><i
+                                    class="fas fa-save"></i>&nbsp;Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Default form contact -->
+    </div>
+</div>
+<script>
+    $('.datepicker').datepicker({
+        inline: true
+    });
+</script>

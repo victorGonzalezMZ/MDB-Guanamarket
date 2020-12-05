@@ -229,24 +229,16 @@ c0 -8 8 -17 18 -21 17 -5 73 -108 72 -133 0 -8 9 -26 19 -41 11 -15 25 -48 32
 
                         <img [src]="imagenAvatar" width="50" height="50" class="img-circle special-img"><b class="caret"></b></a>
 
-                    <ul class="dropdown-menu" *ngIf="!userAuthenticaded">
-                        <li>
-                            <a href="javascript:void(0);" routerLink="/login" routerLinkActive="active">
-                                <i class="far fa-user"></i>&nbsp;Iniciar Sesión
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let item of itemsMenusDes">
+                            <a *ngIf="!item.isLogout" href="javascript:void(0);" routerLink="{{item.route}}" routerLinkActive="active">
+                                <i class="{{item.icon}}"></i>&nbsp;{{item.name}}
                             </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" routerLink="/signup" routerLinkActive="active">
-                                <i class="fas fa-user-plus"></i>&nbsp;Registrate
-                            </a>
+                            <a *ngIf="item.isLogout" (click)="logOut()"><i class="{{item.icon}}"></i>&nbsp;{{item.name}}</a>
                         </li>
 
                     </ul>
-                    <ul class="dropdown-menu" *ngIf="userAuthenticaded">
-                        <li><a href="javascript:void(0);" routerLink="/profile" routerLinkActive="active"><i class="fa fa-cog"></i>&nbsp;Mi Cuenta</a></li>
-                        <li class="divider"></li>
-                        <li><a (click)="logOut()"><i class="fas fa-sign-in-alt"></i>&nbsp;Cerrar Sesión</a></li>
-                    </ul>
+
                 </li>
 
 

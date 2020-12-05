@@ -36,13 +36,15 @@ export class HomeComponent implements OnInit {
 			this.listProductsRandom = data.listProducts;
 		});
 		
+		/*
 		this.router.events
            .filter(e => e instanceof NavigationEnd)
            .pairwise().subscribe((e) => {
 			   if( e[0]['url']==='/login' && e[1]['url'] ==='/home'){
 					window.location.reload();
 			   }
-           });
+		   });
+		   */
 	}
 
 	ngOnInit(): void {

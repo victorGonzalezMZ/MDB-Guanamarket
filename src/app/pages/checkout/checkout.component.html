@@ -1,0 +1,420 @@
+<div class="py-5">
+    <main class="mt-5 pt-4 elegant-color ">
+        <div class="container dark-grey-text mt-5 my-5">
+            <!-- Heading -->
+            <h1 class="  white-text  text-center">Pasarela de Pago</h1>
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-8 mb-4">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card content-->
+                        <form class="card-body" #checkoutForm="ngForm" (ngSubmit)="registerCheckout(checkoutForm) " novalidate>
+                            <div class="row">
+                                <!--Grid column-->
+                                <div class="col-md-6 ">
+                                    <!--firstName-->
+                                    <div class="md-form">
+                                        <input type="text" id="checkoutName" name="checkoutName" class="form-control mb-4" ngModel placeholder="Nombre">
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+
+                                <!--Grid column-->
+                                <div class="col-md-6">
+                                    <!--lastName-->
+                                    <div class="md-form">
+                                        <input type="text" id="checkoutApellidos" name="checkoutApellidos" placeholder="Apellidos" ngModel class="form-control" />
+
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+
+                            <!--email-->
+                            <div class="md-form mb-5">
+                                <input type="text" id="checkoutemail" name="checkoutemail" ngModel class="form-control" ngModel placeholder="youremail@correo.com" />
+                                <label for="checkoutemail" class="active">Email </label>
+                            </div>
+
+                            <!--address-->
+                            <div class="md-form mb-5">
+                                <input type="text" id="checkoutaddress" name="checkoutaddress" ngModel class="form-control" placeholder="1234 Zona Centro" />
+                                <label for="checkoutaddress" class="active">Domicilio</label>
+                            </div>
+
+                            <!--Grid row-->
+                            <div class="row">
+                                <!--Grid column-->
+                                <div class="col-lg-4 col-md-12 mb-4">
+                                    <label for="country">País</label>
+                                    <select class="custom-select d-block w-100" ngModel id="checkoutcountry" name="checkoutcountry" required="">
+                    <option value="">Selecciona...</option>
+                    <option value="MEXICO">MEXICO</option>
+                  </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecciona un país válido.
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+
+                                <!--Grid column-->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <label for="state">Estado</label>
+                                    <select class="custom-select d-block w-100" ngModel id="checkoutState" name="checkoutState" required="">
+                    <option value="">Selecciona...</option>
+                    <option value="Aguascalientes"> Aguascalientes </option>
+                    <option value="Baja California"> Baja California</option>
+                    <option value="Baja California Sur"> Baja California Sur</option>
+                    <option value="Campeche">Campeche</option>
+                    <option value="Chiapas">Chiapas</option>
+                    <option value="Chihuahua">Chihuahua</option>
+                    <option value="CDMX">Ciudad de México</option>
+                    <option value="Coahuila">Coahuila</option>
+                    <option value="Colima">Colima</option>
+                    <option value="Durango">Durango</option>
+                    <option value="Estado de México">Estado de México</option>
+                    <option value="Guanajuato">Guanajuato</option>
+                    <option value="Guerrero">Guerrero</option>
+                    <option value="Hidalgo">Hidalgo</option>
+                    <option value="Jalisco">Jalisco</option>
+                    <option value="Michoacán">Michoacán</option>
+                    <option value="Morelos">Morelos</option>
+                    <option value="Nayarit">Nayarit</option>
+                    <option value="Nuevo León">Nuevo León</option>
+                    <option value="Oaxaca">Oaxaca</option>
+                    <option value="Puebla">Puebla</option>
+                    <option value="Querétaro">Querétaro</option>
+                    <option value="Quintana Roo">Quintana Roo</option>
+                    <option value="San Luis Potosí">San Luis Potosí</option>
+                    <option value="Sinaloa">Sinaloa</option>
+                    <option value="Sonora">Sonora</option>
+                    <option value="Tabasco">Tabasco</option>
+                    <option value="Tamaulipas">Tamaulipas</option>
+                    <option value="Tlaxcala">Tlaxcala</option>
+                    <option value="Veracruz">Veracruz</option>
+                    <option value="Yucatán">Yucatán</option>
+                    <option value="Zacatecas">Zacatecas</option>
+                  </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecciona un estado válido.
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+
+                                <!--Grid column-->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <label for="zip">Codigo Postal</label>
+                                    <input type="text" class="form-control" ngModel id="checkoutZip" name="checkoutZip" placeholder="" required="" />
+                                    <div class="invalid-feedback">
+                                        Codigo Postal, Requerido.
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+
+                            <hr>
+                            <!--
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="same-address" />
+                <label class="custom-control-label" for="same-address">La dirección de envío es la misma que mi
+                  dirección de facturación</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="save-info" />
+                <label class="custom-control-label" for="save-info">Guarde esta información para la próxima
+                  vez</label>
+              </div><hr>-->
+                            <div class="d-block my-3">
+                                <div class="custom-control custom-radio">
+                                    <input ngModel id="credit" name="paymentMethod" value="credit" type="radio" class="custom-control-input" checked required>
+                                    <label class="custom-control-label" for="credit">Credit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input ngModel id="debit" name="paymentMethod" value="debit" type="radio" class="custom-control-input" required>
+                                    <label class="custom-control-label" for="debit">Debit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input ngModel id="paypal" name="paymentMethod" value="paypal" type="radio" class="custom-control-input" required>
+                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-name">Nombre del titular</label>
+                                    <input type="text" class="form-control" id="cc_name" ngModel name="cc_name" placeholder="" required>
+                                    <small class="text-muted">nombre completo de contiene la tarjeta</small>
+                                    <div class="invalid-feedback">
+                                        Nombre de la tarjeta es requerido
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-number">Credit card number</label>
+                                    <input type="text" class="form-control" id="cc_number" ngModel name="cc_number" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Credit card number is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">Expiration</label>
+                                    <input type="text" class="form-control" id="cc_expiration" ngModel name="cc_expiration" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Expiration date required
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-cvv">CVV</label>
+                                    <input type="text" class="form-control" id="cc_cvv" ngModel name="cc_cvv" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Security code required
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+                            <button [disabled]="checkoutForm.invalid" class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
+                        </form>
+
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 mb-4">
+
+                    <!-- Heading -->
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="white-text">Tu carrito</span>
+                        <span class="badge badge-secondary badge-pill">{{totalItems}}</span>
+                    </h4>
+
+                    <!-- Cart -->
+                    <ul class="list-group mb-3 z-depth-1">
+
+                        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of cartList">
+                            <div>
+                                <h6 class="my-0">{{item.title}}</h6>
+                                <small class="text-muted">{{item.brand}}</small>
+                            </div>
+                            <span class="text-muted text-right">{{item.monto | currency:'MXN' }}</span>
+
+                        </li>
+
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total ($)</span>
+                            <strong>{{amountPay| currency:'MXN'  }}</strong>
+                        </li>
+                    </ul>
+                    <!-- Cart -->
+
+                    <!-- Promo code -->
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Codigo Promoción" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Aplicar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Promo code -->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+
+    </main>
+    <!--
+    
+  <link rel="stylesheet" id="compiled.css-css"
+    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/css/compiled-4.19.1.min.css?ver=4.19.1" type="text/css"
+    media="all" />
+  <main  class="mt-5 pt-4">
+    <div  class="container dark-grey-text mt-5 my-5">
+      <div  class="row">
+        <div  class="col-md-12">
+          <div  class="row">
+            <div  class="col-12 my-3">
+              <div  class="classic-tabs">
+                <div  class="tabs-wrapper">
+                  <ul  role="tablist" class="nav tabs-cyan">
+                    <li  class="nav-item"><a  data-toggle="tab" href="#paneldom"
+                        role="tab" aria-selected="false" class="nav-link waves-light waves-effect waves-light active"><i
+                           aria-hidden="true" class="fa fa-map-marker-alt fa-2x"></i><br
+                          > Domicilio</a></li>
+                    <li  class="nav-item"><a  data-toggle="tab"
+                        href="#panelpago" role="tab" aria-selected="false"
+                        class="nav-link waves-light waves-effect waves-light"><i  aria-hidden="true"
+                          class="fa fa-money-bill fa-2x"></i><br >Metodo de pago</a></li>
+                    <li  class="nav-item"><a  data-toggle="tab"
+                        href="#panelpedi" role="tab" aria-selected="false"
+                        class="nav-link waves-light waves-effect waves-light"><i  aria-hidden="true"
+                          class="fa fa-list-alt fa-2x"></i><br >Resumen de pedidos</a></li>
+                  </ul>
+                </div>
+                <div  class="tab-content card">
+                  <div  id="paneldom" role="tabpanel" class="tab-pane fade in active show">
+                    <div  class="col-md-12">
+                      <div  class="card">
+                        <form  class="card-body">
+                          <div  class="row">
+                            <div  class="col-md-6 mb-2">
+                              <div  class="md-form"><input  type="text"
+                                  id="firstName" class="form-control"><label 
+                                  for="firstName">Nombre</label></div>
+                            </div>
+                            <div  class="col-md-6 mb-2">
+                              <div  class="md-form"><input  type="text"
+                                  id="lastName" class="form-control"><label 
+                                  for="lastName">Apellidos</label></div>
+                            </div>
+                          </div>
+                          <div  class="md-form input-group pl-0 mb-5">
+                            <div  class="input-group-prepend"><span 
+                                id="basic-addon1" class="input-group-text">@</span></div><input 
+                              type="text" placeholder="Usuario" aria-describedby="basic-addon1" class="form-control py-0">
+                          </div>
+                          <div  class="md-form mb-5"><input  type="text"
+                              id="email" placeholder="youremail@coreo.com" class="form-control"><label
+                               for="email" class="active">Email (optional)</label></div>
+                          <div  class="md-form mb-5"><input  type="text"
+                              id="address" placeholder="1234 Zona Centro" class="form-control"><label
+                               for="address" class="active">Domicilio</label></div>
+                          <div  class="row">
+                            <div  class="col-lg-4 col-md-12 mb-4"><label 
+                                for="country">País</label><select  id="country" required=""
+                                class="custom-select d-block w-100">
+                                <option  value="">Selecciona...</option>
+                                <option >MEXICO</option>
+                              </select>
+                              <div  class="invalid-feedback"> Por favor, selecciona un país válido.
+                              </div>
+                            </div>
+                            <div  class="col-lg-4 col-md-6 mb-4"><label 
+                                for="state">Estado</label><select  id="state" required=""
+                                class="custom-select d-block w-100">
+                                <option  value="">Selecciona...</option>
+                                <option  value="Aguascalientes"> Aguascalientes </option>
+                                <option  value="Baja California"> Baja California</option>
+                                <option  value="Baja California Sur"> Baja California Sur</option>
+                                <option  value="Campeche">Campeche</option>
+                                <option  value="Chiapas">Chiapas</option>
+                                <option  value="Chihuahua">Chihuahua</option>
+                                <option  value="CDMX">Ciudad de México</option>
+                                <option  value="Coahuila">Coahuila</option>
+                                <option  value="Colima">Colima</option>
+                                <option  value="Durango">Durango</option>
+                                <option  value="Estado de México">Estado de México</option>
+                                <option  value="Guanajuato">Guanajuato</option>
+                                <option  value="Guerrero">Guerrero</option>
+                                <option  value="Hidalgo">Hidalgo</option>
+                                <option  value="Jalisco">Jalisco</option>
+                                <option  value="Michoacán">Michoacán</option>
+                                <option  value="Morelos">Morelos</option>
+                                <option  value="Nayarit">Nayarit</option>
+                                <option  value="Nuevo León">Nuevo León</option>
+                                <option  value="Oaxaca">Oaxaca</option>
+                                <option  value="Puebla">Puebla</option>
+                                <option  value="Querétaro">Querétaro</option>
+                                <option  value="Quintana Roo">Quintana Roo</option>
+                                <option  value="San Luis Potosí">San Luis Potosí</option>
+                                <option  value="Sinaloa">Sinaloa</option>
+                                <option  value="Sonora">Sonora</option>
+                                <option  value="Tabasco">Tabasco</option>
+                                <option  value="Tamaulipas">Tamaulipas</option>
+                                <option  value="Tlaxcala">Tlaxcala</option>
+                                <option  value="Veracruz">Veracruz</option>
+                                <option  value="Yucatán">Yucatán</option>
+                                <option  value="Zacatecas">Zacatecas</option>
+                              </select>
+                              <div  class="invalid-feedback"> Por favor, selecciona un estado válido.
+                              </div>
+                            </div>
+                            <div  class="col-lg-4 col-md-6 mb-4"><label 
+                                for="zip">Codigo Postal</label><input  type="text" id="zip"
+                                placeholder="" required="" class="form-control">
+                              <div  class="invalid-feedback"> Codigo Postal, Requerido. </div>
+                            </div>
+                          </div>
+                          <hr >
+                          <div  class="custom-control custom-checkbox"><input 
+                              type="checkbox" id="same-address" class="custom-control-input"><label 
+                              for="same-address" class="custom-control-label">La dirección de envío es la misma que mi
+                              dirección de facturación</label></div>
+                          <div  class="custom-control custom-checkbox"><input 
+                              type="checkbox" id="save-info" class="custom-control-input"><label 
+                              for="save-info" class="custom-control-label">Guarde esta información para la próxima
+                              vez</label></div>
+                          <hr >
+                          <hr  class="mb-4"><button  type="submit"
+                            class="btn btn-primary btn-lg btn-block waves-effect waves-light"> Continue to checkout
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div  id="panelpago" role="tabpanel" class="tab-pane fade">
+                    <div  class="d-block my-3">
+                      <div  class="custom-control custom-radio"><input 
+                          id="credit" name="paymentMethod" type="radio" checked="" required=""
+                          class="custom-control-input"><label  for="credit"
+                          class="custom-control-label">Credit card</label></div>
+                      <div  class="custom-control custom-radio"><input 
+                          id="debit" name="paymentMethod" type="radio" required="" class="custom-control-input"><label
+                           for="debit" class="custom-control-label">Debit card</label></div>
+                      <div  class="custom-control custom-radio"><input 
+                          id="paypal" name="paymentMethod" type="radio" required="" class="custom-control-input"><label
+                           for="paypal" class="custom-control-label">Paypal</label></div>
+                    </div>
+                    <div  class="row">
+                      <div  class="col-md-6 mb-3"><label  for="cc-name">Name on
+                          card</label><input  type="text" id="cc-name" placeholder="" required=""
+                          class="form-control"><small  class="text-muted">Full name as displayed on
+                          card</small>
+                        <div  class="invalid-feedback"> Name on card is required </div>
+                      </div>
+                      <div  class="col-md-6 mb-3"><label  for="cc-number">Credit
+                          card number</label><input  type="text" id="cc-number" placeholder=""
+                          required="" class="form-control">
+                        <div  class="invalid-feedback"> Credit card number is required </div>
+                      </div>
+                    </div>
+                    <div  class="row">
+                      <div  class="col-md-3 mb-3"><label 
+                          for="cc-expiration">Expiration</label><input  type="text"
+                          id="cc-expiration" placeholder="" required="" class="form-control">
+                        <div  class="invalid-feedback"> Expiration date required </div>
+                      </div>
+                      <div  class="col-md-3 mb-3"><label 
+                          for="cc-expiration">CVV</label><input  type="text" id="cc-cvv"
+                          placeholder="" required="" class="form-control">
+                        <div  class="invalid-feedback"> Security code required </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div  id="panelpedi" role="tabpanel" class="tab-pane fade">
+                    <p > Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam
+                      minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam,
+                      pariatur. Tempora, placeat ratione porro voluptate odit minima. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  -->
+</div>

@@ -10,7 +10,7 @@
                     <!-- Default form login -->
                     <form class="text-center" autocomplete="off" [formGroup]="loginForm" (submit)="login()">
                         <div *ngIf="invalidLogin" class="alert alert-danger">Upps el usuario o la contraseña son incorrectos vuelve a intentar.</div>
-                        <p class="h4 mb-4">Login:</p>
+                        <p class="h4 mb-4 text-white">Login:</p>
                         <!-- Email -->
                         <input type="email" id="username" name="Nick" class="form-control mb-4" formControlName="Nick" placeholder="Nick user" required autofocus>
 
@@ -22,12 +22,12 @@
                                 <!-- Remember me -->
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" formControlName="Remember" name="Remember" id="Remember">
-                                    <label class="custom-control-label" for="Remember">Recuerdame</label>
+                                    <label class="custom-control-label text-white" for="Remember">Recuerdame</label>
                                 </div>
                             </div>
                             <div col-lg-12>
                                 <!-- Forgot password -->
-                                <a href="">Olvidaste tu contraseña?</a>
+                                <a class="text-white" href="">Olvidaste tu contraseña?</a>
                             </div>
                         </div>
 
@@ -35,8 +35,8 @@
                         <button class="btn btn-info btn-block my-4" type="submit">Iniciar Sesión</button>
 
                         <!-- Register -->
-                        <p>Aún no eres miembro?
-                            <a routerLink="/signup" routerLinkActive="active">Registrate</a>
+                        <p class="text-white">Aún no eres miembro?
+                            <a class="text-white" routerLink="/signup" routerLinkActive="active">Registrate</a>
                         </p>
                     </form>
                     <!-- Default form login -->
@@ -53,7 +53,7 @@
                 <!--Grid column-->
                 <div class="col-md-6 text-center">
 
-                    <h4 class="font-weight-bold mb-4">¿Quieres recibir nuestras promociones?</h4>
+                    <h4 class="font-weight-bold mb-4 text-white">¿Quieres recibir nuestras promociones?</h4>
 
                     <div class="input-group mb-4">
                         <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-addon2">

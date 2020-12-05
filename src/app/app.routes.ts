@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuardGuard } from './guards/auth-guard.guard';
 import { LoginGuard } from './guards/login.guard';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardGuard]},
     { path: 'cart', component: ShoppingCartDetailComponent},
     { path: 'wishlist', component: WishListDetailComponent},
+    { path: "checkout", component: CheckoutComponent}
 ]
 
 @NgModule({

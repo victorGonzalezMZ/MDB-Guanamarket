@@ -1,0 +1,88 @@
+<div class="py-5 product-main">
+    <div class="my-5 py-5 elegant-color z-depth-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center py-3 white-text">Administración Promoción</h1>
+        </div>
+        <!-- Default form contact -->
+        <div class="container">
+            <form class="text-center border border-light p-5 white" #newPromotionForm="ngForm"
+                (ngSubmit)="registerNewPromotion(newPromotionForm)">
+
+                <p class="h4 mb-4">Nueva Promoción</p>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- codigo -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="codigo" name="codigo" ngModel class="form-control">
+                            <label for="codigo">Codigo</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="title" name="title" ngModel class="form-control form-control-lg">
+                            <label for="title">Titulo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="md-form mt-0">
+                            <input type="number" id="discount" name="discount" ngModel class="form-control">
+                            <label for="discount">Descuento %</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="md-form mt-0">
+                            <textarea id="description" name="description" ngModel class="md-textarea form-control"
+                                rows="3"></textarea>
+                            <label for="description">Descripción</label>
+                        </div>
+                    </div>
+                                        
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- expira -->
+                        <div class="md-form mt-0">
+                            <div class="md-form md-outline input-with-post-icon datepicker">
+                                <input placeholder="Select date" type="date"  id="expires_date" name="expires_date"  ngModel class="form-control">
+                                <label for="expires_date">Fecha de Expiración...</label>
+                              </div>
+                        </div>                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="md-form ">
+                            <select class="custom-select d-block w-100" ngModel id="theme" name="theme" required="">
+                                <option value="">Selecciona un tema...</option>
+                                <option value="primary">Azul Intenso</option>
+                                <option value="info">Azul calido</option>
+                                <option value="success">Verde luminoso</option>
+                                <option value="warning">Amarillo</option>
+                                <option value="danger">Rojo</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row pt-5">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-info btn-block" type="submit"><i
+                                    class="fas fa-save"></i>&nbsp;Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- Default form contact -->
+    </div>
+</div>
+<script>
+    $('.datepicker').datepicker({
+        inline: true
+    });
+</script>

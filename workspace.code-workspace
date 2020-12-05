@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../GuanaMarket-Ecommerce/ecommerce-guanamarket-api"
+		},
+		{
+			"path": "../API-MDB-GUANAMARKET"
 		}
 	],
     "settings": {}

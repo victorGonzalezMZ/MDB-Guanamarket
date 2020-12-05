@@ -1,60 +1,39 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { CheckoutService } from 'src/app/services/core/checkout.service';
 import { ProductsService } from 'src/app/services/core/products.service';
+import Swal from 'sweetalert2';
 import { Cart } from 'src/app/models/cart';
-import { CarritomessengerService } from 'src/app/services/observables/carritomessenger.service';
 import settings from 'src/app/settings';
 import { ShoppingcartService } from 'src/app/services/core/shoppingcart.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
-	selector: 'app-shopping-cart-detail',
-	templateUrl: './shopping-cart-detail.component.html',
-	styleUrls: ['./shopping-cart-detail.component.scss']
+	selector: 'app-checkout',
+	templateUrl: './checkout.component.html',
+	styleUrls: ['./checkout.component.scss']
 })
-export class ShoppingCartDetailComponent implements OnInit {
-
+export class CheckoutComponent implements OnInit {
 
 	cartList: Cart[] = [];
 	amountPay:number = 0;
+	totalItems:any;
+
 	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
 
-	subscription$: Subscription;
-	
-	
-	constructor(private productsSvc: ProductsService,
-				private svcCarrito: CarritomessengerService,
-				private svcCarritoRed : ShoppingcartService,
-				private jwtHelper: JwtHelperService,
-				private router: Router) {
 
-		this.subscription$ = this.svcCarrito.onListenFinishedProductInCarrito().subscribe((item:any)=>{
-			this.getListado();
-		})
-					
-	
-	 }
+	constructor(private checkoutSvc: CheckoutService,
+				private jwtHelper: JwtHelperService,
+				private productsSvc: ProductsService,
+				private svcCarritoRed : ShoppingcartService) { }
 
 
 	ngOnInit(): void {
+		this.totalItems = 0;
 		this.getListado();
 	}
 
-	ngOnDestroy(): void {
-		this.subscription$.unsubscribe();
-	}
-
-	isLogueadoUser(){
-		const token = localStorage.getItem("jwt");
-		if (token && !this.jwtHelper.isTokenExpired(token)) {
-			return true;
-		}
-		return false;
-	}
-
 	getListado(){
-
 		if(!this.isLogueadoUser())
 			this.getList_LOCAL();
 		else
@@ -78,10 +57,12 @@ export class ShoppingCartDetailComponent implements OnInit {
 					cartItems[i].Quantity,
 					data.product.seelingPrice*cartItems[i].Quantity
 				);
-
+				
+				this.totalItems+= obj.quantity;
 				this.amountPay+= data.product.seelingPrice*cartItems[i].Quantity;
 				this.cartList.push(obj);
 				this.cartList.sort((a, b) => (a.title > b.title) ? 1 : -1)	
+				
 			});
 		}
 	
@@ -108,30 +89,65 @@ export class ShoppingCartDetailComponent implements OnInit {
 						cartItems[i].quantity,
 						data.product.seelingPrice*cartItems[i].quantity
 					);
-	
+						
+					this.totalItems+= obj.quantity;
 					this.amountPay+= data.product.seelingPrice*cartItems[i].quantity;
 					this.cartList.push(obj);
 					this.cartList.sort((a, b) => (a.title > b.title) ? 1 : -1)	
+				
 				});
 			}	
 		});
 
 	}
-	updateProduct(item:any,inputQuantity:any){
-		item.Quantity =parseInt(inputQuantity["value"]);
-		this.svcCarrito.sendUpdateAlCarrito(item);
-		
+
+	registerCheckout(form: NgForm) {
+
+		console.log(form);
+
+		const obj = {
+			"Nick": [localStorage.getItem("Nick") || ''],
+			"checkoutName": form.value.checkoutName,
+			"checkoutApellidos": form.value.checkoutApellidos,
+			"checkoutemail": form.value.checkoutemail,
+			"checkoutaddress": form.value.checkoutaddress,
+			"checkoutcountry": form.value.checkoutcountry,
+			"checkoutState": form.value.checkoutState,
+			"checkoutZip": form.value.checkoutZip,
+			"paymentMethod": form.value.paymentMethod,
+			"cc_name": form.value.cc_name,
+			"cc_number": form.value.cc_number,
+			"cc_expiration": form.value.cc_expiration,
+			"cc_cvv": form.value.cc_cvv
+		};
+
+
+
+		this.checkoutSvc.insertCheckout(obj).subscribe(response => {
+			console.log(obj);
+			if (response > 0) {
+				Swal.fire(
+					'Bien hecho!',
+					`Tu Porceso de pago fue aceptado de ${response} correctamente!`,
+					'success'
+				)
+			}
+		}, err => {
+			console.log(err);
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: `${err}`,
+			});
+		});
 	}
 
-	deleteProduct(item:any){
-		this.svcCarrito.sendProductDeleteAlCarrito(item);
-
+	isLogueadoUser(){
+		const token = localStorage.getItem("jwt");
+		if (token && !this.jwtHelper.isTokenExpired(token)) {
+			return true;
+		}
+		return false;
 	}
-
-	irPagar(){
-		this.router.navigateByUrl('/checkout');
-	}
-
-
 
 }

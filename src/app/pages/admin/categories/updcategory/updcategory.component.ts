@@ -43,8 +43,6 @@ export class UpdcategoryComponent implements OnInit {
 			"id": parseInt(this._id),
 			"name": this.categoryForm.get('name').value
 		};
-		console.log(obj);
-
 		this.categorySvc.updateCategory(obj).subscribe(response => {
 			if(response){
 				Swal.fire(

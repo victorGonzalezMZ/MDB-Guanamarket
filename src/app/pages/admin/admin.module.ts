@@ -15,9 +15,11 @@ import { UpdcategoryComponent } from './categories/updcategory/updcategory.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdproductComponent } from './products/updproduct/updproduct.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { PromotionsComponent } from './promotions/promotions.component';
-import { NewuserComponent } from './users/newuser/newuser.component';
 
+import { NewuserComponent } from './users/newuser/newuser.component';
+import { PromotionsComponent } from './promotions/promotions.component';
+import { NewpromotionsComponent } from './promotions/newpromotions/newpromotions.component';
+import { UpdatepromotionsComponent} from './promotions/updatepromotions/updatepromotions.component';
 @NgModule({
 	declarations: [
 		AdminComponent,
@@ -29,8 +31,11 @@ import { NewuserComponent } from './users/newuser/newuser.component';
 		NewcategoryComponent,
 		UpdcategoryComponent,
 		UpdproductComponent,
-		PromotionsComponent,
 		NewuserComponent,
+		PromotionsComponent,
+		NewpromotionsComponent,
+		UpdatepromotionsComponent
+
 	],
 	imports: [
 		CommonModule,

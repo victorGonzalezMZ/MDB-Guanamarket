@@ -52,6 +52,7 @@ export class ShoppingCartComponent implements OnInit {
 
 	ngOnDestroy(): void {
 		
+		
 	}
 
 	isLogueadoUser(){

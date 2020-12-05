@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 	_id:number;
 	image: any = null;
 	newImage:boolean = false;
-	imagesUrl = settings.apinode.urlServer + 'get-image-user/';
+	imagesUrl:string= settings.apinode.urlServer + 'get-image-user/';
 	invalidPassword: boolean=false;
 	
 	public userForm: FormGroup = this.fb.group({
@@ -54,7 +54,8 @@ export class ProfileComponent implements OnInit {
 		}
 
 	ngOnInit(): void {
-		
+		this.imagesUrl= settings.apinode.urlServer + 'get-image-user/';
+	
 	}
 
 	getData(nick:string){
@@ -113,8 +114,6 @@ export class ProfileComponent implements OnInit {
 				this.uploadSvc.uploadImageUser(formData,this._nick).subscribe((res:any) => {
 					this.inputImage.nativeElement.value="";
 					obj.imagen = res.imagen;		
-					this.imagenLast = res.imagen;
-					this.svcAvatar.sendChangeAvatar(res.imagen);
 					this.updateProfileSend(obj);
 				});
 			});
@@ -128,6 +127,8 @@ export class ProfileComponent implements OnInit {
 
 	public updateProfileSend(obj:any){
 		this.userSvc.updateUser(obj).subscribe(response => {
+			this.svcAvatar.sendChangeAvatar(obj.imagen);
+			this.imagenLast = obj.imagen
 			if(response){
 				Swal.fire(
 					'Bien hecho!',
