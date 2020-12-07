@@ -15,7 +15,7 @@ export class WishListDetailComponent implements OnInit {
 
 	wishlist_Items: any[] = [];
 	selectedOrder = null;
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	orders = [
 		{ label: 'Orden alfabético', order: 'alfabetico' },

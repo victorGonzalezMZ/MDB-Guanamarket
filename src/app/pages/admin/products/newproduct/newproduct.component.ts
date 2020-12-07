@@ -51,7 +51,7 @@ export class NewproductComponent implements OnInit {
 
 		if(this.loadImagen){
 			let formData = new FormData();
-			formData.append("uploads[]", this.image, this.image.name);
+			formData.append("uploads", this.image, this.image.name);
 			this.uploadSvc.uploadImageProduct(formData).subscribe((res: any) => {
 				obj.imagen = res.imagen
 				this.registerNewProductFinal(obj);

@@ -49,7 +49,7 @@ export class NewuserComponent implements OnInit {
 	
 		if(this.loadImagen){
 			let formData = new FormData();
-			formData.append("uploads[]", this.image, this.image.name);
+			formData.append("uploads", this.image, this.image.name);
 			this.uploadSvc.uploadImageUser(formData,sessionStorage.getItem("nick")).subscribe((res: any) => {
 				obj.imagen = res.imagen;
 				this.insertNewUser(obj);				

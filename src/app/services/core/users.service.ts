@@ -41,6 +41,15 @@ export class UsersService {
 				"Content-Type": "application/json"
 			})
 		});
+		
+	}
+
+	updateUserDomicilio(obj:any){
+		return this.http.put(`${settings.apinetcore.urlServer}user/UpdateUserDomicilio`,obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
 	}
 
 	deleteUser(id:number){

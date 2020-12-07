@@ -1,8 +1,9 @@
 <div class="contenedor-checkout">
-    <main class="mt-5 pt-4 elegant-color ">
+    <main class="mt-5 pt-4 purple-gradient  ">
         <div class="container dark-grey-text mt-5 my-5">
             <!-- Heading -->
             <h1 class="  white-text  text-center">Pasarela de Pago</h1>
+            <div *ngIf="validDatos" class="alert alert-warning">Para agilizar tu compra guarda tus datos, en tu siguiente compra ya no será necesario teclearlos</div>
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
@@ -41,9 +42,15 @@
                             </div>
 
                             <!--address-->
-                            <div class="md-form mb-5">
-                                <input type="text" id="checkoutaddress" name="checkoutaddress" formControlName="checkoutaddress" class="form-control" placeholder="Calle, #, # Int/Edificio, Colonia" />
-                                <label for="checkoutaddress" class="active">Domicilio</label>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-12 mb-4">
+                                    <label for="checkoutaddress" class="active">Domicilio</label>
+                                    <input type="text" id="checkoutaddress" name="checkoutaddress" formControlName="checkoutaddress" class="form-control" placeholder="Calle, #, # Int/Edificio, Colonia" />
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                                    <label for="checkoutphone" class="active">Teléfono</label>
+                                    <input type="text" id="checkoutphone" name="checkoutphone" formControlName="checkoutphone" class="form-control" maxlength="10" placeholder="Numero telefónico" />
+                                </div>
                             </div>
 
                             <!--Grid row-->
@@ -113,22 +120,24 @@
                                         Pais, Requerido.
                                     </div>
                                 </div>
+
                             </div>
+
                             <!--Grid row-->
                             <h5 class="card-header aqua-gradient white-text text-center py-2">Datos de Pago</h5>
                             <hr>
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
                                     <input id="credit" name="paymentMethod" formControlName="paymentMethod" value="credit" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="credit">Tarjeta de Crédito</label>
+                                    <label class="custom-control-label" for="credit"><i class="fab fa-cc-visa"></i>&nbsp;Tarjeta de Crédito</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="debit" name="paymentMethod" formControlName="paymentMethod" value="debit" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="debit">Tarjeta de Debito</label>
+                                    <label class="custom-control-label" for="debit"><i class="fas fa-credit-card"></i>&nbsp;Tarjeta de Debito</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="paypal" name="paymentMethod" formControlName="paymentMethod" value="paypal" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                    <label class="custom-control-label" for="paypal"><i class="fab fa-paypal"></i>&nbsp;Paypal</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -165,9 +174,17 @@
                                 </div>
                             </div>
                             <hr class="mb-4">
+
                             <button [disabled]="checkoutForm.invalid" class="btn btn-primary btn-lg btn-block" type="submit">Realizar Pago</button>
 
                         </form>
+
+
+                        <div class="col-lg-12 col-md-12 mb-12 pb-5">
+                            <div class="d-flex justify-content-center" *ngIf="validDatos">
+                                <button (click)="updateDatosEnvio()" class="btn btn-primary btn-lg btn-block"><i class="fas fa-edit"></i>&nbsp;Actualizar Datos</button>
+                            </div>
+                        </div>
 
                     </div>
                     <!--/.Card-->

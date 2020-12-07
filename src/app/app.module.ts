@@ -39,6 +39,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductsRandomComponent } from './components/products/products-random/products-random.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ShipmentConfirmationComponent } from './pages/shipment-confirmation/shipment-confirmation.component';
+import { PurchaseOrdersComponent } from './pages/purchase-orders/purchase-orders.component';
+
+import { LightboxModule } from 'ngx-lightbox';
 
 
 export function tokenGetter() {
@@ -69,7 +72,8 @@ export function tokenGetter() {
 		ProductNewComponent,
 		ProductsRandomComponent,
 		CheckoutComponent,
-		ShipmentConfirmationComponent
+		ShipmentConfirmationComponent,
+		PurchaseOrdersComponent
 	],
 	imports: [
 		BrowserModule,
@@ -92,7 +96,7 @@ export function tokenGetter() {
 		}),
 		NgxDropzoneModule,
 		NgSelectModule,
-		
+		LightboxModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

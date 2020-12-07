@@ -107,9 +107,9 @@ export class HomeComponent implements OnInit {
 	}
 
 	getCarousel() {
-		this.carouselSvc.getItemsCarousel().subscribe((data: any) => {
-			console.log(data);
-			this.carouselItems = data.carousel;
+		this.carouselSvc.getItemsCarousel().subscribe((response: any) => {
+			console.log(response.data);
+			this.carouselItems = response.data;
 		});
 
 	}

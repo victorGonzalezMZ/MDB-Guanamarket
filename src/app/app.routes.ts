@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component';
 import { ProductdetailComponent } from './pages/productdetail/productdetail.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PurchaseOrdersComponent } from './pages/purchase-orders/purchase-orders.component';
 import { ShipmentConfirmationComponent } from './pages/shipment-confirmation/shipment-confirmation.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { ShoppingCartDetailComponent } from './pages/shopping-cart-detail/shopping-cart-detail.component';
@@ -28,9 +29,10 @@ const routes: Routes = [
     { path: 'cart', component: ShoppingCartDetailComponent},
     { path: 'wishlist', component: WishListDetailComponent},
     { path: "checkout", component: CheckoutComponent},
-    { path: "shipment-order", component: ShipmentConfirmationComponent}
-]
-
+    { path: "shipment-order", component: ShipmentConfirmationComponent},
+    { path: "purchase-orders", component: PurchaseOrdersComponent}  
+]   
+ 
 @NgModule({
     imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]

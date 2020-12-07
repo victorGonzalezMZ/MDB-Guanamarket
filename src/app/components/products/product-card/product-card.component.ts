@@ -11,7 +11,7 @@ export class ProductCardComponent implements OnInit {
 
 	@Input() products: any[] = [];
 	public dataSet;
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	
 	constructor(private router: Router,

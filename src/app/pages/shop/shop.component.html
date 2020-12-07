@@ -74,9 +74,9 @@
                     <div class="col-lg-4 col-md-6 col-12" *ngFor="let item of listProducts">
                         <div class="single-product">
                             <div class="product-img">
-                                <a routerLink="/product-detail/{{item.id}}">
-                                    <img class="default-img" [src]='imagesUrl+item.imagen' alt="#">
-                                    <img class="hover-img" [src]='imagesUrl+item.imagen' alt="#">
+                                <a>
+                                    <img (click)="open(imagesUrl+item.imagen,item.title,imagesUrl+item.imagen)" class="default-img" [src]='imagesUrl+item.imagen' alt="#">
+                                    <img (click)="open(imagesUrl+item.imagen,item.title,imagesUrl+item.imagen)" class="hover-img" [src]='imagesUrl+item.imagen' alt="#">
                                 </a>
                                 <div class="button-head">
                                     <div class="product-action">

@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
 	headElements = ['IMAGEN', 'ID', 'SKU', 'TITULO', 'MARCA', 'CATEGORIA', 'PRECIO', 'PRECIO VENTA', 'ACCIONES'];
 	defaultBindingsList = [];
 	selectedBrand = null;
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	
 	constructor(private productsSvc: ProductsService, 

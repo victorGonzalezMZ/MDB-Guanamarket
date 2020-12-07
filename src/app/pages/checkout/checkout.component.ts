@@ -7,6 +7,7 @@ import { CheckoutService } from 'src/app/services/core/checkout.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { ShoppingcartService } from 'src/app/services/core/shoppingcart.service';
 import { UsersService } from 'src/app/services/core/users.service';
+import { LoginmessengerService } from 'src/app/services/observables/loginmessenger.service';
 import Swal from 'sweetalert2';
 
 
@@ -22,9 +23,10 @@ export class CheckoutComponent implements OnInit {
 	cartList: Cart[] = [];
 	amountPay: number = 0;
 	code_acept: any = '';
-	newPay: number = 0;
+	newPay: number;
 	totalItems:any;
-	
+	validDatos:boolean;
+
 	public checkoutForm: FormGroup = this.fb.group({
 		checkoutName: [],
 		checkoutApellidos: [],
@@ -34,6 +36,7 @@ export class CheckoutComponent implements OnInit {
 		checkoutCity: [],
 		checkoutCountry: [],
 		checkoutZip: [],
+		checkoutphone: [],
 		paymentMethod: [],
 		cc_name: [],
 		cc_number: [],
@@ -48,16 +51,17 @@ export class CheckoutComponent implements OnInit {
 		private svcCarritoRed : ShoppingcartService,
 		private jwtHelper: JwtHelperService,
 		private svcUser: UsersService,
-		private routerLink: Router) {
-		this.router.params.subscribe(params => {
-			
-		});
+		private routerLink: Router,
+		private svcPay: LoginmessengerService,) {
+
+		
 	}
 
 	ngOnInit(): void {
 		this.totalItems = 0;
-		
+		this.validDatos = false;
 		this.getListado();
+		this.newPay = 0;
 	}
 
 	getListado(){
@@ -79,11 +83,12 @@ export class CheckoutComponent implements OnInit {
 
 	getCheckout() {
 
-		this.nick = localStorage.getItem("Nick");
+		this.nick = sessionStorage.getItem("nick");
 		
-	
 		this.svcUser.getUserByNick(this.nick).subscribe((data: any) => {
-
+			this.revisarDatosUsuario(
+				data.user.address,data.user.state,data.user.city,data.user.zip,data.user.country,data.user.phone
+			)
 			this.checkoutForm.setValue({
 				checkoutName:data.user.firstName,
 				checkoutApellidos: data.user.lastname,
@@ -93,6 +98,7 @@ export class CheckoutComponent implements OnInit {
 				checkoutCity: data.user.city,
 				checkoutZip: data.user.zip,
 				checkoutCountry: data.user.country,
+				checkoutphone: data.user.phone,
 				paymentMethod: [],
 				cc_name: '',
 				cc_number: [],
@@ -102,33 +108,114 @@ export class CheckoutComponent implements OnInit {
 		});
 	}
 
+	revisarDatosUsuario(address:string, state:string, city:string, zip:any, country:string, phone:string){
+		if(address=='' || state=='' || city=='' || zip=='' || country==''|| phone == '')
+			this.validDatos = true;
+	}
+
 	registerCheckout() {
-		this.confirmarOrden();
-		/*
-		const obj = {
-			// "Nick":[ localStorage.getItem("Nick") || ''],
-			"checkoutName": this.checkoutForm.value.checkoutName,
-			"checkoutApellidos": this.checkoutForm.value.checkoutApellidos,
-			"checkoutemail": this.checkoutForm.value.checkoutemail,
-			"checkoutaddress": this.checkoutForm.value.checkoutaddress,
-			"checkoutcountry": this.checkoutForm.value.checkoutcountry,
-			"checkoutState": this.checkoutForm.value.checkoutState,
-			"checkoutZip": this.checkoutForm.value.checkoutZip,
+		if(!this.isLogueadoUser()){
+			this.registerCheckout_LOCAL();
+		}else{
+			this.registerCheckout_RED();	
+		}
+	}
+
+	registerCheckout_LOCAL(){
+		var pago=0;
+		if(this.newPay > 0){
+			pago=this.newPay;
+		}else{
+			pago=this.amountPay;
+		}
+		const obj={
+			"firstname": this.checkoutForm.value.checkoutName,
+			"lastname": this.checkoutForm.value.checkoutApellidos,
+			"email": this.checkoutForm.value.checkoutemail,
+			"address": this.checkoutForm.value.checkoutaddress,
+			"state": this.checkoutForm.value.checkoutState,
+			"country": this.checkoutForm.value.checkoutcountry,
+			"zip": this.checkoutForm.value.checkoutZip,
+			"phone": this.checkoutForm.value.checkoutphone,
+			"code": this.code_acept,
 			"paymentMethod": this.checkoutForm.value.paymentMethod,
-			"cc_name": this.checkoutForm.value.cc_name,
-			"cc_number": this.checkoutForm.value.cc_number,
-			"cc_expiration": this.checkoutForm.value.cc_expiration,
-			"cc_cvv": this.checkoutForm.value.cc_cvv
-		};
-		console.log(JSON.stringify(obj));
-		this.checkoutSvc.insertCheckout(obj).subscribe(response => {
-			console.log(obj);
-			if (response > 0) {
+			"totalItems": this.totalItems,
+			"amountPay": pago,
+			"sale_detail": this.cartList
+			
+		}
+
+		this.checkoutSvc.insertCheckout_invitado(obj).subscribe((response:any)=>{
+			if(response.rowsAffected >0){
 				Swal.fire(
 					'Bien hecho!',
-					`Tu Proceso de pago fue aceptado de ${response} correctamente!`,
+					'Tu Proceso de pago fue aceptado correctamente!',
+					'success'
+				);
+				
+			}else{
+				Swal.fire({
+					icon: 'error',
+					title: 'Oopss...',
+					text: `Error al procesar pago`
+				});
+			}
+			localStorage.removeItem("carrito");
+			this.svcPay.sendCriterio(true);
+		},(err:any)=>{
+			Swal.fire({
+				icon: 'error',
+				title: 'Oopss...',
+				text: `${JSON.stringify(err)}`
+			});
+		});
+	}
+	
+	registerCheckout_RED(){
+		const obj ={
+			"idUser": parseInt(sessionStorage.getItem("Id_User")),
+			"code": this.code_acept,
+			"paymentMethod": this.checkoutForm.value.paymentMethod
+		}
+		this.checkoutSvc.insertCheckout(obj).subscribe( (response:any)=>{
+			if(response > 0){
+				Swal.fire(
+					'Bien hecho!',
+					'Tu Proceso de pago fue aceptado correctamente!',
 					'success'
 				)
+				this.svcPay.sendCriterio(true);
+				this.confirmarOrden();
+			}
+		}, (err:any)=>{
+			Swal.fire({
+				icon: 'error',
+				title: 'Oopss...',
+				text: `${JSON.stringify(err)}`
+			});
+		});
+	}
+
+	updateDatosEnvio(){
+		const obj = {
+			"id": parseInt(sessionStorage.getItem("Id_User")),
+			"address": this.checkoutForm.value.checkoutaddress,
+			"city": this.checkoutForm.value.checkoutCity,
+			"state": this.checkoutForm.value.checkoutState,
+			"country": this.checkoutForm.value.checkoutCountry,
+			"zip": this.checkoutForm.value.checkoutZip,
+			"phone": this.checkoutForm.value.checkoutphone
+		};
+
+		
+		this.svcUser.updateUserDomicilio(obj).subscribe(response => {
+			if(response){
+				Swal.fire(
+					'Bien hecho!',
+					`Tu domicilio fue actualizado correctamente!`,
+					'success'
+				)
+				this.getCheckout();
 			}
 		}, err => {
 			console.log(err);
@@ -138,34 +225,34 @@ export class CheckoutComponent implements OnInit {
 				text: `${JSON.stringify(err)}`,
 			});
 		});
-		*/
 		
-
 	}
-
 	getList_LOCAL() {
 
 		let cartItems = [];
 		cartItems = JSON.parse(localStorage.getItem("carrito"));
 		this.amountPay = 0;
 		this.cartList = [];
-		for (let i in cartItems) {
-			this.productsSvc.getProduct(cartItems[i].Id_Product).subscribe((data: any) => {
-				console.log(data.product.seelingPrice);
-				const obj: Cart = new Cart(
-					data.product.id,
-					data.product.brand,
-					data.product.title,
-					data.product.seelingPrice,
-					data.product.imagen,
-					cartItems[i].Quantity,
-					data.product.seelingPrice * cartItems[i].Quantity
-				);
-				this.totalItems+= obj.quantity;
-				this.amountPay += data.product.seelingPrice * cartItems[i].Quantity;
-				this.newPay = this.amountPay;
-				this.cartList.push(obj);
-			});
+		if(cartItems.length > 0){
+			for (let i in cartItems) {
+				this.productsSvc.getProduct(cartItems[i].Id_Product).subscribe((data: any) => {
+					const obj: Cart = new Cart(
+						data.product.id,
+						data.product.brand,
+						data.product.title,
+						data.product.seelingPrice,
+						data.product.imagen,
+						cartItems[i].Quantity,
+						data.product.seelingPrice * cartItems[i].Quantity
+					);
+					this.totalItems+= obj.quantity;
+					this.amountPay += data.product.seelingPrice * cartItems[i].Quantity;
+					this.newPay = this.amountPay;
+					this.cartList.push(obj);
+				});
+			}
+		}else{
+			this.routerLink.navigateByUrl('/home');
 		}
 
 
@@ -181,25 +268,29 @@ export class CheckoutComponent implements OnInit {
 		this.svcCarritoRed.getAllItemsShopping(parseInt(sessionStorage.getItem("Id_User"))).subscribe((data:any)=>{
 			cartItems = data;
 
-			for (let i in cartItems) {
-				this.productsSvc.getProduct(cartItems[i].iD_Product).subscribe((data: any) => {
-					const obj:Cart = new Cart(
-						data.product.id,
-						data.product.brand,
-						data.product.title,
-						data.product.seelingPrice,
-						data.product.imagen,
-						cartItems[i].quantity,
-						data.product.seelingPrice*cartItems[i].quantity
-					);
-						
-					this.totalItems+= obj.quantity;
-					this.amountPay+= data.product.seelingPrice*cartItems[i].quantity;
-					this.cartList.push(obj);
-					this.cartList.sort((a, b) => (a.title > b.title) ? 1 : -1)	
-				
-				});
-			}	
+			if(cartItems.length > 0){
+				for (let i in cartItems) {
+					this.productsSvc.getProduct(cartItems[i].iD_Product).subscribe((data: any) => {
+						const obj:Cart = new Cart(
+							data.product.id,
+							data.product.brand,
+							data.product.title,
+							data.product.seelingPrice,
+							data.product.imagen,
+							cartItems[i].quantity,
+							data.product.seelingPrice*cartItems[i].quantity
+						);
+							
+						this.totalItems+= obj.quantity;
+						this.amountPay+= data.product.seelingPrice*cartItems[i].quantity;
+						this.cartList.push(obj);
+						this.cartList.sort((a, b) => (a.title > b.title) ? 1 : -1)	
+					
+					});
+				}	
+			}else{
+				this.routerLink.navigateByUrl('/home');
+			}
 		});
 
 	}
@@ -210,7 +301,6 @@ export class CheckoutComponent implements OnInit {
 		this.checkoutSvc.validCodePromo(this.CodePromoForm.value.code_promotion).subscribe((descount: number) => {
 
 			if (descount > 0) {
-
 				this.code_acept = this.CodePromoForm.value.code_promotion;
 				this.newPay = this.amountPay - (this.amountPay * descount) / 100;
 				Swal.fire({
@@ -219,7 +309,7 @@ export class CheckoutComponent implements OnInit {
 					title: `El codigo tiene ${descount}% descuento`,
 					showConfirmButton: false,
 					timer: 1500
-				})
+				});
 			}
 			else {
 				Swal.fire({

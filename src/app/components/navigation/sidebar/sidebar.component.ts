@@ -36,13 +36,12 @@ export class SidebarComponent implements OnInit {
 	isLogueadoUser(){
 		const token = localStorage.getItem("jwt");
 		if (token && !this.jwtHelper.isTokenExpired(token)) {
-			this.svcMenuSidebar.getSidebarMenusWithToken(token).subscribe((data:any)=>{
-				this.menuSideBar = data.menus
+			this.svcMenuSidebar.getSidebarMenusWithToken(token).subscribe((response:any)=>{
+				this.menuSideBar = response.data
 			});
 		}else{
-			this.svcMenuSidebar.getSidebarMenusWithoutToken().subscribe((data:any)=>{
-				this.menuSideBar = data.menus
-				console.log(data.menus);
+			this.svcMenuSidebar.getSidebarMenusWithoutToken().subscribe((response:any)=>{
+				this.menuSideBar = response.data
 			});	
 		}
 	}

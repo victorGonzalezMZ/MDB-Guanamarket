@@ -12,10 +12,11 @@ export class MenuSidebarService {
 	constructor(private http: HttpClient) { }
 
 	getSidebarMenusWithToken(token:string) {
-		return this.http.get(`api/get-sidebar-menu/${token}`);
+		return this.http.get(`${settings.apinode.urlServer}sidebar/get-sidebar-menu/${token}`);
 	}
+
 	getSidebarMenusWithoutToken() {
-		return this.http.get(`api/get-sidebar-menu/`);
+		return this.http.get(`${settings.apinode.urlServer}sidebar/get-sidebar-menu/`);
 	}
 
 }

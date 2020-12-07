@@ -108,13 +108,11 @@ export class UpdproductComponent implements OnInit {
 
 		if(this.image){
 			let formData = new FormData();
-			formData.append("uploads[]", this.image, this.image.name);
+			formData.append("uploads", this.image, this.image.name);
 			console.log(formData);
 			this.uploadSvc.deleteImageProduct(obj.imagen).subscribe((res:any) =>{
-				console.log('Delete imagen: '+JSON.stringify(res));
 				this.uploadSvc.uploadImageProduct(formData).subscribe((res:any) => {
 					obj.imagen = res.imagen;		
-					console.log('Upload Imagen: '+JSON.stringify(res));
 					this.updateProductSend(obj);
 				});
 			});
@@ -146,7 +144,6 @@ export class UpdproductComponent implements OnInit {
 	}
 
 	handleImage(event: any): void {
-		console.log(event.target.files[0]);
 		this.image = event.target.files[0];
 		if(event.target.files[0]){
 		

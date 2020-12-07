@@ -18,7 +18,7 @@ export class ShoppingCartDetailComponent implements OnInit {
 
 	cartList: Cart[] = [];
 	amountPay:number = 0;
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	subscription$: Subscription;
 	

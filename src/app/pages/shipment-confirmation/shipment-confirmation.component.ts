@@ -10,6 +10,7 @@ export class ShipmentConfirmationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

@@ -14,7 +14,7 @@ export class ProductdetailComponent implements OnInit {
 
 	product: any = {};
 	productsAdditional: any[] = [];
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	public quantityForm: FormGroup = this.fb.group({
 		Quantity: []

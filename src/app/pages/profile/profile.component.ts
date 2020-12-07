@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 	_id:number;
 	image: any = null;
 	newImage:boolean = false;
-	imagesUrl:string= settings.apinode.urlServer + 'get-image-user/';
+	imagesUrl:string;
 	invalidPassword: boolean=false;
 	
 	public userForm: FormGroup = this.fb.group({
@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
 		}
 
 	ngOnInit(): void {
-		this.imagesUrl= settings.apinode.urlServer + 'get-image-user/';
+		this.imagesUrl= settings.apinode.urlPhotoUserServer;
 	
 	}
 
@@ -109,9 +109,11 @@ export class ProfileComponent implements OnInit {
 
 		if(this.image){
 			let formData = new FormData();
-			formData.append("uploads[]", this.image, this.image.name);
+			formData.append("uploads", this.image, this.image.name);
 			this.uploadSvc.deleteImageUser(obj.imagen,this._nick).subscribe((res:any) =>{
+				
 				this.uploadSvc.uploadImageUser(formData,this._nick).subscribe((res:any) => {
+					console.log(res);
 					this.inputImage.nativeElement.value="";
 					obj.imagen = res.imagen;		
 					this.updateProfileSend(obj);

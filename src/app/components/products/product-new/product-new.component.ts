@@ -12,7 +12,7 @@ export class ProductNewComponent implements OnInit {
 
 	@Input() listProductsNew: any[];
 
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	constructor(private router: Router) { }
 

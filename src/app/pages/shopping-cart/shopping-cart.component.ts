@@ -25,7 +25,6 @@ export class ShoppingCartComponent implements OnInit {
 		
 		this.subscriptionLogin$ = this.svcLogin.onListenCriterio().subscribe( (criterio:boolean)=>{
 			this.cargarItemsToCart();
-			console.log("Ando aqui en el carrito vine por login");
 		});	
 										
 		this.svcCarrito.onListenProductInCarrito().subscribe( (item:any)=>{
@@ -108,7 +107,7 @@ export class ShoppingCartComponent implements OnInit {
 					Quantity: item.Quantity
 				})
 			}
-
+			this.sendMessageUser("Producto agregado al carrito");
 			this.orchestrationTokenCarrito(cartItems);
 		}
 
@@ -171,7 +170,6 @@ export class ShoppingCartComponent implements OnInit {
 			cartItems
 		));
 		this.svcCarrito.sendFinishedProcess(true);
-		this.sendMessageUser("Producto agregado al carrito");
 		this.countItemsToCart_Local();
 	}
 

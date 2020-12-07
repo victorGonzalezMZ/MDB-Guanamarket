@@ -6,7 +6,6 @@
 
 <!--Slides-->
 <div class="carousel-inner" role="listbox">
-
     <!--First slide-->
     <div class="carousel-item" *ngFor="let item of carouselItems; let i=index" [ngClass]="{'active': item.active == true}">
         <div class="view" style="background-image: url('assets/img/carousel/{{item.imagen}}'); background-repeat: no-repeat; background-size: cover;">

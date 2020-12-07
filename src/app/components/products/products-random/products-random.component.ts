@@ -10,7 +10,7 @@ import settings from 'src/app/settings';
 })
 export class ProductsRandomComponent implements OnInit {
 
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	@Input() listProductsRandom: any[];
 

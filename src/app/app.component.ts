@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 	title = 'GuanaMarket Store';
 	menuItems:any[] = [];
 	imagenAvatar:string='';
-	imagesUrl = settings.apinode.urlServer + 'get-image-user/';
+	imagesUrl = settings.apinode.urlPhotoUserServer;
 
 	subscription$: Subscription;
 	subscriptionLogin$: Subscription;
@@ -52,8 +52,8 @@ export class AppComponent implements OnInit {
 	}
 
 	getData(){
-		this.menuSvc.getItemsMenu().subscribe((data: any)=>{
-			this.menuItems = data.menus;
+		this.menuSvc.getItemsMenu().subscribe((response: any)=>{
+			this.menuItems = response.data;
 		});
 
 	}

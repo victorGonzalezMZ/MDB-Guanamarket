@@ -11,6 +11,7 @@ export class CheckoutService {
 
 	getcheckout(nick: any) {
 		return this.http.get(`${settings.apinetcore.urlServer}checkout/${nick}`);
+
 	}
 	getUserbyName(nick: string) {
 		return this.http.post(`${settings.apinetcore.urlServer}checkout/getchkUserByNick/`, JSON.stringify(nick), {
@@ -29,6 +30,14 @@ export class CheckoutService {
 			})
 		});
 	}
+
+	insertCheckout_invitado(obj:any){
+		return this.http.post(`${settings.apinode.urlServer}sale/add`, obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+		});
+	}
 	/**
 	 *validar codigo promocion --> ENVIAR JSON
 	 */
@@ -40,4 +49,7 @@ export class CheckoutService {
 		});
 	}
 
+	getAllShoppingbyUser(idUser:number){
+		return this.http.get(`${settings.apinetcore.urlServer}checkout/getShopping/${idUser}`);
+	}
 }

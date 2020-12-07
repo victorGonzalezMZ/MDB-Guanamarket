@@ -9,7 +9,7 @@ import { CarritomessengerService } from 'src/app/services/observables/carritomes
 import { WishlistmessengerService } from 'src/app/services/observables/wishlistmessenger.service';
 import Swal from 'sweetalert2'
 import { JwtHelperService } from '@auth0/angular-jwt';
-
+import { Lightbox } from 'ngx-lightbox';
 @Component({
 	selector: 'app-shop',
 	templateUrl: './shop.component.html',
@@ -26,7 +26,7 @@ export class ShopComponent implements OnInit {
 	ShortByDirection: string;
 
 	listProducts: any[] = [];
-	imagesUrl = settings.apinode.urlServer + 'get-image-product/';
+	imagesUrl = settings.apinode.urlPhotoServer;
 
 	minValue: number = 0;
 	maxValue: number = 2599;
@@ -52,7 +52,8 @@ export class ShopComponent implements OnInit {
 		private router: Router,
 		private svcCarrito: CarritomessengerService,
 		private svcWishList: WishlistmessengerService,
-		private jwtHelper: JwtHelperService) {
+		private jwtHelper: JwtHelperService,
+		private _lightbox: Lightbox) {
 
 			this.shortBy = "title";
 			this.ShortByDirection="ASC";
@@ -69,6 +70,25 @@ export class ShopComponent implements OnInit {
 		});
 		this.getAllProducts();
 	}
+
+
+	open(src:string,caption:string,thumb:string): void {
+		var _albums = [];
+		const album = {
+			src: src,
+			caption: caption,
+			thumb: thumb
+		 };
+		_albums.push(album);
+		this._lightbox.open(_albums,0);
+		console.log(_albums[0]);
+	  }
+	
+	  close(): void {
+		// close lightbox programmatically
+		this._lightbox.close();
+	  }
+
 
 	click_viewProduct(item: any) {
 		this.router.navigate(['/product-detail', item.id]);
