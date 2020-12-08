@@ -29,7 +29,7 @@ const routes: Routes = [
     { path: 'cart', component: ShoppingCartDetailComponent},
     { path: 'wishlist', component: WishListDetailComponent},
     { path: "checkout", component: CheckoutComponent},
-    { path: "shipment-order", component: ShipmentConfirmationComponent},
+    { path: "shipment-order/:id", component: ShipmentConfirmationComponent},
     { path: "purchase-orders", component: PurchaseOrdersComponent}  
 ]   
  

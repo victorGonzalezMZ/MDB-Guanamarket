@@ -12,6 +12,7 @@ import { UpdproductComponent } from './products/updproduct/updproduct.component'
 import { NewpromotionsComponent } from './promotions/newpromotions/newpromotions.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { UpdatepromotionsComponent } from './promotions/updatepromotions/updatepromotions.component';
+import { SalesComponent } from './sales/sales.component';
 import { NewuserComponent } from './users/newuser/newuser.component';
 import { UsersComponent } from './users/users.component';
 
@@ -31,8 +32,8 @@ const routes: Routes = [
             {path: 'categories/update/:id', component: UpdcategoryComponent},
             {path: 'promotions', component:PromotionsComponent},
             {path: 'promotions/new', component:NewpromotionsComponent},
-            {path: 'promotions/update/:id', component: UpdatepromotionsComponent}
-
+            {path: 'promotions/update/:id', component: UpdatepromotionsComponent},
+            {path: 'sales', component: SalesComponent}
         ]
     }, 
     

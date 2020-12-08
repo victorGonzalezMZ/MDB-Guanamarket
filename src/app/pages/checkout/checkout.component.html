@@ -128,46 +128,46 @@
                             <hr>
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
-                                    <input id="credit" name="paymentMethod" formControlName="paymentMethod" value="credit" type="radio" class="custom-control-input" checked required>
+                                    <input id="credit" name="paymentMethod" (click)="onChangePago('credit')" formControlName="paymentMethod" value="credit" type="radio" class="custom-control-input" checked required>
                                     <label class="custom-control-label" for="credit"><i class="fab fa-cc-visa"></i>&nbsp;Tarjeta de Crédito</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input id="debit" name="paymentMethod" formControlName="paymentMethod" value="debit" type="radio" class="custom-control-input" required>
+                                    <input id="debit" name="paymentMethod" (click)="onChangePago('debit')" formControlName="paymentMethod" value="debit" type="radio" class="custom-control-input" required>
                                     <label class="custom-control-label" for="debit"><i class="fas fa-credit-card"></i>&nbsp;Tarjeta de Debito</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input id="paypal" name="paymentMethod" formControlName="paymentMethod" value="paypal" type="radio" class="custom-control-input" required>
+                                    <input id="paypal" name="paymentMethod" (click)="onChangePago('paypal')" formControlName="paymentMethod" value="paypal" type="radio" class="custom-control-input" required>
                                     <label class="custom-control-label" for="paypal"><i class="fab fa-paypal"></i>&nbsp;Paypal</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div *ngIf="metodoPago!='paypal'" class="col-md-6 mb-3">
                                     <label for="cc-name">Nombre del titular</label>
-                                    <input type="text" class="form-control" formControlName="cc_name" id="cc_name" name="cc_name" placeholder="" required>
+                                    <input type="text" class="form-control" formControlName="cc_name" id="cc_name" name="cc_name" placeholder="">
                                     <small class="text-muted">nombre completo de contiene la tarjeta</small>
                                     <div class="invalid-feedback">
                                         Nombre de la tarjeta es requerido
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div *ngIf="metodoPago!='paypal'" class="col-md-6 mb-3">
                                     <label for="cc-number">Número de tarjeta</label>
-                                    <input type="text" class="form-control" formControlName="cc_number" id="cc_number" name="cc_number" placeholder="" required>
+                                    <input type="text" class="form-control" formControlName="cc_number" id="cc_number" name="cc_number" placeholder="">
                                     <div class="invalid-feedback">
                                         Número de tarjeta requerido
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 mb-3">
+                                <div *ngIf="metodoPago!='paypal'" class="col-md-3 mb-3">
                                     <label for="cc-expiration">Expiración</label>
-                                    <input type="text" class="form-control" id="cc_expiration" formControlName="cc_expiration" name="cc_expiration" placeholder="" required>
+                                    <input type="text" class="form-control" id="cc_expiration" formControlName="cc_expiration" name="cc_expiration" placeholder="">
                                     <div class="invalid-feedback">
                                         Fecha de expiración requerida
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
+                                <div *ngIf="metodoPago!='paypal'" class="col-md-3 mb-3">
                                     <label for="cc-cvv">CVV</label>
-                                    <input type="text" class="form-control" id="cc_cvv" formControlName="cc_cvv" name="cc_cvv" placeholder="" required>
+                                    <input type="text" class="form-control" id="cc_cvv" formControlName="cc_cvv" name="cc_cvv" placeholder="">
                                     <div class="invalid-feedback">
                                         Código de seguridad requerido
                                     </div>

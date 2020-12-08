@@ -84,11 +84,14 @@ export class ShoppingCartComponent implements OnInit {
 		let cartItems = [];
 
 		if(!localStorage.getItem("carrito")){
+			console.log("Hola mundo soy un carrito nuevo");
 			localStorage.setItem("carrito",JSON.stringify([{
 				Id_Product:item.id,
 				SeelingPrice: item.seelingPrice,
 				Quantity: item.Quantity
 			}]));
+			this.svcCarrito.sendFinishedProcess(true);
+			this.countItemsToCart_Local();
 		}else{
 			cartItems = JSON.parse(localStorage.getItem("carrito"));
 
@@ -107,10 +110,10 @@ export class ShoppingCartComponent implements OnInit {
 					Quantity: item.Quantity
 				})
 			}
-			this.sendMessageUser("Producto agregado al carrito");
 			this.orchestrationTokenCarrito(cartItems);
 		}
 
+		this.sendMessageUser("Producto agregado al carrito");
 	}
 	
 	addProductToCart_Red(item:any){

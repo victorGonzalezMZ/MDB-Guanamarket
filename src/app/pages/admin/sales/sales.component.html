@@ -1,0 +1,54 @@
+<div class="product-main elegant-color z-depth-5">
+    <h1 class="text-center d-flex justify-content-center py-3 white-text">Administración de Ventas</h1>
+    <div class="z-depth-3 p-5 my-5 white contenedor-filtros">
+        <!-- Section: Block Content -->
+        <section>
+
+        </section>
+        <!-- Section: Block Content -->
+    </div>
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive mb-5">
+                            <table class="table user-list">
+                                <thead>
+                                    <tr>
+                                        <th><span>No Orden</span></th>
+                                        <th><span>Fecha Compra</span></th>
+                                        <th><span>No Items</span></th>
+                                        <th><span>Monto MXP</span></th>
+                                        <th><span>Status</span></th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let el of salesList; let i = index">
+                                        <td>{{el._id}}</td>
+                                        <td>{{el.date_purchase|date}}</td>
+                                        <td>{{el.totalItems}}</td>
+                                        <td>{{el.amountPay | currency:'MXN'}}</td>
+                                        <td *ngIf="el.status_shipment==1">Pend. Envío</td>
+                                        <td *ngIf="el.status_shipment==2">En Camino</td>
+                                        <td *ngIf="el.status_shipment==3">Entregado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pagination-circle pg-blue justify-content-center">
+                                    <li class="page-item"><a class="page-link" (click)="getDataPagination(pagerList.startPage)">First</a></li>
+                                    <li class="page-item" [ngClass]="{'active': item == pagerList.currentPage}" *ngFor="let item of pagerList.pages; let i = index">
+                                        <a (click)="getDataPagination(item)" class="page-link">{{item}}</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" (click)="getDataPagination(pagerList.endPage)">Last</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

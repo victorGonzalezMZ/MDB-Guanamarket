@@ -11,7 +11,6 @@ import { LoginmessengerService } from 'src/app/services/observables/loginmesseng
 import Swal from 'sweetalert2';
 
 
-
 @Component({
 	selector: 'app-checkout',
 	templateUrl: './checkout.component.html',
@@ -26,6 +25,8 @@ export class CheckoutComponent implements OnInit {
 	newPay: number;
 	totalItems:any;
 	validDatos:boolean;
+	descountPorcentaje:any;
+	metodoPago:any;
 
 	public checkoutForm: FormGroup = this.fb.group({
 		checkoutName: [],
@@ -62,6 +63,7 @@ export class CheckoutComponent implements OnInit {
 		this.validDatos = false;
 		this.getListado();
 		this.newPay = 0;
+		this.descountPorcentaje = 0.0;
 	}
 
 	getListado(){
@@ -79,6 +81,10 @@ export class CheckoutComponent implements OnInit {
 			return true;
 		}
 		return false;
+	}
+
+	onChangePago(id:any){
+		this.metodoPago = id;
 	}
 
 	getCheckout() {
@@ -115,20 +121,27 @@ export class CheckoutComponent implements OnInit {
 
 	registerCheckout() {
 		if(!this.isLogueadoUser()){
-			this.registerCheckout_LOCAL();
+			this.registerCheckout_LOCAL(false);
 		}else{
 			this.registerCheckout_RED();	
 		}
 	}
-
-	registerCheckout_LOCAL(){
+ /**
+  * 1.- Orden Procesada
+  * 2.- Orden Enviada
+  * 3.- Orden en camino
+  * 4.- Orden entregada
+  */
+	registerCheckout_LOCAL(id_user:boolean){
 		var pago=0;
 		if(this.newPay > 0){
 			pago=this.newPay;
 		}else{
 			pago=this.amountPay;
 		}
+		
 		const obj={
+			"id_user": null,
 			"firstname": this.checkoutForm.value.checkoutName,
 			"lastname": this.checkoutForm.value.checkoutApellidos,
 			"email": this.checkoutForm.value.checkoutemail,
@@ -140,9 +153,18 @@ export class CheckoutComponent implements OnInit {
 			"code": this.code_acept,
 			"paymentMethod": this.checkoutForm.value.paymentMethod,
 			"totalItems": this.totalItems,
+			"amountPayOriginal": this.amountPay,
 			"amountPay": pago,
+			"descount": this.descountPorcentaje,
+			"status_shipment": 1,
+			"guia_shipment":'',
+			"service_shipment":'',
+			"date_delivery":'',
 			"sale_detail": this.cartList
-			
+		}
+
+		if(id_user){
+			obj.id_user = parseInt(sessionStorage.getItem("Id_User"));
 		}
 
 		this.checkoutSvc.insertCheckout_invitado(obj).subscribe((response:any)=>{
@@ -152,7 +174,9 @@ export class CheckoutComponent implements OnInit {
 					'Tu Proceso de pago fue aceptado correctamente!',
 					'success'
 				);
-				
+				localStorage.removeItem("carrito");
+				this.svcPay.sendCriterio(true);
+				this.confirmarOrden(response.uid);
 			}else{
 				Swal.fire({
 					icon: 'error',
@@ -160,8 +184,7 @@ export class CheckoutComponent implements OnInit {
 					text: `Error al procesar pago`
 				});
 			}
-			localStorage.removeItem("carrito");
-			this.svcPay.sendCriterio(true);
+			
 		},(err:any)=>{
 			Swal.fire({
 				icon: 'error',
@@ -172,6 +195,7 @@ export class CheckoutComponent implements OnInit {
 	}
 	
 	registerCheckout_RED(){
+		this.registerCheckout_LOCAL(true);
 		const obj ={
 			"idUser": parseInt(sessionStorage.getItem("Id_User")),
 			"code": this.code_acept,
@@ -179,20 +203,24 @@ export class CheckoutComponent implements OnInit {
 		}
 		this.checkoutSvc.insertCheckout(obj).subscribe( (response:any)=>{
 			if(response > 0){
+				this.svcPay.sendCriterio(true);
+				/*
 				Swal.fire(
 					'Bien hecho!',
 					'Tu Proceso de pago fue aceptado correctamente!',
 					'success'
 				)
-				this.svcPay.sendCriterio(true);
-				this.confirmarOrden();
+				this.svcPay.sendCriterio(true);*/
+				//this.confirmarOrden();
 			}
 		}, (err:any)=>{
+			/*
 			Swal.fire({
 				icon: 'error',
 				title: 'Oopss...',
 				text: `${JSON.stringify(err)}`
 			});
+			*/
 		});
 	}
 
@@ -301,6 +329,7 @@ export class CheckoutComponent implements OnInit {
 		this.checkoutSvc.validCodePromo(this.CodePromoForm.value.code_promotion).subscribe((descount: number) => {
 
 			if (descount > 0) {
+				this.descountPorcentaje = descount;
 				this.code_acept = this.CodePromoForm.value.code_promotion;
 				this.newPay = this.amountPay - (this.amountPay * descount) / 100;
 				Swal.fire({
@@ -328,8 +357,8 @@ export class CheckoutComponent implements OnInit {
 		});
 	}
 
-	confirmarOrden(){
-		this.routerLink.navigateByUrl('/shipment-order');
+	confirmarOrden(id:any){
+		this.routerLink.navigateByUrl(`/shipment-order/${id}`);
 	}
 
 }

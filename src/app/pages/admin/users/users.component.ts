@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
 
 	listUsers: any[] = [];
 	headElements = ['Imagen','Id','Nombre', 'Apellidos', 'Email', 'Role', 'Acciones'];
-	imagesUrl = settings.apinode.urlServer + 'get-image-user/';
+	imagesUrl= settings.apinode.urlPhotoUserServer;
 	defaultBindingsList = [];
 	selectedType = null;
 
