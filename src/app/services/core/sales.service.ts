@@ -55,4 +55,13 @@ export class SalesService {
 
   }
 
+  deleteOrder(id:any){
+	return this.http.delete(`${settings.apinode.urlServer}sale/delete-sale/${id}`, {
+		headers: new HttpHeaders({
+			"Content-Type": "application/json",
+			'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+		})
+	});
+  }
+
 }

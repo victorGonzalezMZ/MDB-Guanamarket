@@ -47,7 +47,8 @@
                                         <td *ngIf="el.status_shipment==2">En Camino</td>
                                         <td *ngIf="el.status_shipment==3">Entregado</td>
                                         <td>
-                                            <button (click)="editOrder(el._id)" type="button" class="btn btn-warning"><i class="fas fa-edit"></i>&nbsp;Editar</button>
+                                            <button (click)="editOrder(el._id)" type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>&nbsp;Editar</button>
+                                            <button (click)="deleteOrder(el._id)" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</button>
                                         </td>
                                     </tr>
                                 </tbody>

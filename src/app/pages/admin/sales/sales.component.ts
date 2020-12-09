@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SalesService } from 'src/app/services/core/sales.service';
-
+import Swal from 'sweetalert2';
 @Component({
 	selector: 'app-sales',
 	templateUrl: './sales.component.html',
@@ -79,6 +79,40 @@ export class SalesComponent implements OnInit {
 
 	editOrder(id:any){
 		this.router.navigateByUrl(`/admin/sales/update/${id}`);
+	}
+
+	deleteOrder(id:any){
+
+		Swal.fire({
+			title: 'Estas seguro?',
+			text: "Ya no podrás revertir esto!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si, eliminar!',
+			cancelButtonText: 'No, cancelar!',
+			confirmButtonColor: '#6a1b9a',
+			cancelButtonColor:'#CC0000',
+			reverseButtons: true
+		}).then((result) => {	
+			if(result.value){				
+				this.svcSale.deleteOrder(id).subscribe((response:any)=>{
+					Swal.fire(
+						'Bien hecho!',
+						`${response.msg}`,
+						'success'
+					);
+					this.getDataIni();
+					
+				})
+			}else{
+				Swal.fire(
+					'Cancelado',
+					`La orden ${id}se encuentra segura =)`,
+					'error'
+				);
+			}
+		});
+
 	}
 
 }
