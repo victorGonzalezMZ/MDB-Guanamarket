@@ -18,6 +18,15 @@ export class SalesService {
 	
   }
 
+  getSaleByIdAndEmail(obj:any){
+    return this.http.post(`${settings.apinode.urlServer}sale/getByIdAndEmail`,obj, {
+			headers: new HttpHeaders({
+				"Content-Type": "application/json"
+			})
+	});
+	
+  }
+
   getAllAdmin(pageNumber:number,pageSize:number=5,criterio:number=0){
 	return this.http.get(`${settings.apinode.urlServer}sale/getAll/${pageNumber}/${pageSize}/${criterio}`,{
 		headers: new HttpHeaders({
@@ -31,6 +40,16 @@ export class SalesService {
 	return this.http.get(`${settings.apinode.urlServer}sale/getAllUserID/${pageNumber}/${pageSize}/${criterio}/${iduser}`,{
 		headers: new HttpHeaders({
 			"Content-Type": "application/json"
+		})
+	});
+
+  }
+
+  editSendMethod(obj:any){
+	return this.http.put(`${settings.apinode.urlServer}sale/edit_sendMethod`,obj, {
+		headers: new HttpHeaders({
+			"Content-Type": "application/json",
+			'Authorization': `Bearer ${localStorage.getItem('jwt')}`
 		})
 	});
 

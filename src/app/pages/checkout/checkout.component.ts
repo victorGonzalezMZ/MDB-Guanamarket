@@ -127,10 +127,9 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
  /**
-  * 1.- Orden Procesada
-  * 2.- Orden Enviada
-  * 3.- Orden en camino
-  * 4.- Orden entregada
+  * 1.- Orden Procesada / Pend. Envio
+  * 2.- Orden Enviada / En Camino
+  * 3.- Orden en camino / Orden Entregada
   */
 	registerCheckout_LOCAL(id_user:boolean){
 		var pago=0;
@@ -147,7 +146,7 @@ export class CheckoutComponent implements OnInit {
 			"email": this.checkoutForm.value.checkoutemail,
 			"address": this.checkoutForm.value.checkoutaddress,
 			"state": this.checkoutForm.value.checkoutState,
-			"country": this.checkoutForm.value.checkoutcountry,
+			"country": this.checkoutForm.value.checkoutCountry, 
 			"zip": this.checkoutForm.value.checkoutZip,
 			"phone": this.checkoutForm.value.checkoutphone,
 			"code": this.code_acept,
@@ -160,9 +159,11 @@ export class CheckoutComponent implements OnInit {
 			"guia_shipment":'',
 			"service_shipment":'',
 			"date_delivery":'',
-			"sale_detail": this.cartList
+			"sale_detail": this.cartList,
+			"city": this.checkoutForm.value.checkoutCity,
 		}
 
+		console.log(JSON.stringify(obj));
 		if(id_user){
 			obj.id_user = parseInt(sessionStorage.getItem("Id_User"));
 		}

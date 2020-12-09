@@ -1,0 +1,127 @@
+<div class="py-5 product-main">
+    <div class="my-5 py-5 elegant-color z-depth-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center py-3 white-text">Administración de Ventas/Envíos</h1>
+        </div>
+        <!-- Default form contact -->
+        <div class="container">
+            <form class="text-center border border-light p-5 white" [formGroup]="SaleForm" (submit)="updateSale()">
+
+                <p class="h4 mb-4">Actualizar Status Orden</p>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="_id" name="_id" formControlName="_id" class="form-control" autofocus readonly>
+                            <label class="active" for="inputIconEx2">#Orden</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="date_purchase" name="date_purchase" formControlName="date_purchase" class="form-control form-control-lg" autofocus readonly>
+                            <label class="active" for="inputLGEx">Fecha Compra</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="md-form mt-0">
+                            <textarea id="address" name="address" formControlName="address" class="md-textarea form-control" rows="1" autofocus readonly></textarea>
+                            <label class="active" for="form10">Dirección</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="city" name="city" formControlName="city" class="form-control" autofocus readonly>
+                            <label class="active" for="inputIconEx2">Ciudad</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="state" name="state" formControlName="state" class="form-control form-control-lg" autofocus readonly>
+                            <label class="active" for="inputLGEx">Estado</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="country" name="country" formControlName="country" class="form-control form-control-lg" autofocus readonly>
+                            <label class="active" for="inputLGEx">País</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="phone" name="phone" formControlName="phone" class="form-control" autofocus readonly>
+                            <label class="active" for="inputIconEx2">Telefóno</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="zip" name="zip" formControlName="zip" class="form-control form-control-lg" autofocus readonly>
+                            <label class="active" for="inputLGEx">Código Postal</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Status -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="email" name="email" formControlName="email" class="form-control form-control-lg" autofocus readonly>
+                            <label class="active" for="inputLGEx">Correo Electrónico</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-lg-12">
+                        <label class="active" for="inputLGEx">Estatus:</label>
+                        <select name='status_shipment' id='status_shipment' formControlName="status_shipment" class="browser-default custom-select">
+                            <option selected>Seleccione un estatus</option>
+                            <option *ngFor="let item of defaultBindingsList"  value="{{item.value}}">{{item.name}}</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-lg-12">
+                        <label class="active" for="inputLGEx">Paquetería:</label>
+                        <select name='service_shipment' id='service_shipment' formControlName="service_shipment" class="browser-default custom-select">
+                            <option selected>Seleccione una paquetería</option>
+                            <option *ngFor="let item of defaultBindingsListPaqueterias"  value="{{item.value}}">{{item.name}}</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <!-- SKU -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="guia_shipment" name="guia_shipment" formControlName="guia_shipment" class="form-control" autofocus>
+                            <label class="active" for="inputIconEx2">Guía</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="date" id="date_delivery" name="date_delivery" formControlName="date_delivery" class="form-control form-control-lg" autofocus>
+                            <label class="active" for="inputLGEx">Fecha de Entrega:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-info btn-block" type="submit"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- Default form contact -->
+    </div>
+</div>

@@ -21,6 +21,7 @@ import { PromotionsComponent } from './promotions/promotions.component';
 import { NewpromotionsComponent } from './promotions/newpromotions/newpromotions.component';
 import { UpdatepromotionsComponent} from './promotions/updatepromotions/updatepromotions.component';
 import { SalesComponent } from './sales/sales.component';
+import { UdpsaleComponent } from './sales/udpsale/udpsale.component';
 @NgModule({
 	declarations: [
 		AdminComponent,
@@ -36,7 +37,8 @@ import { SalesComponent } from './sales/sales.component';
 		PromotionsComponent,
 		NewpromotionsComponent,
 		UpdatepromotionsComponent,
-		SalesComponent
+		SalesComponent,
+		UdpsaleComponent
 
 	],
 	imports: [
