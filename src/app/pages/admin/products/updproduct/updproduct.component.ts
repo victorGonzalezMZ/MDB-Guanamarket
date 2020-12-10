@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/core/categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { UploadService } from 'src/app/services/core/upload.service';
@@ -38,7 +38,9 @@ export class UpdproductComponent implements OnInit {
 		private router: ActivatedRoute, 
 		private productSvc:ProductsService,
 		private categoriesSvc: CategoriesService, 
-		private uploadSvc: UploadService) { 
+		private uploadSvc: UploadService,
+		private routerLink: Router) {
+
 			this.router.params.subscribe(params => {
 				this._id = parseInt(params['id']);
 				this.getProduct(parseInt(params['id']));
@@ -130,6 +132,7 @@ export class UpdproductComponent implements OnInit {
 					`Tu producto con ID ${this._id} fue actualizado correctamente!`,
 					'success'
 				)
+				this.routerLink.navigateByUrl(`/admin/products`);
 			}
 		}, err => {
 			console.log(err);

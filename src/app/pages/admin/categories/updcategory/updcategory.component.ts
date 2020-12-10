@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/core/categories.service';
 import Swal from 'sweetalert2'
 @Component({
@@ -18,7 +18,7 @@ export class UpdcategoryComponent implements OnInit {
 	});
 
 
-	constructor(private fb: FormBuilder, private router: ActivatedRoute, private categorySvc:CategoriesService ) {
+	constructor(private fb: FormBuilder, private router: ActivatedRoute, private categorySvc:CategoriesService,private routerLink: Router ) {
 		this.router.params.subscribe(params => {
 			this._id = params['id'];
 			this.getCategory(parseInt(params['id']));
@@ -50,6 +50,7 @@ export class UpdcategoryComponent implements OnInit {
 					`Tu categoria con ID ${this._id} fue actualizada correctamente!`,
 					'success'
 				)
+				this.routerLink.navigateByUrl(`/admin/categories`);
 			}
 		}, err => {
 			console.log(err);

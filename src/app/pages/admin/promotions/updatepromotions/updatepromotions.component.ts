@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PromotionsService } from 'src/app/services/core/promotions.service';
 import Swal from 'sweetalert2';
 
@@ -21,7 +21,8 @@ export class UpdatepromotionsComponent implements OnInit {
 		theme: []
 	});
 	constructor(private fb: FormBuilder, private router: ActivatedRoute,
-		private promoctionSvc: PromotionsService) {
+		private promoctionSvc: PromotionsService,
+		private routerLink: Router) {
 
 		this.router.params.subscribe(params => {
 			this._id = parseInt(params['id']);
@@ -70,6 +71,7 @@ export class UpdatepromotionsComponent implements OnInit {
 					`Tu Promoció con ID ${response} fue actualizado correctamente!`,
 					'success'
 				)
+				this.routerLink.navigateByUrl(`/admin/promotions`);
 			}
 		}, err => {
 			console.log(err);

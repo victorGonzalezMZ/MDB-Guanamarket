@@ -4,6 +4,7 @@ import { UploadService } from 'src/app/services/core/upload.service';
 import Swal from 'sweetalert2'
 import { sha256 } from 'js-sha256';
 import { UsersService } from 'src/app/services/core/users.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-newuser',
@@ -20,7 +21,8 @@ export class NewuserComponent implements OnInit {
 
 	constructor(
 		private uploadSvc: UploadService,
-		private userSvc: UsersService) { }
+		private userSvc: UsersService,
+		private routerLink: Router) { }
 
 	ngOnInit(): void {
 		this.loadImagen = false;
@@ -68,6 +70,7 @@ export class NewuserComponent implements OnInit {
 					`Se registro un nuevo usuario con el ID ${response}`,
 					'success'
 				)
+				this.routerLink.navigateByUrl(`/admin/promotions`);
 			}
 		}, err => {
 			console.log(err);

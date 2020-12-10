@@ -6,7 +6,7 @@
             <div class="row d-flex">
                 <div class="col-lg-12">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control mt-2" placeholder="Buscar por # Orden" #searchOrden>
+                        <input type="text" class="form-control mt-2" placeholder="Buscar usar # para ordenes  y @ para emails  " #searchOrden>
                         <div class="input-group-append">
                             <button (click)="searchOrderPurchase(searchOrden.value)" class="btn mt-2 warning-color-dark" type="button">
                                 <i class="fas fa-search"></i>
@@ -34,6 +34,7 @@
                                         <th><span>No Items</span></th>
                                         <th><span>Monto MXP</span></th>
                                         <th><span>Status</span></th>
+                                        <th><span>Cliente Email</span></th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,7 @@
                                         <td *ngIf="el.status_shipment==1">Pend. Envío</td>
                                         <td *ngIf="el.status_shipment==2">En Camino</td>
                                         <td *ngIf="el.status_shipment==3">Entregado</td>
+                                        <td>{{el.email}}</td>
                                         <td>
                                             <button (click)="editOrder(el._id)" type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>&nbsp;Editar</button>
                                             <button (click)="deleteOrder(el._id)" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</button>

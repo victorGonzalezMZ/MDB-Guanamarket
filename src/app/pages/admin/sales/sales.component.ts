@@ -20,7 +20,7 @@ export class SalesComponent implements OnInit {
 		{ value: 0, name: 'Todos'},
 		{ value: 1, name: 'Pendientes Envio'},
 		{ value: 2, name: 'En Camino'},
-		{ value: 3, name: 'Enviado'}
+		{ value: 3, name: 'Entregado'}
 	];
 
 	indexGlobal:any;
@@ -28,6 +28,7 @@ export class SalesComponent implements OnInit {
 	ngOnInit(): void {
 		this.itemPerPaginate = 5;
 		this.indexGlobal =1;
+		this.pagerList = '';
 		this.statusShipment = this.defaultBindingsList[0];
 		this.getDataIni();
 	}
@@ -49,13 +50,26 @@ export class SalesComponent implements OnInit {
 			const obj ={
 				uid: search
 			}
+			var fstChar = search.charAt(0);		
 			
-			this.svcSale.getSaleById(obj).subscribe((response: any) => {
-				var data_:any =[];
-				data_.push(response.data)	
-				this.salesList = data_;
-				this.pagerList = '';
-			});
+			if(fstChar == "#"){
+				obj.uid = obj.uid.replace('#','');
+				this.svcSale.getSaleById(obj).subscribe((response: any) => {
+					var data_:any =[];
+					data_.push(response.data)	
+					this.salesList = data_;
+					this.pagerList = '';
+				});
+			}else{
+				if(fstChar == "@"){
+					obj.uid = obj.uid.replace('@','');
+					this.svcSale.getAllAdminEmail(this.indexGlobal,100000,obj.uid).subscribe((response: any) => {
+						this.salesList = response.data.data;
+						this.pagerList = response.data.pager;
+					})
+					
+				}
+			}
 		}else{
 			this.getDataIni();
 		}
@@ -102,7 +116,7 @@ export class SalesComponent implements OnInit {
 						'success'
 					);
 					this.getDataIni();
-					
+
 				})
 			}else{
 				Swal.fire(

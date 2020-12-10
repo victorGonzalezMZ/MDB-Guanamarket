@@ -1,6 +1,7 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/core/categories.service';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { UploadService } from 'src/app/services/core/upload.service';
@@ -22,7 +23,8 @@ export class NewproductComponent implements OnInit {
 	constructor(
 		private categoriesSvc: CategoriesService,
 		private uploadSvc: UploadService,
-		private productsSvc: ProductsService,) { }
+		private productsSvc: ProductsService,
+		private router: Router) { }
 
 	ngOnInit(): void {
 		this.loadImagen = false;
@@ -70,7 +72,9 @@ export class NewproductComponent implements OnInit {
 					`Tu producto con ID ${response} fue registrado correctamente!`,
 					'success'
 				)
+				this.router.navigateByUrl(`/admin/products`);
 			}
+
 		}, err => {
 			console.log(err);
 			Swal.fire({

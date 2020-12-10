@@ -30,7 +30,7 @@ export class PurchaseOrdersComponent implements OnInit {
 		{ value: 0, name: 'Todos'},
 		{ value: 1, name: 'Pendientes Envio'},
 		{ value: 2, name: 'En Camino'},
-		{ value: 3, name: 'Enviado'}
+		{ value: 3, name: 'Entregado'}
 	];
 
 	statusShipment = null;

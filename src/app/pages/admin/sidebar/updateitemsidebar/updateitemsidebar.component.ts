@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuSidebarService } from 'src/app/services/core/menu-sidebar.service';
 import Swal from 'sweetalert2';
 
@@ -19,7 +19,8 @@ export class UpdateitemsidebarComponent implements OnInit {
 		type: []
 	});
 	constructor(private fb: FormBuilder, private router: ActivatedRoute,
-		private svcMenuSidebar: MenuSidebarService) {
+		private svcMenuSidebar: MenuSidebarService,
+		private routerLink: Router) {
 		this.icon = "";
 		this.router.params.subscribe(params => {
 			this._id = (params['id']);
@@ -65,6 +66,7 @@ export class UpdateitemsidebarComponent implements OnInit {
 					`Tu Sidebar con ID ${this._id} fue actualizado correctamente!`,
 					'success'
 				)
+				this.routerLink.navigateByUrl(`/admin/sidebar`);
 			}
 		}, err => {
 			console.log(err);

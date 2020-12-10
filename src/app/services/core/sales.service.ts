@@ -36,6 +36,15 @@ export class SalesService {
 	});
   }
 
+  getAllAdminEmail(pageNumber:number,pageSize:number=5,criterio:any){
+	return this.http.get(`${settings.apinode.urlServer}sale/getAllByEmail/${pageNumber}/${pageSize}/${criterio}`,{
+		headers: new HttpHeaders({
+			"Content-Type": "application/json",
+			'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+		})
+	});
+  }
+
   getAllUserID(pageNumber:number,pageSize:number=5,criterio:number=0,iduser:number){
 	return this.http.get(`${settings.apinode.urlServer}sale/getAllUserID/${pageNumber}/${pageSize}/${criterio}/${iduser}`,{
 		headers: new HttpHeaders({

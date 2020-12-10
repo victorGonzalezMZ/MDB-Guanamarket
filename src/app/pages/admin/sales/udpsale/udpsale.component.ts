@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SalesService } from 'src/app/services/core/sales.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -15,7 +15,7 @@ export class UdpsaleComponent implements OnInit {
 	defaultBindingsList = [
 		{ value: 1, name: 'Pendiente Envío'},
 		{ value: 2, name: 'En Camino'},
-		{ value: 3, name: 'Enviado'}
+		{ value: 3, name: 'Entregado'}
 	];
 
 	defaultBindingsListPaqueterias = [
@@ -45,7 +45,8 @@ export class UdpsaleComponent implements OnInit {
 	});
 
 	constructor(private router: ActivatedRoute, private fb: FormBuilder,
-		private saleSvc: SalesService) {
+		private saleSvc: SalesService,
+		private routerLink: Router) {
 		this.router.params.subscribe(params => {
 			this._id = params['id'];
 		});
@@ -161,18 +162,21 @@ export class UdpsaleComponent implements OnInit {
 		}
 
 		this.saleSvc.editSendMethod(obj).subscribe((response:any)=>{
-			if(response.data.lastErrorObject.updatedExisting) 
+			if(response.data.lastErrorObject.updatedExisting){ 
 				Swal.fire(
 					'Bien hecho!',
 					`La orden de venta ${this._id} fue actualizada correctamente`,
 					'success'
 				);
-			else
+				this.routerLink.navigateByUrl(`/admin/sales`);
+			}else{
 				Swal.fire({
 					icon: 'error',
 					title: 'Oopss...',
 					text: `La orden de venta ${this._id} NO fue actualizada correctamente`
 				});
+			}
+
 		})
 	}
 

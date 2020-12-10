@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/core/categories.service';
 import Swal from 'sweetalert2'
 
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2'
 })
 export class NewcategoryComponent implements OnInit {
 
-	constructor(private categorySvc: CategoriesService) { }
+	constructor(private categorySvc: CategoriesService,private routerLink: Router) { }
 
 	ngOnInit(): void {
 	}
@@ -27,6 +28,7 @@ export class NewcategoryComponent implements OnInit {
 					`Tu categori con ID ${response} fue registrado correctamente!`,
 					'success'
 				)
+				this.routerLink.navigateByUrl(`/admin/categories`);
 			}
 		}, err => {
 			console.log(err);
