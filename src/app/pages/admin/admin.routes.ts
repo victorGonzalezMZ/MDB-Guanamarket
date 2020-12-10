@@ -14,6 +14,10 @@ import { PromotionsComponent } from './promotions/promotions.component';
 import { UpdatepromotionsComponent } from './promotions/updatepromotions/updatepromotions.component';
 import { SalesComponent } from './sales/sales.component';
 import { UdpsaleComponent } from './sales/udpsale/udpsale.component';
+import { NewitemsidebarComponent } from './sidebar/newitemsidebar/newitemsidebar.component';
+import { NewsubitemsidebarComponent } from './sidebar/newsubitemsidebar/newsubitemsidebar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { UpdateitemsidebarComponent } from './sidebar/updateitemsidebar/updateitemsidebar.component';
 import { NewuserComponent } from './users/newuser/newuser.component';
 import { UsersComponent } from './users/users.component';
 
@@ -35,7 +39,11 @@ const routes: Routes = [
             {path: 'promotions/new', component:NewpromotionsComponent},
             {path: 'promotions/update/:id', component: UpdatepromotionsComponent},
             {path: 'sales', component: SalesComponent},
-            {path: 'sales/update/:id', component:UdpsaleComponent}
+            {path: 'sales/update/:id', component:UdpsaleComponent},
+            {path: 'sidebar', component: SidebarComponent},
+            {path: 'sidebar/new', component: NewitemsidebarComponent},
+            {path: 'sidebar/update/:id', component: UpdateitemsidebarComponent},
+            {path: 'sidebar/newsubitem/:id', component: NewsubitemsidebarComponent}
         ]
     }, 
     

@@ -27,7 +27,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardGuard]},
     { path: 'cart', component: ShoppingCartDetailComponent},
-    { path: 'wishlist', component: WishListDetailComponent},
+    { path: 'wishlist', component: WishListDetailComponent,canActivate: [AuthGuardGuard]},
     { path: "checkout", component: CheckoutComponent},
     { path: "shipment-order/:id", component: ShipmentConfirmationComponent},
     { path: "purchase-orders", component: PurchaseOrdersComponent}  

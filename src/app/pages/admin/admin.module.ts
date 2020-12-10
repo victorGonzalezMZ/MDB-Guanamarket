@@ -22,6 +22,10 @@ import { NewpromotionsComponent } from './promotions/newpromotions/newpromotions
 import { UpdatepromotionsComponent} from './promotions/updatepromotions/updatepromotions.component';
 import { SalesComponent } from './sales/sales.component';
 import { UdpsaleComponent } from './sales/udpsale/udpsale.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NewitemsidebarComponent } from './sidebar/newitemsidebar/newitemsidebar.component';
+import { NewsubitemsidebarComponent } from './sidebar/newsubitemsidebar/newsubitemsidebar.component';
+import { UpdateitemsidebarComponent } from './sidebar/updateitemsidebar/updateitemsidebar.component';
 @NgModule({
 	declarations: [
 		AdminComponent,
@@ -38,7 +42,11 @@ import { UdpsaleComponent } from './sales/udpsale/udpsale.component';
 		NewpromotionsComponent,
 		UpdatepromotionsComponent,
 		SalesComponent,
-		UdpsaleComponent
+		UdpsaleComponent,
+		SidebarComponent,
+		NewitemsidebarComponent,
+		NewsubitemsidebarComponent,
+		UpdateitemsidebarComponent
 
 	],
 	imports: [

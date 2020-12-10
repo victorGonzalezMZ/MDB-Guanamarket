@@ -1,0 +1,62 @@
+<div class="py-5 product-main">
+    <div class="my-5 py-5 elegant-color z-depth-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="text-center py-3 white-text">Administración Sidebar</h1>
+        </div>
+        <!-- Default form contact -->
+        <div class="container">
+            <form class="text-center border border-light p-5 white" #newSidebarForm="ngForm" (ngSubmit)="registerNewSidebar(newSidebarForm)">
+
+                <p class="h4 mb-4">Nuevo Menu</p>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <!-- Name -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="title" name="title" ngModel class="form-control form-control-lg">
+                            <label for="title">Titulo</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3"><i class="fas {{this.icon}}"></i>&nbsp;
+                        <select class="custom-select d-block w-100 form-control" (change)="onChangeIcon($event.target.value)" ngModel id="icon" name="icon" required="">
+                            <option value="">Selecciona un icon...</option>
+                            <option value="fa-archive">Archivo</option>
+                            <option value="fa-calendar-check">Calendario</option>   
+                            <option value="fa-box-open ">Caja Abierta</option>                       
+                            <option value="fa-home">Home</option>
+                            <option value="fa-list-ul">Listado</option>
+                            <option value="fa-clipboard">Portapapeles</option>                            
+                            <option value="fa-address-card"> Tarjeta</option>   
+                            <option value="fa-plus-circle">Circle Plus</option>   
+                                                     
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="md-form mt-0">
+                            <input type="text" id="route" name="route" ngModel class="form-control">
+                            <label for="route">Ruta</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="custom-select d-block w-100" ngModel id="type" name="type" required="">
+                            <option value="">Selecciona un usuario...</option>
+                            <option value="CLIENT">Cliente</option>
+                            <option value="ADMIN">Administrador</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row pt-5">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button [disabled]="newSidebarForm.invalid" class="btn btn-info btn-block" type="submit"><i
+                                    class="fas fa-save"></i>&nbsp;Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- Default form contact -->
+    </div>
+</div>
