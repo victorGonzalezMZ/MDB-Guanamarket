@@ -69,6 +69,7 @@ export class ShopComponent implements OnInit {
 			this.menuBrands = data.list;
 		});
 		this.getAllProducts();
+		this.Brand = 'Todos';
 	}
 
 
