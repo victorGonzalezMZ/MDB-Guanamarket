@@ -6,7 +6,7 @@ export default {
         //urlPhotoUserServer: "http://localhost:3000/v1/user/get-image-user/"
         urlServer: "https://api-guanamarket-r6tit.ondigitalocean.app/v1/",
         urlPhotoServer: "https://api-guanamarket-r6tit.ondigitalocean.app/v1/product/get-image-product/",
-        urlPhotoUserServer: "https://api-guanamarket-r6tit.ondigitalocean.app/v1/get-image-user/"
+        urlPhotoUserServer: "https://api-guanamarket-r6tit.ondigitalocean.app/v1/user/get-image-user/"
     },
 
     apinetcore:{
