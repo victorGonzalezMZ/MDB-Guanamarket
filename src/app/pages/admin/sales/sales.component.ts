@@ -30,6 +30,7 @@ export class SalesComponent implements OnInit {
 		this.indexGlobal =1;
 		this.pagerList = '';
 		this.statusShipment = this.defaultBindingsList[0];
+		
 		this.getDataIni();
 	}
 

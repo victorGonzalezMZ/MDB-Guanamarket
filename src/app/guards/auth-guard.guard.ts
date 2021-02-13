@@ -32,16 +32,15 @@ export class AuthGuardGuard implements CanActivate {
 		const credentials = JSON.stringify({ AccessToken: token, RefreshToken: localStorage.getItem("refreshToken") });
 
 		let isRefreshSuccess: boolean;
+		
 		try {
 			const response = await this.loginSvc.refreshToken(credentials);
-			// If token refresh is successful, set new tokens in local storage.
 			const newToken = (<any>response).body.token;
 			const newRefreshToken = (<any>response).body.refreshToken;
 			localStorage.setItem("jwt", newToken);
 			localStorage.setItem("refreshToken", newRefreshToken);
 			isRefreshSuccess = true;
-		}
-		catch (ex) {
+		}catch (ex) {
 			isRefreshSuccess = false;
 		}
 		return isRefreshSuccess;

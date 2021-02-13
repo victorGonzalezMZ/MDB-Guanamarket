@@ -136,7 +136,7 @@
             }
         }
     },
-    "defaultProject": "mdb-angular-free",
+    "defaultProject": "guanamarket",
     "cli": {
         "analytics": false
     }

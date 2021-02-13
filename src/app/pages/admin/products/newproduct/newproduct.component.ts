@@ -19,7 +19,7 @@ export class NewproductComponent implements OnInit {
 	listCategories: any;
 	files: File[] = [];
 	loadImagen:boolean;
-
+	
 	constructor(
 		private categoriesSvc: CategoriesService,
 		private uploadSvc: UploadService,
